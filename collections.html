@@ -9,6 +9,9 @@
     @theme {
       --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
     }
+
+    @variant dark (&:where(.dark, .dark *));
+    
     /* Re-adding your custom button style here so it works immediately */
     @layer components {
       .btn-primary {
@@ -40,7 +43,7 @@
           </div>
         <div>
             <ul class="space-y-5 font-medium text-gray-600 flex-1 ">
-                    <li class="p-3 pr-3 text-black font-bold flex flex-row gap-2 whitespace-nowrap dark:text-white dark:hover:text-white hover:bg-gray-100/20 rounded-lg ">
+                    <li class="p-3 pr-3 text-black flex flex-row gap-2 whitespace-nowrap dark:text-white dark:hover:text-white hover:bg-gray-100/20 rounded-lg ">
                         <a href="market-place.html"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 hover:text-pink-500 transition">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                         </svg></a>

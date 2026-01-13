@@ -43,5 +43,39 @@ ToggleBtn.addEventListener('click', () => {
         });
     }
 })
+document.addEventListener("DOMContentLoaded", () => {
+    const ThemeToggle = document.getElementById("theme-toggle");
+    const ThemeToggleDark = document.getElementById("theme-toggle-dark-icon");
+    const ThemeToggleLight = document.getElementById("theme-toggle-light-icon");
 
-const ThemeToggle=document.getElementById('')
+    if (
+      localStorage.getItem("color-theme") === "dark" ||
+      (!("color-theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      document.documentElement.classList.add("dark");
+      ThemeToggleLight.classList.remove("hidden");
+      ThemeToggleDark.classList.add("hidden");
+    } else {
+      document.documentElement.classList.remove("dark");
+      ThemeToggleLight.classList.add("hidden");
+      ThemeToggleDark.classList.remove("hidden");
+    }
+
+    ThemeToggle.addEventListener("click", function () {
+      // toggle icons inside button
+      ThemeToggleDark.classList.toggle("hidden");
+      ThemeToggleLight.classList.toggle("hidden");
+
+      // if set via local storage previously
+      if (document.documentElement.classList.contains("dark")) {
+        // Switch to Light
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("color-theme", "light");
+      } else {
+        // Switch to Dark
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("color-theme", "dark");
+      }
+    });
+})

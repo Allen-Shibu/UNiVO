@@ -2,7 +2,7 @@
 
 @theme {
   /* ... */
-  --color-gold:#00997B
+  --color-gold: #00997b;
 }
 
 @layer components {

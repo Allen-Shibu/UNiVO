@@ -1,0 +1,234 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  
+  <style type="text/tailwindcss">
+    @theme {
+      --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+    }
+
+    @variant dark (&:where(.dark, .dark *));
+    
+    /* Re-adding your custom button style here so it works immediately */
+    @layer components {
+      .btn-primary {
+        @apply flex items-center gap-2
+               px-4 py-2
+               rounded-2xl
+               font-semibold
+               bg-yellow-500 text-black
+               hover:bg-yellow-400
+               active:scale-95
+               transition cursor-pointer;
+      }
+    }
+  </style>
+</head>
+<body>
+    <div class="flex min-h-screen">
+        <aside id="sidebar" class="w-64 h-screen bg-gray-50 p-6 px-10 flex flex-col sticky top-0 transition-all duration-300 dark:bg-[#212B36]">
+          <div id="sidebar-header" class="flex flex-row gap-16 whitespace-nowrap">
+            <a href="market-place.html">
+              <div id="sidebar-logo">
+              <img src="logo_light_mode.png" class="h-22 w-14 pb-6 mb-6 ml-6 block dark:hidden">
+              <img src="logo_dark_mode.png" class="h-22 w-14 pb-6 mb-6 ml-6 hidden dark:block">
+            </div></a>
+            <button id="sidebar-btn" class="p-2 hover:bg-gray-100/20 rounded-lg mb-9 dark:text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            </button>
+          </div>
+<div>
+            <ul class="space-y-5 font-medium text-gray-600 flex-1 ">
+                    <li class="p-3 pr-3 text-black flex flex-row gap-2 whitespace-nowrap dark:text-white dark:hover:text-white hover:bg-gray-100/20 rounded-lg ">
+                        <a href="market-place.html"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 hover:text-pink-500 transition">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                        </svg></a>
+                        <a href="market-place.html" class="nav-text transition-opacity duration-200">Home</a>
+                    </li>
+
+                    <li class="hover:text-black p-3 hover:bg-gray-100/20 rounded-lg cursor-pointer flex flex-row gap-2 whitespace-nowrap dark:text-white dark:hover:text-white">
+                        <a href="collections.html"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 hover:text-yellow-500 transition ">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                        </svg></a>
+                        <a href="collections.html" class="nav-text transition-opacity duration-200">My Orders</a>
+                    </li>
+
+                    <a href="listing.html">
+                    <li class="mb-5 p-3 hover:bg-gray-100/20 rounded-lg hover:text-black cursor-pointer flex flex-row whitespace-nowrap dark:text-white dark:hover:text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 min-w-6 hover:text-purple-500 transition">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.593l6.002-4.5c.867-.65 1.035-1.757.5-2.5l-8.62-9.62a2.318 2.318 0 0 0-1.66-1.025Zm-4.295 2.505a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                        </svg>
+                        <span class="nav-text transition-opacity duration-200 px-2">My Listing</span>
+                    </li></a>
+                
+                <li class="p-3 hover:bg-gray-100/20 rounded-lg hover:text-black cursor-pointer flex flex-row gap-2 whitespace-nowrap dark:text-white dark:hover:text-white">
+                  <a href="wishlist.html"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 hover:text-red-500 transition cursor-pointer">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                  </svg></a>
+                  <a href="wishlist.html" class="nav-text transition-opacity duration-200">Wishlist</a>
+                
+
+                
+                </li>
+                <li class=" p-3 hover:bg-gray-100/20 rounded-lg hover:text-black cursor-pointer flex flex-row gap-2 whitespace-nowrap dark:text-white dark:hover:text-white">
+                  <a href="forum.html"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 hover:text-blue-500 transition ">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+                  </svg></a>
+                  <a href="forum.html" class="nav-text transition-opacity duration-200">Forum</a>
+                </li>
+                <li class=" p-3 hover:bg-gray-100/20 rounded-lg hover:text-black cursor-pointer flex flex-row gap-2 whitespace-nowrap dark:text-white dark:hover:text-white">
+                  <a href="contact.html"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 hover:text-green-500 transition ">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                  </svg></a><a href="contact.html" class="nav-text transition-opacity duration-200">Contact us</a>
+                </li>
+            </ul></div>
+            
+    <div class="mt-auto mb-6">
+        
+        <ul class="space-y-2 font-medium text-gray-600 mb-6">
+            <li class="hover:text-black cursor-pointer flex flex-row gap-4 items-center whitespace-nowrap overflow-hidden p-2 rounded-lg hover:bg-gray-100 dark:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 min-w-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 0 1 0 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 0 1 0-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281Z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                </svg>
+                <span class="nav-text transition-opacity duration-200">Settings</span>
+            </li>
+        </ul>
+
+        <div class="pt-6 border-t border-gray-200">
+            <div class="flex gap-4 text-xs text-gray-400 font-medium mb-2">
+                <span class="hover:text-gray-600 cursor-pointer nav-text">Terms</span>
+                <span class="hover:text-gray-600 cursor-pointer nav-text">Privacy</span>
+                <span class="hover:text-gray-600 cursor-pointer nav-text">Help</span>
+            </div>
+            <div id="sidebar_text">
+              <img id="sidebar_text_light_mode" src="text_light_mode.png" class="w-26 ml-4 block dark:hidden">
+              <img id="sidebar_text_dark_mode" src="text_dark_mode.png" class="w-26 ml-4 hidden dark:block">
+            </div>
+        </div>
+
+    </div>
+
+</aside>
+
+        <main class="flex-1 bg-white p-6 flex flex-col dark:bg-[#161C24]">
+              <header class="h-16 bg-white border-b border-gray-50 mb-6 dark:bg-[#161C24]">
+                <div class="flex justify-between items-center h-full">
+                  
+                  <div class="relative w-fit">
+                      <form class="relative">
+                        <svg class="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M16.65 10.5a6.15 6.15 0 11-12.3 0 6.15 6.15 0 0112.3 0z" />
+                        </svg>
+                        <input type="search" placeholder="Search" class="appearance-none border border-gray-300 rounded-2xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 pr-10 bg-gray-200 text-sm w-150">
+                      </form>
+                  </div>
+
+
+                <div class="flex gap-5 items-center">
+                  <button class="btn-primary">
+                    <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14M5 12h14"/>
+                    </svg>
+                     SELL
+                  </button>
+
+                  <div class="flex dark:text-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 hover:text-yellow-500 transition cursor-pointer">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+                  </svg>
+                </div>  
+
+                <div class="dark:text-white">
+                  <button id="theme-toggle" class="size-6 hover:text-yellow-500 transition cursor-pointer pt-1">
+                    <svg id="theme-toggle-dark-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 hidden">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+                      </svg>
+    
+                    <svg id="theme-toggle-light-icon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+                    </svg>
+                  </button>
+                </div>
+
+
+                  <div class="flex flex-col gap-1 justify-center items-center cursor-pointer hover:text-yellow-600 transition dark:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    </svg>
+                  </div>
+
+                </div>
+              </div>
+            </header>
+            <h1 class="ml-5 text-5xl font-bold text-grey-800">Sell your item</h1>
+            <hr class="border-t-2 border-[#F0B100] my-6 relative z-0">
+            
+            <form method="post" action="imagepost.php" enctype="multipart/form-data">
+            <div class="flex flex-row">
+                  <div>            
+                    <!-- <label class="ml-5 text-4xl text-gray-600 font-medium underline">Enter the Product details</label><br> -->
+                    
+                    <!-- product details input --><br><br>
+                     <!-- product name -->
+                    <label class="block text-2xl font-medium text-gray-600 ml-5">name</label>
+                    <input
+                    name = 'pname'
+                    type="text"
+                    placeholder="toolkit"
+                    class="border-b-3 border-[#F0B100] outline-0 py-2 px-3 ml-4 w-100 rounded bg-gray-200"
+                    ><br><br>
+                                         <!-- product information -->
+                    <label class="block text-2xl font-medium text-gray-600 ml-5">description </label>
+                    <textarea
+                    type="text"
+                    name="pdescription"
+                    placeholder="detailed product description"
+                    class="outline-0 border-b-3 border-[#F0B100] rounded-md-3 py-2 px-3 ml-4 w-100 rounded h-40 bg-gray-200 "
+                    ></textarea><br><br>
+                                         <!-- product price -->
+                    <label class="block text-2xl font-medium text-gray-600 ml-5">Price</label>
+                    <input
+                    type="text"
+                    placeholder="$$$"
+                    name = 'pprice'
+                    class="outline-0 border-b-3 border-[#F0B100] bg-gray-200 py-2 px-3 ml-4 w-100 rounded"
+                    ><br><br>
+
+                    <!-- product details -->
+                    <label class="block text-2xl font-medium text-gray-600 ml-5">other details</label>
+                    <input
+                    type="text"
+                    name="pdetails"
+                    placeholder="contact details, locations etc"
+                    class="outline-0 border-b-3 border-[#F0B100] bg-gray-200 py-2 px-3 ml-4 w-100 rounded">
+                  </div>
+                  <div class="cursor-pointer flex justify-center mt-10 w-2/3 h-90%  bg-contain ml-10 items-center border-2 border-dashed border-[#b38402] rounded-2xl hover:bg-[#ffd76a71] transition duration-200 relative">
+                    <label for='file-upload' class=" text-[100px] text-[#b38402] cursor-pointer">+</label>
+                    <input name='image' type="file" id="file-input" multiple class="absolute inset-0 opacity-0">
+                  </div></div>
+                  <div id="imageuploads" class="items-center grid grid-cols-5 gap-3 mt-10 h-100 w-90% rounded "></div>
+                  
+                  <!-- upload button -->
+                   <?php
+                   include ('imagepost.php')
+                   ?>
+                <div class="fixed bottom-4 right-4 flex gap-3 p-3 rounded-full">
+
+
+                  
+                    <button id='postbtn' name="submit" type='submit' class="bg-yellow-500 px-4 py-2 rounded-full text-4xl shadow-[0_10px_20px_rgba(0,0,0,0.6)] z-50 w-50 font-bold text-white hover:scale-110 transition-transform duration-150">Post</button>
+                  </form>
+                  
+                </div>
+
+        </main>
+    <script src="selling.js"></script>
+    <script src="marketplace.js"></script>
+</body>
+</html>

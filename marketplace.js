@@ -3,7 +3,8 @@ const Sidebar_Logo = document.getElementById('sidebar-logo');
 const ToggleBtn = document.getElementById('sidebar-btn')
 const navTexts = document.querySelectorAll(".nav-text");
 const header = document.getElementById("sidebar-header");
-const SidebarText=document.getElementById("sidebar_text")
+const SidebarText = document.getElementById("sidebar_text")
+const MainContent=document.getElementById('main')
 
 
 ToggleBtn.addEventListener('click', () => {
@@ -14,6 +15,9 @@ ToggleBtn.addEventListener('click', () => {
         
         SideBar.classList.remove('w-64', 'px-10')
         SideBar.classList.add('w-29', "px-9.5")
+        
+      MainContent.classList.remove('ml-64')
+      MainContent.classList.add('ml-28')
         
         Sidebar_Logo.classList.add('hidden')
         SidebarText.classList.add("hidden");
@@ -30,6 +34,9 @@ ToggleBtn.addEventListener('click', () => {
     else {
         SideBar.classList.remove('w-28', 'px-2')
         SideBar.classList.add('w-64', 'px-10')
+        
+        MainContent.classList.add("ml-64");
+        MainContent.classList.remove("ml-28");
         
         Sidebar_Logo.classList.remove('hidden')
         SidebarText.classList.remove("hidden");

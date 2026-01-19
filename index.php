@@ -1,6 +1,6 @@
-//<?php
-//include ('managedb.php');
-//?>
+<?php
+include ('managedb.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +20,9 @@
                 <input class="signupinput" name = 'password' type="password" placeholder="password"><br>
                 <input class="signupinput" name = 'repassword' type="password" placeholder="confirm password"><br>
                 <br><br>
-                <button type="submit" class="registerbtn"> Sign up</button><br><br>
+
+                <a href="market-place.html"><button type="submit" class="registerbtn"> Sign up</button><br><br></a>
+                
                 <Label id="haveanaccount">i have an account</label>
                 <a href="login.php" id="loginredirectbutton">Login</a>
             </form>

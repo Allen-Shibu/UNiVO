@@ -2,7 +2,8 @@
   "name": "qwerty",
   "version": "1.0.0",
   "scripts": {
-    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
+    "build": "npx tailwindcss -i ./src/input.css -o ./dist/output.css",
+    "start": "npx serve ."
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.1.18",

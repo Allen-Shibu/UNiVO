@@ -25,6 +25,43 @@ body{
     align-items:center;
 
 
+.fail-alert {
+  position: absolute;
+  left: 50%;
+  z-index: 50;
+  display: flex;
+  width: fit-content;
+  transform: translate(-50%, 5rem);
+  white-space: nowrap;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  background-color: #fda4af;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.pass-alert {
+  position: absolute;
+  left: 50%;
+  z-index: 50;
+  display: flex;
+  width: fit-content;
+  transform: translate(-50%, 5rem);
+  white-space: nowrap;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  background-color: #fda4af;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+
+.hidden {
+  display: none;
+}
+
+.alert-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 }
 #registerform{
     display:flex;

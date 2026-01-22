@@ -1,42 +1,47 @@
 <?php
-    $db_server = 'localhost';
-    $db_user = 'root';
-    $db_pass = "";
-    $db_name = "campusconnectusersdb";
+    $db_server = getenv('DB_HOST') ?: 'localhost';
+    $db_user = getenv('DB_USER') ?: 'root';
+    $db_pass = getenv('DB_PASS') ?: '';
+    $db_name = getenv('DB_NAME') ?: 'campusconnectusersdb';
+    $db_port = getenv('DB_PORT') ?: 3306;
+
     $conn = "";
-    try{
-        $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
-        }
+    try {
+        $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name, $db_port);
+    } catch(Exception $e) {
+        error_log("Connection failed: " . $e->getMessage());
+        echo "<script>alert('System error. Please try again later.'); window.location.href='login.php';</script>";
+        exit();
+    }
 
-        catch(Exception $e){
-            echo "<script>alert('connection failed');</script>";
-        }
-        if($conn){
-            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if ($conn) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-                $email = $_POST['lemail'];
-                $password = $_POST['lpassword'];
-                $sql = "SELECT password FROM userdata WHERE email='$email'";
-                $result = mysqli_query($conn, $sql);
+            $email = $_POST['lemail'];
+            $password = $_POST['lpassword'];
 
-                if (mysqli_num_rows($result) === 1) {
-                    $row = mysqli_fetch_assoc($result);
-                    $hashedPassword = $row['password'];
-                    setcookie("email", $email);
-                    echo $hashedPassword;
-                    
+            // Secure SQL lookup
+            $sql = "SELECT password FROM userdata WHERE email = ?";
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmt, "s", $email);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
 
-                    if (password_verify($password, $hashedPassword)) {
-                        echo "Login success";
-                    } else {
-                        echo "Wrong password";
-                    }
+            if ($row = mysqli_fetch_assoc($result)) {
+                $hashedPassword = $row['password'];
+
+                if (password_verify($password, $hashedPassword)) {
+                    // Login Success
+                    setcookie("email", $email, time() + (86400 * 30), "/");
+                    header("Location: index.php");
+                    exit();
                 } else {
-                    echo "User not found";
+                    echo "<script>alert('Wrong password'); window.location.href='login.php';</script>";
                 }
-
-                }
-            
+            } else {
+                echo "<script>alert('User not found'); window.location.href='login.php';</script>";
             }
-    
+            mysqli_stmt_close($stmt);
+        }
+    }
 ?>

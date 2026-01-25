@@ -3,14 +3,19 @@ body{
     background-color:white;
     font-family:sans-serif;
     font-weight:bold;
+
 }
 #logintitle{
-    margin-left:105px;
+    display:flex;
+    justify-content:center;
     color:rgba(0, 0, 0, 0.755);
     font-size:35px;
     margin-bottom:30px;
 }
 #logincontainer{
+    display:flex;
+    justify-content:center;
+    align-items:center;
     background: white;
     box-shadow: -1px 2px 315px rgba(131, 131, 131, 0.599);
     margin:auto;
@@ -18,10 +23,7 @@ body{
     width: 500px;
     height:500px;
     border-radius:30px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    margin-top:10%;
+    margin-top:5%;
 
 }
 #Loginform{
@@ -30,6 +32,7 @@ body{
     align-items:center;
 }
 .signininput{
+
     width:300px;
     height:42px;
     border-radius:5px;
@@ -63,7 +66,8 @@ body{
     border-radius:10px;
     margin-left:10px;
     background-color:rgb(249, 192, 48);
-    border: 1px solid rgb(249, 188, 35)
+    border: 1px solid rgb(249, 188, 35);
+    font-weight:bold;
 
 }
 

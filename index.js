@@ -6,8 +6,6 @@ const repasswordInput = document.getElementById("repassword");
 const SignupBtn = document.querySelector(".registerbtn");
 const LoginBtn = document.getElementById("loginbtn");
 const Failnotify = document.getElementById("fail-notification");
-const verifybtn = document.getElementById('verifymail');
-
 
 
 async function signup() {
@@ -17,17 +15,30 @@ async function signup() {
         return;
     }
   const password = passwordInput.value;
+  const siteUrl = window.location.origin;
+      console.log(siteUrl);
 
   const { data, error } = await supabase.auth.signUp({
     email: email,
     password: password,
+    options: {
+      emailRedirectTo: `${siteUrl}/market-place.html`,
+    },
   });
 
   if (error) {
-    alert("Sign Up Failed!", error.message);
+    alert("Sign Up Failed!" + error.message);
   } else {
-    document.getElementById("success-notification").classList.remove('hidden')
-    window.location.href = "market-place.html";
+    
+    alert(
+      "Verification email sent! Please check your inbox to activate your account.",
+      
+    );
+    
+    nameInput.value = ""
+    repasswordInput.value=""
+    emailInput.value = "";
+    password.value = "";
   }
 }
 
@@ -41,13 +52,12 @@ async function login() {
   });
 
   if (error) {
-    console.log("Supabase Error", error);
+    console.log("Login Failed!"+error.message);
     FailNotification(); 
     
   } else {
-    alert("Login successful");
+    window.location.href="market-place.html"
 
-    window.location.href ="market-place.html";
   }
 }
 

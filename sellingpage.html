@@ -4,27 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-  
-  <style type="text/tailwindcss">
-    @theme {
-      --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-    }
+  <link rel="stylesheet" href="market-place.css">
+    <script type="module" src="selling.js"></script>
+    <script type="module" src="marketplace.js"></script>
 
-    @variant dark (&:where(.dark, .dark *));
-    
-    @layer components {
-      .btn-primary {
-        @apply flex items-center gap-2
-               px-4 py-2
-               rounded-2xl
-               font-semibold
-               bg-yellow-500 text-black
-               hover:bg-yellow-400
-               active:scale-95
-               transition cursor-pointer;
-      }
-    }
-  </style>
 </head>
 <body>
     <div class="flex min-h-screen">
@@ -168,43 +151,56 @@
             <h1 class="ml-5 text-5xl font-bold text-grey-800 dark:text-gray-200">Sell your item</h1>
             <hr class="border-t-2 border-[#F0B100] my-6 relative z-0">
             
-            <form method="post" action="imagepost.php" enctype="multipart/form-data">
+            
             <div class="flex flex-row">
                   <div>            
                     <!-- <label class="ml-5 text-4xl text-gray-600 font-medium underline">Enter the Product details</label><br> -->
                     
                     <!-- product details input --><br><br>
                      <!-- product name -->
-                    <label class="block text-2xl font-medium text-gray-600 ml-5 dark:text-gray-200">name</label>
+                    <label  class="block text-2xl font-medium text-gray-600 ml-5 dark:text-gray-200">Title</label>
                     <input
+                    id="title"
                     name = 'pname'
                     type="text"
-                    placeholder="toolkit"
+                    placeholder="Untitled"
                     class="border-b-3 border-[#F0B100] outline-0 py-2 px-3 ml-4 w-100 rounded bg-gray-200 dark:bg-gray-300"
                     ><br><br>
                                          <!-- product information -->
-                    <label class="block text-2xl font-medium text-gray-600 ml-5:text-gray-200">description </label>
+                    <label  class="block text-2xl font-medium text-gray-600 ml-5 dark:text-gray-200">Description </label>
                     <textarea
+                    id="description"
                     type="text"
                     name="pdescription"
                     placeholder="detailed product description"
                     class="outline-0 border-b-3 border-[#F0B100] rounded-md-3 py-2 px-3 ml-4 w-100 rounded h-40 bg-gray-200 dark:bg-gray-300"
                     ></textarea><br><br>
                                          <!-- product price -->
-                    <label class="block text-2xl font-medium text-gray-600 ml-5 dark:text-gray-200">Price</label>
+                    <label  class="block text-2xl font-medium text-gray-600 ml-5 dark:text-gray-200">Price</label>
                     <input
-                    type="text"
-                    placeholder="$$$"
+                    id="price"
+                    type="number"
+                    placeholder="₹"
                     name = 'pprice'
                     class="outline-0 border-b-3 border-[#F0B100] bg-gray-200 py-2 px-3 ml-4 w-100 rounded dark:bg-gray-300"
                     ><br><br>
 
-                    <!-- product details -->
-                    <label class="block text-2xl font-medium text-gray-600 ml-5 dark:text-gray-50">other details</label>
+                    <label  class="block text-2xl font-medium text-gray-600 ml-5 dark:text-gray-200">Quantity</label>
                     <input
+                    id="quantity"
+                    type="number"
+                    placeholder=""
+                    name = 'pquantity'
+                    class="outline-0 border-b-3 border-[#F0B100] bg-gray-200 py-2 px-3 ml-4 w-100 rounded dark:bg-gray-300"
+                    ><br><br>
+
+                    <!-- product details -->
+                    <label class="block text-2xl font-medium text-gray-600 ml-5 dark:text-gray-50">Other Details</label>
+                    <input
+                    id="details"
                     type="text"
                     name="pdetails"
-                    placeholder="contact details, locations etc"
+                    placeholder=""
                     class="outline-0 border-b-3 border-[#F0B100] bg-gray-200 py-2 px-3 ml-4 w-100 rounded dark:bg-gray-300">
                   </div>
                   <div class="cursor-pointer flex justify-center mt-10 w-2/3 h-90%  bg-contain ml-10 items-center border-2 border-dashed border-[#b38402] rounded-2xl hover:bg-[#ffd76a71] transition duration-200 relative">
@@ -214,17 +210,13 @@
                   <div id="imageuploads" class="items-center grid grid-cols-5 gap-3 mt-10 h-100 w-90% rounded"></div>
                   
                   <!-- upload button -->
-                   <?php
-                   include ('imagepost.php')
-                   ?>
                 <div class="fixed bottom-4 right-4 flex gap-3 p-3 rounded-full">
-                    <button id='postbtn' name="submit" type='submit' class="bg-yellow-500 border-t-3  px-4 py-2 rounded-full text-4xl shadow-[0_10px_20px_rgba(0,0,0,0.6)] z-50 w-50 font-bold text-white hover:scale-110 transition-transform duration-150">Post</button>
-                  </form>
+                    <button id='post-btn' name="submit" type='submit' class="btn-primary  px-4 py-2 text-3xl  text-black hover:scale-110 transition-transform duration-150">POST</button>
+                
                   
                 </div>
 
         </main>
-    <script src="selling.js"></script>
-    <script src="marketplace.js"></script>
+
 </body>
 </html>

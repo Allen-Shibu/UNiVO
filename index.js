@@ -1,5 +1,4 @@
 import { supabase } from "./supabaseClient.js";
-
 const nameInput = document.getElementById("name");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
@@ -7,6 +6,9 @@ const repasswordInput = document.getElementById("repassword");
 const SignupBtn = document.querySelector(".registerbtn");
 const LoginBtn = document.getElementById("loginbtn");
 const Failnotify = document.getElementById("fail-notification");
+const verifybtn = document.getElementById('verifymail');
+
+
 
 async function signup() {
     const email = emailInput.value;
@@ -24,7 +26,7 @@ async function signup() {
   if (error) {
     alert("Sign Up Failed!", error.message);
   } else {
-    alert("Success!");
+    document.getElementById("success-notification").classList.remove('hidden')
     window.location.href = "market-place.html";
   }
 }

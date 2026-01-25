@@ -7,9 +7,7 @@ const SidebarText=document.getElementById("sidebar_text")
 
 
 ToggleBtn.addEventListener('click', () => {
-
     const isOpen = SideBar.classList.contains("w-64");
-
     if (isOpen) {
         
         SideBar.classList.remove('w-64', 'px-10')
@@ -80,6 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 })
 
+
 const preview = document.getElementById('imageuploads');
 const imageInput = document.getElementById('file-input');
 imageInput.addEventListener('change', ()=> {
@@ -100,5 +99,5 @@ imageInput.addEventListener('change', ()=> {
 
 const postbtn = document.getElementById('postbtn');
 postbtn.addEventListener('change', ()=>{
-  
+
 })

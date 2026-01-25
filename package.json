@@ -7,7 +7,8 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.90.1",
-    "@tailwindcss/cli": "^4.1.18"
+    "@tailwindcss/cli": "^4.1.18",
+    "nodemailer": "^7.0.12"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",

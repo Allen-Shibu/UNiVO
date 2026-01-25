@@ -5,6 +5,7 @@ body{
     font-weight:bold;
 }
 #logintitle{
+    margin-left:105px;
     color:rgba(0, 0, 0, 0.755);
     font-size:35px;
     margin-bottom:30px;
@@ -30,10 +31,14 @@ body{
 }
 .signininput{
     width:300px;
-    height:30px;
+    height:42px;
     border-radius:5px;
     border: 1px solid #b1b1b1;
     padding-left:20px;
+    font-size:large;
+    font-family:sans-serif;
+    font-weight:bold;
+    
 
 }
 .registerbtn{
@@ -46,13 +51,20 @@ body{
     margin-left:10px;
     background-color:rgb(249, 192, 48);
     border: 1px solid rgb(249, 188, 35);
+    font-weight:bold;
 }
 #haveanaccount{
-    margin-left:1%;
+    margin-left:12%;
     color:rgba(0, 0, 0, 0.78);
+    
 }
 #loginredirectbutton{
+    color:rgb(64, 27, 110);
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight:bold;
     cursor:pointer;
+}
+
+#loginredirectbutton:hover{
+    color:rgb(31, 31, 252);
 }

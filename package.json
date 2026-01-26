@@ -2,8 +2,10 @@
   "name": "qwerty",
   "version": "1.0.0",
   "scripts": {
-    "build": "npx tailwindcss -i ./src/input.css -o ./dist/output.css",
-    "start": "npx serve ."
+    "start": "npx serve .",
+    "dev":"vite",
+    "build":"vite build",
+    "preview":"vite preview"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.90.1",
@@ -14,5 +16,19 @@
     "@tailwindcss/postcss": "^4.1.18",
     "tailwindcss": "^4.0.0",
     "vite": "^7.3.1"
-  }
+  },
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Allen-Shibu/UNiVO.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Allen-Shibu/UNiVO/issues"
+  },
+  "homepage": "https://github.com/Allen-Shibu/UNiVO#readme"
 }

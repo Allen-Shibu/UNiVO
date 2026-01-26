@@ -210,6 +210,5 @@ window.removeFromWishlist = function (index) {
   // Save the new list back to storage
   localStorage.setItem("MyWishlist", JSON.stringify(Wishlist));
 
-  // Reload the page to see the changes
   location.reload();
 };

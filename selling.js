@@ -159,6 +159,7 @@ postbtn.addEventListener("click", async (e) => {
     }
     //Saving the list to db
 
+    console.log(sellerName)
     const {
       data: { user },
     } = await supabase.auth.getUser();
@@ -181,6 +182,7 @@ postbtn.addEventListener("click", async (e) => {
         details: Details,
         image_url: UploadedUrls, // Publicaly accessible image url
         seller_id: user.id,
+
       },
     ]);
 

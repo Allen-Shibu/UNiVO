@@ -9,7 +9,8 @@ const Failnotify = document.getElementById("fail-notification");
 
 
 async function signup() {
-    const email = emailInput.value;
+  const email = emailInput.value;
+  const name=nameInput.value
     if (!email.endsWith("@gectcr.ac.in")) {
         alert("Access Denied: You must use a valid GEC College email (@gectcr.ac.in)");
         return;
@@ -21,8 +22,12 @@ async function signup() {
   const { data, error } = await supabase.auth.signUp({
     email: email,
     password: password,
+    name: name,
     options: {
       emailRedirectTo: `${siteUrl}/market-place.html`,
+      data: {
+        display_name: name,
+      },
     },
   });
 
@@ -38,7 +43,7 @@ async function signup() {
     nameInput.value = ""
     repasswordInput.value=""
     emailInput.value = "";
-    password.value = "";
+    passwordInput.value = "";
   }
 }
 

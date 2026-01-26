@@ -89,7 +89,12 @@ const imageInput = document.getElementById("file-input");
 imageInput.addEventListener("change", () => {
   preview.innerHTML = "";
   [...imageInput.files].forEach((file) => {
+
     const img = document.createElement("img");
+    const delbtn = document.createElement("delbtn");
+
+    delbtn.innerHTML =  `<button></button>`;
+
     img.src = URL.createObjectURL(file);
     img.className = "ml-3 h-50 w-full object-cover rounded-lg";
     preview.appendChild(img);

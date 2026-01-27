@@ -91,26 +91,43 @@ console.log(WishlistBtn);
 
 let timeoutId;
 
-WishlistBtn.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    e.stopPropagation(); // prevents open of product details page
-    e.preventDefault(); //prevent scrolling when clicking the button
+async function AddWish() {
+  const { data: products, error:productError } = await supabase.from("products").select("products.id");
+  const { data: auth, error:userError } = await supabase.from("auth").select("auth.users.id");
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) {
+    alert("You must be logged in to post!");
+    return;
+  }
 
-    const card = btn.closest(".product-item"); // closest() is used to find parent container from child
+  WishlistBtn.forEach((btn) => {
+    btn.addEventListener("click", async (e) => {
+      e.stopPropagation(); // prevents open of product details page
+      e.preventDefault(); //prevent scrolling when clicking the button
 
-    const product = {
-      image: card.querySelector("img").src,
+      const { error: dbError } = await supabase.from("wishlist").insert([
+        {
+          product_id: e.target.dataset.id,
+          user_id: user.id,
+        },
+      ]);
 
-      title: card.querySelector("p.font-bold").innerText,
+      const products = {
+        image: card.querySelector("image_url").src,
 
-      price: card.querySelector(".text-green-600").innerText,
-    };
+        title: card.querySelector("p.font-bold").innerText,
 
-    AddtoLocalStorage(product);
-
-    console.log("Thing worked ", product);
+        price: card.querySelector(".text-green-600").innerText,
+      };
+      console.log("Thing worked ", products);
+    });
   });
-});
+}
+
+  AddWish();
+
 
 function showNotification() {
   notify.classList.remove("hidden");
@@ -138,22 +155,15 @@ function showAdNotification() {
   }, 2000);
 }
 
-function AddtoLocalStorage(product) {
-  const WishList = JSON.parse(localStorage.getItem("MyWishlist")) || [];
-  console.log(WishList);
-
-  const exists = WishList.some((item) => item.title === product.title); //.some() loops through the array and returns true if it finds a match.
-
-  if (!exists) {
-    WishList.push(product);
-    localStorage.setItem("MyWishlist", JSON.stringify(WishList));
-    showNotification();
-    console.log("saved");
-  } else {
-    notify.classList.add("hidden");
-    showAdNotification();
-  }
-}
+  // if (!exists) {
+  //   WishList.push(products);
+  //   localStorage.setItem("MyWishlist", JSON.stringify(WishList));
+  //   showNotification();
+  //   console.log("saved");
+  // } else {
+  //   notify.classList.add("hidden");
+  //   showAdNotification();   
+  // }
 
 const WishGrid = document.querySelector(".wishlist-grid");
 
@@ -197,25 +207,21 @@ window.removeFromWishlist = function (index) {
   location.reload();
 };
 
+//loading products to main page\\
 async function loadProducts() {
-  const ProductGrid=document.getElementById('product-grid')
-  const { data:products, error } = await supabase
-  .from("products")
-  .select("*");
-
+  const ProductGrid = document.getElementById("product-grid");
+  const { data: products, error } = await supabase.from("products").select("*");
 
   if (error) {
     alert(error);
-    
   } else {
     products.forEach((products) => {
       const card = document.createElement("div");
 
-      card.innerHTML =
-      `<div class="flex flex-row relative overflow-hidden rounded-2xl">
+      card.innerHTML = `<div class="flex flex-row relative overflow-hidden rounded-2xl">
           <img src="${products.image_url[0]}" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-300">
             <div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm p-1.5 rounded-full hover:text-red-500 transition-colors">
-              <svg class="wishlist-btn size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" /></svg>
+              <svg data-id="${products.id}" class="wishlist-btn size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" /></svg>
             </div>
         </div>
         <div class="mt-3">
@@ -228,5 +234,4 @@ async function loadProducts() {
   }
 }
 
-loadProducts(); 
-
+loadProducts();

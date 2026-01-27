@@ -78,15 +78,15 @@ if (LoginBtn)
     login();
   });
 
-function FailNotification() {
-  Adnotify.classList.remove("hidden");
+// function FailNotification() {
+//   Adnotify.classList.remove("hidden");
 
-  if (timeoutId) {
-    //clear any existing timer
-    clearTimeout(timeoutId);
-  }
+//   if (timeoutId) {
+//     //clear any existing timer
+//     clearTimeout(timeoutId);
+//   }
 
-  timeoutId = setTimeout(() => {
-    Failnotify.classList.add("hidden");
-  }, 2000);
-}
+//   timeoutId = setTimeout(() => {
+//     Failnotify.classList.add("hidden");
+//   }, 2000);
+// }

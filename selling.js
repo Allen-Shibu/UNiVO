@@ -159,15 +159,14 @@ postbtn.addEventListener("click", async (e) => {
     }
     //Saving the list to db
 
-    console.log(sellerName)
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    console.log(Title);
-    console.log(Price);
-    console.log("Logged in User ID:", user?.id);
-    console.log("Seller ID being sent:", user?.id);
-    console.log("Image List:", UploadedUrls);
+    // console.log(Title);
+    // console.log(Price);
+    // console.log("Logged in User ID:", user?.id);
+    // console.log("Seller ID being sent:", user?.id);
+    // console.log("Image List:", UploadedUrls);
     if (!user) {
       alert("You must be logged in to post!");
       return;
@@ -188,13 +187,15 @@ postbtn.addEventListener("click", async (e) => {
 
     if (dbError) throw dbError;
 
-    alert("Item posted Successfully");
-    Title = "";
-    Price = "";
-    Descp = "";
-    Nos = "";
-    Details = "";
-    //window.location.href = "market -place.html"
+
+    else {
+      alert("Item posted Successfully");
+      const siteUrl = window.location.origin;
+      console.log(siteUrl);
+
+      window.location.href = `${siteUrl}/market-place.html`;
+    }
+
   } catch (error) {
     alert("Upload Failed" + error.message);
   }

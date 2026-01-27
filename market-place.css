@@ -15,4 +15,15 @@
            active:scale-95
            transition cursor-pointer;
   }
+
+  .btn-sec {
+    @apply flex items-center gap-2
+           px-4 py-2
+           rounded-2xl
+           font-semibold
+           bg-white text-black
+           hover:bg-yellow-400
+           active:scale-95
+           transition cursor-pointer;
+  }
 }

@@ -89,30 +89,28 @@ const imageInput = document.getElementById("file-input");
 imageInput.addEventListener("change", () => {
   // preview.innerHTML = "";
 
-
   [...imageInput.files].forEach((file) => {
     const box = document.createElement("div");
     const img = document.createElement("img");
     const delbtn = document.createElement("delbtn");
-    delbtn.innerHTML =  `<button id='delbtn' class="cursor-pointer relative px-1 -top-47 -right-54 w-8 h-8 bg-white/60 rounded-4xl backdrop-blur-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    delbtn.innerHTML = `<button id='delbtn' class="cursor-pointer relative px-1 -top-47 -right-54 w-8 h-8 bg-white/60 rounded-4xl backdrop-blur-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
   <path d="M3 6h18"></path>
   <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
   <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
   <line x1="10" y1="11" x2="10" y2="17"></line>
   <line x1="14" y1="11" x2="14" y2="17"></line>
 </svg></button>`;
-    delbtn.addEventListener("click", ()=>{
+    delbtn.addEventListener("click", () => {
       box.remove();
-    })
+    });
 
     img.src = URL.createObjectURL(file);
     img.className = "ml-3 h-50 w-full object-cover rounded-lg";
     box.appendChild(img);
     box.appendChild(delbtn);
-    if(preview.childElementCount<4){
+    if (preview.childElementCount < 4) {
       preview.appendChild(box);
     }
-    
   });
 });
 
@@ -181,13 +179,10 @@ postbtn.addEventListener("click", async (e) => {
         details: Details,
         image_url: UploadedUrls, // Publicaly accessible image url
         seller_id: user.id,
-
       },
     ]);
 
     if (dbError) throw dbError;
-
-
     else {
       alert("Item posted Successfully");
       const siteUrl = window.location.origin;
@@ -195,7 +190,6 @@ postbtn.addEventListener("click", async (e) => {
 
       window.location.href = `${siteUrl}/market-place.html`;
     }
-
   } catch (error) {
     alert("Upload Failed" + error.message);
   }

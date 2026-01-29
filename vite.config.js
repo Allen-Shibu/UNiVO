@@ -10,6 +10,7 @@ export default defineConfig({
         market: resolve(__dirname, "market-place.html"),
         selling: resolve(__dirname, "sellingpage.html"),
         listing: resolve(__dirname, "listing.html"),
+        wishlist: resolve(__dirname, "wishlist.html"),
       },
     },
   },

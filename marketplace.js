@@ -84,49 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-const WishlistBtn = document.querySelectorAll(".wishlist-btn");
-const notify = document.getElementById("notification");
-const Adnotify = document.getElementById("added-notification");
-console.log(WishlistBtn);
 
 let timeoutId;
-
-// async function AddWish() {
-//   const { data: products, error:productError } = await supabase.from("products").select("products.id");
-//   const { data: auth, error:userError } = await supabase.from("auth").select("auth.users.id");
-//   const {
-//     data: { user },
-//   } = await supabase.auth.getUser();
-//   if (!user) {
-//     alert("You must be logged in to post!");
-//     return;
-//   }
-
-//   WishlistBtn.forEach((btn) => {
-//     btn.addEventListener("click", async (e) => {
-//       e.stopPropagation(); // prevents open of product details page
-//       e.preventDefault(); //prevent scrolling when clicking the button
-
-//       const { error: dbError } = await supabase.from("wishlist").insert([
-//         {
-//           product_id: e.target.dataset.id,
-//           user_id: user.id,
-//         },
-//       ]);
-
-//       const products = {
-//         image: card.querySelector("image_url").src,
-
-//         title: card.querySelector("p.font-bold").innerText,
-
-//         price: card.querySelector(".text-green-600").innerText,
-//       };
-//       console.log("Thing worked ", products);
-//     });
-//   });
-// }
-
-//   AddWish();
 
 function showNotification() {
   notify.classList.remove("hidden");
@@ -154,58 +113,6 @@ function showAdNotification() {
   }, 2000);
 }
 
-// if (!exists) {
-//   WishList.push(products);
-//   localStorage.setItem("MyWishlist", JSON.stringify(WishList));
-//   showNotification();
-//   console.log("saved");
-// } else {
-//   notify.classList.add("hidden");
-//   showAdNotification();
-// }
-
-// const WishGrid = document.querySelector(".wishlist-grid");
-
-// if (WishGrid) {
-//   const WishList = JSON.parse(localStorage.getItem("MyWishlist")) || [];
-
-//   if (WishList.length == 0) {
-//     WishGrid.innerHTML = `<p class="flex text-gray-500 text-2xl ">Your wishlist is empty.....</p>`;
-//   } else {
-//     WishList.forEach((products, index) => {
-//       const card = document.createElement("div");
-
-//       card.innerHTML = `<div class="flex flex-row relative overflow-hidden rounded-2xl">
-//                     <img src="${products.image_url[0]}" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
-
-//                     <button onclick="removeFromWishlist(${index})" class="absolute top-3 right-3 bg-white p-2 rounded-full text-red-500 shadow-sm hover:bg-red-100">
-//                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
-//                             <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-//                         </svg>
-//                     </button>
-//                   </div>
-//                 <div class="mt-3">
-//                     <p class="font-bold text-lg dark:text-white">${products.title}</p>
-//                     <span class="font-bold text-lg text-green-600">${products.price}</span>
-//                 </div>`;
-
-//       WishGrid.appendChild(card);
-//     });
-//   }
-// }
-
-// window.removeFromWishlist = function (index) {
-//   let Wishlist = JSON.parse(localStorage.getItem("MyWishlist")) || [];
-
-//   //removes 1 item at the specific index
-//   Wishlist.splice(index, 1);
-
-//   // Save the new list back to storage
-//   localStorage.setItem("MyWishlist", JSON.stringify(Wishlist));
-
-//   location.reload();
-// };
-
 //loading products to main page\\
 async function loadProducts() {
   const ProductGrid = document.getElementById("product-grid");
@@ -217,15 +124,19 @@ async function loadProducts() {
     products.forEach((products) => {
       const card = document.createElement("div");
 
-      card.innerHTML = `<div class="flex flex-row relative overflow-hidden rounded-2xl">
-          <img src="${products.image_url[0]}" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-300">
-            <div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm p-1.5 rounded-full hover:text-red-500 transition-colors">
-              <svg data-id="${products.id}" class="wishlist-btn size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" /></svg>
-            </div>
-        </div>
+      card.innerHTML = `
+      <div class="flex flex-row relative overflow-hidden rounded-2xl">
+          <img src="${products.image_url}" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-300">
+          <button class="wishlist-btn absolute top-3 right-3 bg-white/90 backdrop-blur-sm p-2 rounded-full hover:text-red-500 transition-colors shadow-sm" data-id="${products.id}">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 pointer-events-none">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+            </svg>
+          </button>
+      </div>
+
         <div class="mt-3">
           <p class="font-bold text-lg dark:text-white">${products.title}</p>
-          <span class="font-bold text-lg text-green-600">${products.price}</span>
+          <span class="font-bold text-lg text-green-600">₹${products.price}</span>
         </div>`;
 
       ProductGrid.appendChild(card);
@@ -234,3 +145,44 @@ async function loadProducts() {
 }
 
 loadProducts();
+
+function WishistLogic() {
+  const ProductGrid = document.getElementById("product-grid");
+
+  ProductGrid.addEventListener("click", async (e) => {
+    const btn = e.target.closest(".wishlist-btn")
+    if (!btn) return
+
+    e.preventDefault()
+
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) alert("You must be logged in to save the products")
+    
+    // making the heart button red after click
+    const icon = btn.querySelector("svg");
+    icon.style.fill = "red";
+    icon.style.stroke = "red";
+
+    const productId=btn.dataset.id
+
+    const { error } = await supabase.from("wishlist").insert([
+      {
+        product_id: productId,
+        user_id: user.id,
+      },
+    ]);
+
+    if (error) {
+      alert("Item already added to wishlist")
+      
+    }
+    
+    else {
+      alert("Product added to your wishlist")
+      
+    }
+
+  })  
+}
+
+WishistLogic();

@@ -102,6 +102,7 @@ imageInput.addEventListener("change", () => {
 </svg></button>`;
     delbtn.addEventListener("click", () => {
       box.remove();
+      imageInput.value=""
     });
 
     img.src = URL.createObjectURL(file);

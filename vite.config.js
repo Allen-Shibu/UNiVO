@@ -11,7 +11,7 @@ export default defineConfig({
         selling: resolve(__dirname, "sellingpage.html"),
         listing: resolve(__dirname, "listing.html"),
         wishlist: resolve(__dirname, "wishlist.html"),
-        contact: resolve(__dirname, "contact.html"),
+        contact: resolve(__dirname, "contactpage.html"),
         orders: resolve(__dirname, "collections.html"),
         forum: resolve(__dirname, "forum.html"),
       },

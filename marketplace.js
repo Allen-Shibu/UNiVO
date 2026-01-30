@@ -7,6 +7,7 @@ const navTexts = document.querySelectorAll(".nav-text");
 const header = document.getElementById("sidebar-header");
 const SidebarText = document.getElementById("sidebar_text");
 const MainContent = document.getElementById("main");
+const productSearch = document.getElementById("search_input");
 
 ToggleBtn.addEventListener("click", () => {
   const isOpen = SideBar.classList.contains("w-64");
@@ -160,6 +161,23 @@ async function loadProducts() {
 
 loadProducts();
 
+async function SearchItems(){
+  // alert('hi');
+  const itemname = productSearch.value;
+  const {data, error} = await supabase
+  .from("products")
+  .select("fts");
+  data.forEach(row => {
+  console.log(row.fts.split(":")[0]);});
+}
+
+productSearch.addEventListener("keydown", (event)=>{
+  if(event.key == "Enter"){
+    event.preventDefault();
+    SearchItems()
+  }
+})
+
 function WishistLogic() {
   const ProductGrid = document.getElementById("product-grid");
 
@@ -211,4 +229,4 @@ function WishistLogic() {
   })  
 }
 
-WishistLogic();
+WishistLogic()

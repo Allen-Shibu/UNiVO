@@ -118,8 +118,7 @@ imageInput.addEventListener("change", () => {
   });
 });
 
-
-let existingUrl=[]
+let existingUrl = [];
 
 const delbtn = document.getElementById("delbtn");
 const postbtn = document.getElementById("post-btn");
@@ -131,28 +130,18 @@ postbtn.addEventListener("click", async (e) => {
   const Details = document.getElementById("details").value;
   const Nos = document.getElementById("quantity").value;
 
-
-  
-
-
-
-
-
   const files = imageInput.files;
-
-  if ((!Title || !Descp || !Price || files.length == 0)&&!productId) {
+  if ((!Title || !Descp || !Price || files.length == 0) && !productId) {
     alert("Please fill in Name, Price, and select an Image!");
     return;
   }
-
-
 
   //Image Upload to Storage and Database\\
 
   try {
     const UploadedUrls = [];
 
-    let finalUrls=[]
+    let finalUrls = [];
     if (files.length > 0) {
       for (const file of files) {
         const filename = `${Date.now()}-${file.name}`; // filename given
@@ -161,23 +150,22 @@ postbtn.addEventListener("click", async (e) => {
           .upload(filename, file);
 
         if (uploadError) {
-          alert("Upload Failed" + uploadError.message);
+          alert("Upload Failed1" + uploadError.message);
           return;
         }
+
+        const {
+          data: { publicUrl },
+        } = supabase.storage.from("Uploaded_Images").getPublicUrl(filename);
+
+        finalUrls.push(publicUrl);
+
+        console.log("Success");
       }
-    
-
-      console.log("Success");
-      const {
-        data: { publicUrl },
-      } = supabase.storage.from("Uploaded_Images").getPublicUrl(filename);
-      console.log("File Uploaded! Public Link:", publicUrl);
-
-      finalUrls.push(publicUrl);
     }
     //Saving the list to db
     else {
-      finalUrls=existingUrl
+      finalUrls = existingUrl;
     }
     const {
       data: { user },
@@ -205,7 +193,7 @@ postbtn.addEventListener("click", async (e) => {
     const { error: dbError } = await supabase
       .from("products")
       .upsert(productData);
-    
+
     if (dbError) throw dbError;
     else {
       alert("Item posted Successfully");
@@ -215,25 +203,25 @@ postbtn.addEventListener("click", async (e) => {
       window.location.href = `${siteUrl}/market-place.html`;
     }
   } catch (error) {
-    alert("Upload Failed" + error.message);
+    alert("Upload Failed2" + error.message);
   }
 });
 
-
 async function CheckEdit() {
   if (productId) {
-    const { data } = await supabase.from('products').select("*")
+    const { data } = await supabase
+      .from("products")
+      .select("*")
       .eq("id", productId)
-      .single() //to give aonly a single data
-    
+      .single(); //to give aonly a single data
+
     if (data) {
-      document.getElementById("title").value = data.title
-      document.getElementById("price").value = data.price
-      document.getElementById("description").value = data.description
-      document.getElementById("details").value = data.details
-      document.getElementById("quantity").value= data.quantity
-      document.getElementById("file-input").src = data.image_url
-      
+      document.getElementById("title").value = data.title;
+      document.getElementById("price").value = data.price;
+      document.getElementById("description").value = data.description;
+      document.getElementById("details").value = data.details;
+      document.getElementById("quantity").value = data.quantity;
+      document.getElementById("file-input").src = data.image_url;
 
       existingUrl = data.image_url || [];
 
@@ -267,4 +255,4 @@ async function CheckEdit() {
   }
 }
 
-CheckEdit()
+CheckEdit();

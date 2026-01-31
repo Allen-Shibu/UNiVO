@@ -1,4 +1,9 @@
-import { supabase } from "./supabaseClient.js";
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = 'https://opzechnwukuqfvfaytfx.supabase.co';
+const supabaseKey = 'sb_publishable_w87ezT-fcldEAO653BOpwQ_UvJtX51_';
+const supabase = createClient(supabaseUrl, supabaseKey)
+
 
 const SideBar = document.getElementById("sidebar");
 const Sidebar_Logo = document.getElementById("sidebar-logo");
@@ -161,22 +166,39 @@ async function loadProducts() {
 
 loadProducts();
 
-async function SearchItems(){
-  // alert('hi');
-  const itemname = productSearch.value;
-  const {data, error} = await supabase
-  .from("products")
-  .select("fts");
-  data.forEach(row => {
-  console.log(row.fts.split(":")[0]);});
-}
+productSearch.addEventListener("keydown", (e)=>{
+  const ProductGrid = document.getElementById("product-grid");
+  const noresult = document.getElementById('noresultsfound');
+  const searchText = productSearch.value.toLowerCase();
+  let visibility = 0;
+  if(e.key=="Enter"){
 
-productSearch.addEventListener("keydown", (event)=>{
-  if(event.key == "Enter"){
-    event.preventDefault();
-    SearchItems()
-  }
-})
+    e.preventDefault();
+
+    Array.from(ProductGrid.children).forEach(card => {
+    // find the title <p> (paragraphhhh) inside this card
+    const titleEl = card.querySelector("p");
+
+    if (!titleEl) return;
+    const titleText = titleEl.innerText.toLowerCase();
+    console.log(titleText);
+
+    if (titleText.includes(searchText)) {
+      card.style.display = "block"; 
+      visibility++;
+    } else {
+      card.style.display = "none";
+    }
+    if(visibility==0){
+      noresult.style.display = "block"; 
+    }else{
+      noresult.style.display = "none"; 
+    }
+  
+  });
+  }});
+
+
 
 function WishistLogic() {
   const ProductGrid = document.getElementById("product-grid");

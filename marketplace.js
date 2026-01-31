@@ -1,4 +1,9 @@
-import { supabase } from "./supabaseClient.js";
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = 'https://opzechnwukuqfvfaytfx.supabase.co';
+const supabaseKey = 'sb_publishable_w87ezT-fcldEAO653BOpwQ_UvJtX51_';
+const supabase = createClient(supabaseUrl, supabaseKey)
+
 
 const SideBar = document.getElementById("sidebar");
 const Sidebar_Logo = document.getElementById("sidebar-logo");
@@ -7,6 +12,7 @@ const navTexts = document.querySelectorAll(".nav-text");
 const header = document.getElementById("sidebar-header");
 const SidebarText = document.getElementById("sidebar_text");
 const MainContent = document.getElementById("main");
+const productSearch = document.getElementById("search_input");
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -185,6 +191,40 @@ async function loadProducts(SearchResults=null) {
 
 loadProducts();
 
+productSearch.addEventListener("keydown", (e)=>{
+  const ProductGrid = document.getElementById("product-grid");
+  const noresult = document.getElementById('noresultsfound');
+  const searchText = productSearch.value.toLowerCase();
+  let visibility = 0;
+  if(e.key=="Enter"){
+
+    e.preventDefault();
+
+    Array.from(ProductGrid.children).forEach(card => {
+    // find the title <p> (paragraphhhh) inside this card
+    const titleEl = card.querySelector("p");
+
+    if (!titleEl) return;
+    const titleText = titleEl.innerText.toLowerCase();
+    console.log(titleText);
+
+    if (titleText.includes(searchText)) {
+      card.style.display = "block"; 
+      visibility++;
+    } else {
+      card.style.display = "none";
+    }
+    if(visibility==0){
+      noresult.style.display = "block"; 
+    }else{
+      noresult.style.display = "none"; 
+    }
+  
+  });
+  }});
+
+
+
 function WishistLogic() {
   const ProductGrid = document.getElementById("product-grid");
 
@@ -249,3 +289,4 @@ const SearchInput = document.querySelector(".search-input");
     if (data) loadProducts(data)
   })
 
+WishistLogic()

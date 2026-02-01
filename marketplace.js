@@ -163,8 +163,18 @@ async function loadProducts() {
     });
   }
 }
-
 loadProducts();
+const productGrid = document.getElementById("product-grid");
+
+productGrid.addEventListener("click", (e) => {
+  if (e.target.tagName === "IMG") {
+    alert("u clicked the image");
+  }
+});
+
+
+
+
 
 productSearch.addEventListener("keydown", (e)=>{
   const ProductGrid = document.getElementById("product-grid");

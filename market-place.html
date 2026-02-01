@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="flex min-h-screen ">
-        <aside id="sidebar" class="w-64 h-screen bg-gray-50 p-6 px-10 flex flex-col overflow-y-auto fixed left-0 top-0 transition-all duration-300 dark:bg-[#212B36]">
+        <aside id="sidebar" class="w-64 h-screen bg-gray-50 p-6 px-10 flex flex-col overflow-y-auto fixed left-0 top-0 transition-all duration-300 dark:bg-[#11161c]">
           <div id="sidebar-header" class="flex flex-row gap-16 whitespace-nowrap">
             <a href="market-place.html">
               <div id="sidebar-logo">
@@ -98,8 +98,8 @@
 
 </aside>
 
-        <main id="main" class="ml-64 flex-1 bg-white p-6 flex flex-col dark:bg-[#161C24] relative">
-              <header class="h-16 bg-white border-b border-gray-50 mb-6 dark:bg-[#161C24]">
+        <main id="main" class="ml-64 flex-1 bg-white p-6 flex flex-col dark:bg-[#030406] relative">
+              <header class="h-16 bg-white border-b border-gray-50 mb-6 dark:bg-[#030406]">
                 <div class="flex justify-between items-center h-full">
                   
                   <div class="relative w-fit">
@@ -123,6 +123,7 @@
                     SELL
                     </button>
                   </a>
+                  
 
 
 
@@ -183,6 +184,32 @@
                 <button class="rounded-2xl dark:bg-gray-100/10 bg-gray-100/30 text-gray-400 px-5 py-2 active:bg-white">
                   Sports and Gym
                 </button>
+                
+                <!-- product buying info pop-up -->
+                <div id="productdetails" class="flex flex-row contain-content absolute w-[97%] h-[86%] bg-[#11161C] z-1 rounded-3xl shadow-[0_0_12px_rgba(255,200,0,1)]">
+                  <img src="test.png" class="w-[50%] h-[90%] outline-2 object-contain ml-10 mt-10 mb-5 bg-black rounded-2xl">
+                  <div class="pr-10">
+                    <p class="text-6xl text-white mt-10 translate-x-10 font-sans ">Product name</p>
+                    <p class="text-4xl text-white mt-10 translate-x-10 font-sans ">Description</p>
+                    <p class="text-2xl text-white mt-5 mr-10 translate-x-10 font-sans">
+                    Crystal rivers shimmer beneath the fading sun, while quiet winds scatter
+                    forgotten whispers across the valley. Patterns emerge in chaos, and every
+                    fragment of sound feels like a secret waiting to be uncovered. The horizon
+                    bends with possibility, carrying echoes of stories not yet told.
+                    </p>
+                    <div class="flex flex-row">
+                      <input type="number" placeholder="Quantity" class="font-bold outline-0 mt-10 ml-10 border-b-3 border-[#F0B100] bg-gray-500 py-2 px-3 w-30 rounded-2xl dark:bg-gray-300">
+                      <!-- <p class="text-3xl text-white mt-10 translate-x-10 font-sans ">Quantity x price of an item </p> -->
+                      <p class="text-6xl text-green-500 mt-10 translate-x-10 font-sans font-bold">120$</p>
+                    </div>
+                    <!-- <p class="text-4xl text-white mt-10 translate-x-10 font-sans ">contact details</p> -->
+                    <button class="w-full h-10 rounded-2xl bg-[#25D366] mb-5 mt-15 ml-5 font-bold text-2xl">contant via whatsapp</button>
+                    <button class="w-full h-20 rounded-2xl bg-red-300 ml-5 font-bold text-2xl">Add to wishlist</button>
+                    <button class="w-full h-20 rounded-2xl bg-amber-300 ml-5 mt-5 font-bold text-2xl">Buy</button>
+                    
+
+                  </div>                  
+                </div>
 
             </div>
 
@@ -207,22 +234,16 @@
             <div class="flex-1 mt-7">
                 <div>
                   <div class="p-2">
-    
-                    <div id="product-grid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-           </div>
-               <!-- <div class="mt-2 flex gap-2">
-                    <span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300">Sports</span>
-               </div> -->
-
-    </div>
+                    <div id="product-grid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+                  </div>
     <div id="noresultsfound" class="hidden">
       <!-- <p  class="flex text-4xl text-white font-serif align-center justify-center">no results found :/</p> -->
       <img src="no results darkmode.png" class="flex ml-110 mt-20 align-center justify-center w-100 h-full">
     </div>
-</div>
 
-
+    
                 </div>
+            </div>
             </div>
             
         </main>

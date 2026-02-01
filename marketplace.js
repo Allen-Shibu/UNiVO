@@ -14,49 +14,53 @@ const SidebarText = document.getElementById("sidebar_text");
 const MainContent = document.getElementById("main");
 const productSearch = document.getElementById("search_input");
 
-ToggleBtn.addEventListener("click", () => {
-  const isOpen = SideBar.classList.contains("w-64");
 
-  if (isOpen) {
-    SideBar.classList.remove("w-64", "px-10");
-    SideBar.classList.add("w-29", "px-9.5");
-
-    MainContent.classList.remove("ml-64");
-    MainContent.classList.add("ml-28");
-
-    Sidebar_Logo.classList.add("hidden");
-    SidebarText.classList.add("hidden");
-
-    header.classList.remove("gap-16");
-    header.classList.add("justify-center");
-
-    navTexts.forEach((text) => {
-      text.classList.add("hidden");
-      text.parentElement.classList.add("justify-center");
-    });
-  } else {
-    SideBar.classList.remove("w-28", "px-2");
-    SideBar.classList.add("w-64", "px-10");
-
-    MainContent.classList.add("ml-64");
-    MainContent.classList.remove("ml-28");
-
-    Sidebar_Logo.classList.remove("hidden");
-    SidebarText.classList.remove("hidden");
-
-    header.classList.add("gap-16");
-    header.classList.remove("justify-center");
-
-    navTexts.forEach((text) => {
-      text.classList.remove("hidden");
-      text.parentElement.classList.remove("justify-center");
-    });
-  }
-});
 document.addEventListener("DOMContentLoaded", () => {
   const ThemeToggle = document.getElementById("theme-toggle");
   const ThemeToggleDark = document.getElementById("theme-toggle-dark-icon");
   const ThemeToggleLight = document.getElementById("theme-toggle-light-icon");
+
+  if (ToggleBtn) {
+    ToggleBtn.addEventListener("click", () => {
+      const isOpen = SideBar.classList.contains("w-64");
+
+      if (isOpen) {
+        SideBar.classList.remove("w-64", "px-10");
+        SideBar.classList.add("w-29", "px-9.5");
+
+        MainContent.classList.remove("ml-64");
+        MainContent.classList.add("ml-28");
+
+        Sidebar_Logo.classList.add("hidden");
+        SidebarText.classList.add("hidden");
+
+        header.classList.remove("gap-16");
+        header.classList.add("justify-center");
+
+        navTexts.forEach((text) => {
+          text.classList.add("hidden");
+          text.parentElement.classList.add("justify-center");
+        });
+      } else {
+        SideBar.classList.remove("w-28", "px-2");
+        SideBar.classList.add("w-64", "px-10");
+
+        MainContent.classList.add("ml-64");
+        MainContent.classList.remove("ml-28");
+
+        Sidebar_Logo.classList.remove("hidden");
+        SidebarText.classList.remove("hidden");
+
+        header.classList.add("gap-16");
+        header.classList.remove("justify-center");
+
+        navTexts.forEach((text) => {
+          text.classList.remove("hidden");
+          text.parentElement.classList.remove("justify-center");
+        });
+      }
+    });
+  }
 
   if (
     localStorage.getItem("color-theme") === "dark" ||
@@ -120,11 +124,31 @@ function showAdNotification() {
 }
 
 //loading products to main page\\
-async function loadProducts() {
+async function loadProducts(SearchResults=null) {
   const{data:{user}}=await supabase.auth.getUser()
   const ProductGrid = document.getElementById("product-grid");
-  const { data: products, error } = await supabase.from("products").select("*");
+  let products;
+  let error;
+
+  if(!ProductGrid) return
+
+  if (SearchResults) {
+    products=SearchResults
+  }
+
+  else {  //If nothing is typed (Search function)
+    const { data, error: fetchError } = await supabase
+      .from("products")
+      .select("*");
+    products = data || [];
+    error = fetchError;
+    
+  }
+
   ProductGrid.innerHTML = "";
+
+  if(products.length===0) {ProductGrid.innerHTML = "<p>No products found matching that search.</p>";
+  return;}
 
   // add or remove products from wishlist from the main page
   let savedIds = [];
@@ -134,7 +158,8 @@ async function loadProducts() {
     .select("product_id")
     .eq("user_id", user.id);
 
-  savedIds = wishlist ? wishlist.map((item) => String(item.product_id)) : [];}
+    savedIds = wishlist ? wishlist.map((item) => String(item.product_id)) : [];
+  }
 
 
   if (error) {
@@ -260,5 +285,18 @@ function WishistLogic() {
 
   })  
 }
+
+WishistLogic();
+
+const SearchInput = document.querySelector(".search-input");
+  SearchInput.addEventListener("change", async () => {
+    const search = SearchInput.value
+    const { data, error } = await supabase.from('products').select("*")
+      .textSearch('fts', search, {
+        type: 'websearch',
+        config: 'english'
+      })
+    if (data) loadProducts(data)
+  })
 
 WishistLogic()

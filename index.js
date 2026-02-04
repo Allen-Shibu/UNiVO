@@ -5,16 +5,23 @@ const passwordInput = document.getElementById("password");
 const repasswordInput = document.getElementById("repassword");
 const SignupBtn = document.querySelector(".registerbtn");
 const LoginBtn = document.getElementById("loginbtn");
+const phoneInput=document.getElementById('phone')
 const Failnotify = document.getElementById("fail-notification");
 
 
+
 async function signup() {
+  const name = nameInput.value;
   const email = emailInput.value;
-  const name=nameInput.value
     if (!email.endsWith("@gectcr.ac.in")) {
         alert("Access Denied: You must use a valid GEC College email (@gectcr.ac.in)");
         return;
     }
+  const phone = iti.getNumber();
+  if (!iti.isValidNumber()) {
+    alert("Please enter a valid phone number for your country.");
+    return;
+  }
   const password = passwordInput.value;
   const siteUrl = window.location.origin;
       console.log(siteUrl);
@@ -22,11 +29,11 @@ async function signup() {
   const { data, error } = await supabase.auth.signUp({
     email: email,
     password: password,
-    name: name,
     options: {
       emailRedirectTo: `${siteUrl}/login.html`,
       data: {
         display_name: name,
+        Phone: phone,
       },
     },
   });
@@ -44,6 +51,7 @@ async function signup() {
     repasswordInput.value=""
     emailInput.value = "";
     passwordInput.value = "";
+    phoneInput.value = "";
   }
 }
 
@@ -77,6 +85,14 @@ if (LoginBtn)
     e.preventDefault(); //stops from refreshing the page
     login();
   });
+
+const iti = window.intlTelInput(phoneInput, {
+  initialCountry: "in", // Default to India
+  separateDialCode: true, // Shows the +91 outside the input box
+  utilsScript:
+    "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js", // For validation
+});
+
 
 // function FailNotification() {
 //   Adnotify.classList.remove("hidden");

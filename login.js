@@ -1,13 +1,11 @@
 import { supabase } from "./supabaseClient.js";
 
-const nameInput = document.getElementById("name");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
-const repasswordInput = document.getElementById("repassword");
 const SignupBtn = document.querySelector(".registerbtn");
 const LoginBtn = document.getElementById("loginbtn");
 const Failnotify = document.getElementById("fail-notification");
-const verifybtn = document.getElementById('verifymail');
+
 
 
 
@@ -76,3 +74,9 @@ function FailNotification() {
     Failnotify.classList.add("hidden");
   }, 2000);
 }
+
+passwordInput.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    window.location.href = "market-place.html";
+  }
+});

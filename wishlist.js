@@ -1,5 +1,11 @@
 import { supabase } from "./supabaseClient.js";
 
+fetch("nav_head.html")
+  .then((res) => res.text())
+  .then((data) => {
+    document.getElementById("navbar-placeholder").innerHTML = data;
+  });
+
 async function loadWishlist() {
   const ProductGrid = document.getElementById("product-grid");
   

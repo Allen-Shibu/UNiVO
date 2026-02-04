@@ -1,50 +1,27 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <link rel="stylesheet" href="market-place.css" />
-  </head>
-  <body>
-    <div class="flex min-h-screen">
-      <aside
-        id="sidebar"
-        class="w-64 h-screen bg-gray-50 p-6 px-10 flex flex-col overflow-y-auto fixed left-0 top-0 transition-all duration-300 dark:bg-[#11161c]"
-      >
-        <div id="sidebar-header" class="flex flex-row gap-16 whitespace-nowrap">
-          <a href="market-place.html">
-            <div id="sidebar-logo">
-              <img
-                src="logo_light_mode.png"
-                class="h-22 w-14 pb-6 mb-6 ml-6 block dark:hidden"
-              />
-              <img
-                src="logo_dark_mode.png"
-                class="h-22 w-14 pb-6 mb-6 ml-6 hidden dark:block"
-              /></div
-          ></a>
-          <button
-            id="sidebar-btn"
-            class="p-2 hover:bg-gray-100/20 rounded-lg mb-9 dark:text-white"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="size-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              />
-            </svg>
-          </button>
-        </div>
+    <link rel="stylesheet" href="market-place.css">
+</head>
+<body>
+    <div class="flex min-h-screen ">
+        <aside id="sidebar" class="w-64 py-13 h-screen bg-gray-50 border-r border-gray-400 p-6 px-10 flex flex-col overflow-y-auto fixed left-0 top-0 transition-all duration-300 dark:bg-[#141418]">
+            <div id="sidebar-header" class="flex flex-row gap-9 whitespace-nowrap">
+                <a href="market-place.html">
+                    <div id="sidebar_text" class="position-fixed w-26 ml-4">
+                        <img id="sidebar_text_light_mode" src="text_light_mode.png" class=" block dark:hidden">
+                        <img id="sidebar_text_dark_mode" src="text_dark_mode.png" class=" hidden dark:block">
+                    </div>
+                </a>
+                <button id="sidebar-btn" class="p-2 hover:bg-gray-100/20 rounded-lg mb-9 dark:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+            </div>
         <div>
           <ul class="space-y-5 font-medium text-gray-600 flex-1">
             <li
@@ -204,36 +181,36 @@
         </div>
 
         <div class="mt-auto mb-6">
-          <ul class="space-y-2 font-medium text-gray-600 mb-6">
-            <li
-              class="hover:text-black cursor-pointer flex flex-row gap-4 items-center whitespace-nowrap overflow-hidden p-2 rounded-lg hover:bg-gray-100 dark:text-white"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="size-6 min-w-6"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 0 1 0 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 0 1 0-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281Z"
-                />
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                />
-              </svg>
-              <span class="nav-text transition-opacity duration-200"
-                >Settings</span
-              >
-            </li>
-          </ul>
+<!-- From Uiverse.io by shivam_7937 --> 
+<div class="relative inline-flex items-center justify-center gap-4 group">
+  <div
+    class="absolute inset-0 duration-1000 opacity-60 transitiona-all bg-gradient-to-r from-indigo-500 via-pink-500 to-yellow-400 rounded-xl blur-lg filter group-hover:opacity-100 group-hover:duration-200"
+  ></div>
+  <a
+    role="button"
+    class="group relative inline-flex items-center justify-center text-base rounded-xl  bg-amber-400 px-8 py-3 font-semibold text-white transition-all duration-200 hover:bg-gray-800 hover:shadow-lg hover:-translate-y-0.5 hover:shadow-gray-600/30 hover:dark:bg-gray-200 hover:dark:text-black"
+    href="#"
+    >Support Us<svg
+      aria-hidden="true"
+      viewBox="0 0 10 10"
+      height="10"
+      width="10"
+      fill="none"
+    >
+      <path
+        d="M0 5h7"
+        class="transition opacity-0 group-hover:opacity-100"
+      ></path>
+      <path
+        d="M1 1l4 4-4 4"
+        class="transition group-hover:translate-x-[3px]"
+      ></path>
+    </svg>
+  </a>
+</div>
 
-          <div class="pt-6 border-t border-gray-200">
+
+          <div class="mt-7 ml-2" >
             <div class="flex gap-4 text-xs text-gray-400 font-medium mb-2">
               <span
                 class="hover:text-gray-600 dark:hover:text-white cursor-pointer nav-text"
@@ -382,12 +359,12 @@
           </div>
         </header>
 
-        <div class="block">
-          <div class="p-2">
+        <!-- <div class="hidden">
+          <div class="p-2"> -->
 
 
                           <!-- product buying info pop-up -->
-              <div
+              <!-- <div
                 id="productdetails"
                 class="flex-row contain-content absolute w-[97%] h-[86%] bg-[#11161C] z-1 rounded-3xl shadow-[0_0_12px_rgba(255,200,0,1)]"
               >
@@ -412,7 +389,7 @@
                     class="text-2xl text-white mt-5 mr-10 translate-x-10 font-sans"
                   >
                     Crystal rivers shimmer beneath the fading sun, while quiet
-                    winds scatter forgotten whispers across the valley. Patterns
+                    winds scatter forWishlistgotten whispers across the valley. Patterns
                     emerge in chaos, and every fragment of sound feels like a
                     secret waiting to be uncovered. The horizon bends with
                     possibility, carrying echoes of stories not yet told.
@@ -423,9 +400,9 @@
                       placeholder="Quantity"
                       class="font-bold outline-0 mt-10 ml-10 border-b-3 border-[#F0B100] bg-gray-500 py-2 px-3 w-30 rounded-2xl dark:bg-gray-300"
                     />
-                    <!-- <p class="text-3xl text-white mt-10 translate-x-10 font-sans ">Quantity x price of an item </p> -->
+                    <p class="text-3xl text-white mt-10 translate-x-10 font-sans ">Quantity x price of an item </p>
                   </div>
-                  <!-- <p class="text-4xl text-white mt-10 translate-x-10 font-sans ">contact details</p> -->
+                  <p class="text-4xl text-white mt-10 translate-x-10 font-sans ">contact details</p>
                   <button
                     class="w-full h-10 rounded-2xl bg-[#25D366] mb-5 mt-15 ml-5 font-bold text-2xl"
                   >
@@ -441,13 +418,8 @@
                   >
                     Buy
                   </button>
-                </div>
+                </div> -->
               
-            <div
-              id="product-grid"
-              class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"
-            ></div>
-            <div>
 
 
               <div class="flex flex-row gap-5">
@@ -487,6 +459,12 @@
                   Sports and Gym
                 </button>
               </div>
+
+            <div
+              id="product-grid"
+              class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-5"
+            ></div>
+            <div>
 
               <div
                 id="notification"

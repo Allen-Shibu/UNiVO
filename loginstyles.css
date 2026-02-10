@@ -32,17 +32,12 @@ body{
     align-items:center;
 }
 .signininput{
-
-    width:300px;
-    height:42px;
-    border-radius:5px;
+    width: 350px;
+    height: 42px;
+    border-radius: 5px;
     border: 1px solid #b1b1b1;
-    padding-left:20px;
-    font-size:large;
-    font-family:sans-serif;
-    font-weight:bold;
-    
-
+    padding-left: 40px;
+    margin-bottom: 10px; 
 }
 .registerbtn{
     cursor:pointer;
@@ -76,16 +71,21 @@ body{
     color:rgba(0, 0, 0, 0.78);
     
 }
+#account-footer{
+  gap:16px;
+  width:100%;
+  display:flex;
+  justify-items:
+}
+
 #loginredirectbutton{
-    color:rgb(64, 27, 110);
+    text-decoration:none;
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight:bold;
     cursor:pointer;
+    color:rgb(260, 202, 48);
 }
 
-#loginredirectbutton:hover{
-    color:rgb(31, 31, 252);
-}
 /* From Uiverse.io by satyamchaudharydev */ 
 .loader {
   visibility:hidden;
@@ -100,6 +100,7 @@ body{
   background-color: rgba(0,0,0,0.2);
   position: relative;
 }
+
 
 .loader::before {
   content: "";

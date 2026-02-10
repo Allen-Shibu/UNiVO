@@ -7,6 +7,7 @@ const SignupBtn = document.querySelector(".registerbtn");
 const LoginBtn = document.getElementById("loginbtn");
 const phoneInput=document.getElementById('phone')
 const Failnotify = document.getElementById("fail-notification");
+const GBtn=document.getElementById('GSign')
 
 
 
@@ -54,6 +55,20 @@ async function signup() {
     phoneInput.value = "";
   }
 }
+
+GBtn.addEventListener('click',async()=> {
+  const siteUrl = window.location.origin;
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: `${siteUrl}/market-place.html`,
+    },
+  });
+
+  if(error) alert("Sign in Failed "+error)
+})
+
+
 
 async function login() {
   const email = emailInput.value;

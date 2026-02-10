@@ -5,22 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="market-place.css">
+
 </head>
 <body>
     <div class="flex min-h-screen ">
-        <aside id="sidebar" class="w-64 py-13 h-screen bg-gray-50 border-r border-gray-400 p-6 px-10 flex flex-col overflow-y-auto fixed left-0 top-0 transition-all duration-300 dark:bg-[#141418]">
+        <aside id="sidebar" class="w-64 justify-between py-13 h-screen bg-gray-50 border-r border-gray-400 p-6 px-10 flex flex-col overflow-y-auto fixed left-0 top-0 transition-all duration-300 dark:bg-[#141418]">
             <div id="sidebar-header" class="flex flex-row gap-9 whitespace-nowrap">
                 <a href="market-place.html">
-                    <div id="sidebar_text" class="position-fixed w-26 ml-4">
+                    <div id="sidebar_text" class="position-fixed w-28 ml-4">
                         <img id="sidebar_text_light_mode" src="text_light_mode.png" class=" block dark:hidden">
                         <img id="sidebar_text_dark_mode" src="text_dark_mode.png" class=" hidden dark:block">
                     </div>
                 </a>
-                <button id="sidebar-btn" class="p-2 hover:bg-gray-100/20 rounded-lg mb-9 dark:text-white">
+                <div class="justify-center">
+                  <button id="sidebar-btn" class="p-2  hover:bg-gray-100/20 rounded-lg mb-9 dark:text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg>
-                </button>
+                  </button>
+                </div>
             </div>
         <div>
           <ul class="space-y-5 font-medium text-gray-600 flex-1">
@@ -182,30 +185,55 @@
 
         <div class="mt-auto mb-6">
 <!-- From Uiverse.io by shivam_7937 --> 
-<div class="relative inline-flex items-center justify-center gap-4 group">
+<div class="relative justify-center items-center inline-flex group group-hover:text-black">
   <div
     class="absolute inset-0 duration-1000 opacity-60 transitiona-all bg-gradient-to-r from-indigo-500 via-pink-500 to-yellow-400 rounded-xl blur-lg filter group-hover:opacity-100 group-hover:duration-200"
   ></div>
   <a
     role="button"
-    class="group relative inline-flex items-center justify-center text-base rounded-xl  bg-amber-400 px-8 py-3 font-semibold text-white transition-all duration-200 hover:bg-gray-800 hover:shadow-lg hover:-translate-y-0.5 hover:shadow-gray-600/30 hover:dark:bg-gray-200 hover:dark:text-black"
+    class="group relative flex flex-row gap-2 whitespace-nowrap items-center text-base rounded-xl  bg-amber-400 p-3 w-fit font-semibold text-white transition-all duration-200 hover:bg-gray-800 hover:shadow-lg hover:-translate-y-0.5 hover:shadow-gray-600/30 hover:dark:bg-gray-200 hover:dark:text-black"
     href="#"
-    >Support Us<svg
-      aria-hidden="true"
-      viewBox="0 0 10 10"
-      height="10"
-      width="10"
-      fill="none"
     >
-      <path
-        d="M0 5h7"
-        class="transition opacity-0 group-hover:opacity-100"
-      ></path>
-      <path
-        d="M1 1l4 4-4 4"
-        class="transition group-hover:translate-x-[3px]"
-      ></path>
-    </svg>
+    <!-- Support Us Svg -->
+      <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="m-auto text-[rgb(247,248,246)] group-hover:text-black size-8"
+            fill="none"
+          >
+            <path
+              stroke-linejoin="round"
+              stroke="currentColor"
+              d="M16 6.27975C16 6.88118 15.7625 7.45883 15.3383 7.88611C14.3619 8.87007 13.415 9.89605 12.4021 10.8443C12.17 11.0585 11.8017 11.0507 11.5795 10.8268L8.6615 7.88611C7.7795 6.99725 7.7795 5.56225 8.6615 4.67339C9.55218 3.77579 11.0032 3.77579 11.8938 4.67339L11.9999 4.78027L12.1059 4.67345C12.533 4.24286 13.1146 4 13.7221 4C14.3297 4 14.9113 4.24284 15.3383 4.67339C15.7625 5.10073 16 5.67835 16 6.27975Z"
+            ></path>
+            <path
+              stroke-linejoin="round"
+              stroke-linecap="round"
+              stroke="currentColor"
+              d="M18 20L21.8243 16.1757C21.9368 16.0632 22 15.9106 22 15.7515V10.5C22 9.67157 21.3284 9 20.5 9V9C19.6716 9 19 9.67157 19 10.5V15"
+            ></path>
+            <path
+              stroke-linejoin="round"
+              stroke-linecap="round"
+              stroke="currentColor"
+              d="M18 16L18.8581 15.1419C18.949 15.051 19 14.9278 19 14.7994V14.7994C19 14.6159 18.8963 14.4482 18.7322 14.3661L18.2893 14.1447C17.5194 13.7597 16.5894 13.9106 15.9807 14.5193L15.0858 15.4142C14.7107 15.7893 14.5 16.298 14.5 16.8284V20"
+            ></path>
+            <path
+              stroke-linejoin="round"
+              stroke-linecap="round"
+              stroke="currentColor"
+              d="M6 20L2.17574 16.1757C2.06321 16.0632 2 15.9106 2 15.7515V10.5C2 9.67157 2.67157 9 3.5 9V9C4.32843 9 5 9.67157 5 10.5V15"
+            ></path>
+            <path
+              stroke-linejoin="round"
+              stroke-linecap="round"
+              stroke="currentColor"
+              d="M6 16L5.14187 15.1419C5.05103 15.051 5 14.9278 5 14.7994V14.7994C5 14.6159 5.10366 14.4482 5.26776 14.3661L5.71067 14.1447C6.48064 13.7597 7.41059 13.9106 8.01931 14.5193L8.91421 15.4142C9.28929 15.7893 9.5 16.298 9.5 16.8284V20"
+            ></path>
+          </svg>
+
+      </svg>
+          <span class="nav-text flex flex-shrink  ">Support Us</span>
   </a>
 </div>
 
@@ -231,7 +259,7 @@
 
       <main
         id="main"
-        class="ml-64 flex-1 bg-white p-6 flex flex-col dark:bg-[#030406] relative"
+        class="ml-64 transition-all duration-300 flex-1 bg-white p-6 flex flex-col dark:bg-[#030406] relative"
       >
         <header
           class="h-16 bg-white border-b border-gray-50 mb-6 dark:bg-[#030406]"
@@ -338,15 +366,15 @@
               </div>
 
               <div
-                class="flex flex-col gap-1 justify-center items-center cursor-pointer hover:text-yellow-600 transition dark:text-white"
-              >
+                id="profile-btn"
+                class="relative flex flex-col gap-1 justify-center items-center cursor-pointer hover:text-yellow-600 active:text-yellow-600 transition dark:text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  class="size-6"
+                  class="size-6 "
                 >
                   <path
                     stroke-linecap="round"
@@ -354,6 +382,116 @@
                     d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                   />
                 </svg>
+                    <!-- From Uiverse.io by DipeshPun91 --> 
+                    <div
+                      id="profile-view"
+                      class="absolute w-64 hidden top-10 right-0 z-50 bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-[0_10px_25px_-5px_rgba(0,0,0,0.05),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_25px_-5px_rgba(0,0,0,0.08),0_15px_15px_-6px_rgba(0,0,0,0.06)] transition-all duration-300"
+                    >
+                      <div
+                        class="px-4 py-4 border-b border-gray-200 bg-gradient-to-r from-blue-700 to-blue-600 "
+                      >
+                        <p class="text-xs font-medium text-blue-200 uppercase tracking-wider">
+                          Signed in as
+                        </p>
+                        <div class="flex items-center">
+                          <div
+                            class="bg-blue-100 text-blue-600 rounded-full w-8 h-8 flex items-center justify-center mr-2"
+                          >
+                            <svg
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                              class="h-4 w-4"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                clip-rule="evenodd"
+                                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                fill-rule="evenodd"
+                              ></path>
+                            </svg>
+                          </div>
+                          <p
+                            class="text-sm font-medium text-white truncate hover:after:w-full relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-px after:bg-[#2b6cb0] after:transition-all after:duration-300"
+                          >
+                            <span id="name_email"></span><br>
+                          </p>
+                        </div>
+                      </div>
+
+                      <div class="py-1.5">
+                        <a
+                          href="#"
+                          class="group relative flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 transition-all duration-200"
+                        >
+                          <div
+                            class="absolute left-0 top-0 h-full w-1 bg-blue-500 rounded-r opacity-0 group-hover:opacity-100 transition-all duration-200 group-hover:scale-y-100 scale-y-80"
+                          ></div>
+                          <div
+                            class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center mr-3 group-hover:bg-blue-200 transition-colors duration-200"
+                          >
+                            <svg
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                              class="h-5 w-5 text-blue-600 group-hover:text-[#2b6cb0]"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                clip-rule="evenodd"
+                                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                fill-rule="evenodd"
+                              ></path>
+                            </svg>
+                          </div>
+                          <span class="font-medium text-gray-700 group-hover:text-[#1a365d]"
+                            >Profile</span
+                          >
+                          <svg
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            class="h-3 w-3 text-gray-400 ml-auto group-hover:text-[#2b6cb0]"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              clip-rule="evenodd"
+                              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                              fill-rule="evenodd"
+                            ></path>
+                          </svg>
+                        </a>
+
+                        
+
+                        <button
+                          id="log-out"
+                          class="group relative flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-red-50 transition-all duration-200">
+                          <div
+
+                            class="absolute left-0 top-0 h-full w-1 bg-red-500 rounded-r opacity-0 group-hover:opacity-100 transition-all duration-200 group-hover:scale-y-100 scale-y-80"
+                          ></div>
+                          <div
+                            class="w-8 h-8 rounded-lg bg-red-100 flex items-center justify-center mr-3 group-hover:bg-red-200 transition-colors duration-200"
+                          >
+                            <svg
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                              class="h-5 w-5 text-red-500 group-hover:text-red-600"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                clip-rule="evenodd"
+                                d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
+                                fill-rule="evenodd"
+                              ></path>
+                            </svg>
+                          </div>
+                          <span class="font-medium text-gray-700 group-hover:text-red-600"
+                            >Logout</span
+                          >
+                        </button>
+                      </div>
+                    </div>
+
+                
               </div>
             </div>
           </div>

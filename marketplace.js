@@ -19,6 +19,48 @@ document.addEventListener("DOMContentLoaded", () => {
   const ThemeToggle = document.getElementById("theme-toggle");
   const ThemeToggleDark = document.getElementById("theme-toggle-dark-icon");
   const ThemeToggleLight = document.getElementById("theme-toggle-light-icon");
+  const ProfileView = document.getElementById("profile-view");
+  const ProfileBtn = document.getElementById("profile-btn");
+  const ProfileInfo = document.getElementById("name_email")
+  const LogOut=document.getElementById("log-out")
+
+  ProfileBtn.addEventListener("click", async (e) => {
+    const { data: { user }, error } = await supabase.auth.getUser();
+    ProfileInfo.innerHTML = `${user.user_metadata.display_name} <br> ${user.email}`;
+
+    if (error)
+      alert(error)
+
+
+
+    e.stopPropagation();
+    ProfileView.classList.toggle("hidden");
+  });
+
+  //to close if the user clicks outside the dialog
+  document.addEventListener("click", () => {
+    ProfileView.classList.add("hidden");
+  });
+
+  // to prevent the closing when the user clicks inside the dialog
+  ProfileView.addEventListener("click", async (e) => {
+    e.stopPropagation()
+  })
+
+  if(LogOut){LogOut.addEventListener("click", async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const { error } = await supabase.auth.signOut({ scope: "global" });
+    if (error) alert(error);
+    else {
+      alert("Logged Out successfully")
+      window.location.href = "login.html";
+    }
+
+
+  });}
+  
+
 
   if (ToggleBtn) {
     ToggleBtn.addEventListener("click", () => {
@@ -26,15 +68,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (isOpen) {
         SideBar.classList.remove("w-64", "px-10");
-        SideBar.classList.add("w-29", "px-9.5");
+        SideBar.classList.add("w-28", "px-8");
 
         MainContent.classList.remove("ml-64");
         MainContent.classList.add("ml-28");
 
-        Sidebar_Logo.classList.add("hidden");
         SidebarText.classList.add("hidden");
 
-        header.classList.remove("gap-16");
+        header.classList.remove("gap-9");
         header.classList.add("justify-center");
 
         navTexts.forEach((text) => {
@@ -42,16 +83,15 @@ document.addEventListener("DOMContentLoaded", () => {
           text.parentElement.classList.add("justify-center");
         });
       } else {
-        SideBar.classList.remove("w-28", "px-2");
+        SideBar.classList.remove("w-28", "px-8");
         SideBar.classList.add("w-64", "px-10");
 
         MainContent.classList.add("ml-64");
         MainContent.classList.remove("ml-28");
 
-        Sidebar_Logo.classList.remove("hidden");
         SidebarText.classList.remove("hidden");
 
-        header.classList.add("gap-16");
+        header.classList.add("gap-9");
         header.classList.remove("justify-center");
 
         navTexts.forEach((text) => {
@@ -63,9 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (
-    localStorage.getItem("color-theme") === "dark" ||
-    (!("color-theme" in localStorage) &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
+    localStorage.getItem("color-theme") === "dark" 
   ) {
     document.documentElement.classList.add("dark");
     ThemeToggleLight.classList.remove("hidden");
@@ -300,3 +338,6 @@ const SearchInput = document.querySelector(".search-input");
   })
 
 WishistLogic()
+
+
+

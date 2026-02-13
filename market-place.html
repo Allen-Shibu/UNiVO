@@ -233,8 +233,8 @@
         <header id="header" class="fixed top-0 left-0 md:left-64 right-0 z-50 bg-white border-b border-gray-50 dark:bg-[#030406] py-10 px-4 md:px-10 flex items-center">
           <div id="sidebar-backdrop" class="fixed inset-0 z-40 hidden backdrop-blur-sm bg-black/10 transition-opacity duration-300"></div>
 
-          <div class="flex w-full items-center justify-between gap-3">            
-            <div class="flex items-center gap-3">
+          <div class="flex w-full items-center justify-between">            
+            <div class="flex items-center">
                 <div class="justify-center md:hidden">
                   <button id="sidebar-toggle-mobile" class="p-2 hover:bg-gray-100/20 rounded-lg dark:text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -253,7 +253,7 @@
                 </div>
             </div>
 
-            <div class="flex gap-5 items-center">
+            <div id="mobilelesswidth" class="flex gap-5 items-center">
               <div id="auth-container"></div>
               <a href="sellingpage.html">
                 <button class="btn-primary hidden md:block">
@@ -322,7 +322,7 @@
                   <button class="flex-shrink-0 rounded-xl dark:bg-gray-100/10 bg-gray-100/30 text-gray-400 px-4 py-1.5 text-sm active:bg-white transition-colors">Sports and Gym</button>
                 </div>
 
-            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 mt-6"></div>
+            <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 mt-6"></div>
 
               <a href="sellingpage.html">
                 <button class="btn-primary rounded-4xl bottom-20 right-10 fixed z-50 animate-bounce md:hidden">

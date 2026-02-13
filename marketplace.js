@@ -5,15 +5,6 @@ const supabaseKey = 'sb_publishable_w87ezT-fcldEAO653BOpwQ_UvJtX51_';
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 
-const SideBar = document.getElementById("sidebar");
-const Sidebar_Logo = document.getElementById("sidebar-logo");
-const ToggleBtn = document.getElementById("sidebar-btn");
-const navTexts = document.querySelectorAll(".nav-text");
-const header = document.getElementById("sidebar-header");
-const SidebarText = document.getElementById("sidebar_text");
-const MainContent = document.getElementById("main");
-const productSearch = document.getElementById("search_input");
-
 
 document.addEventListener("DOMContentLoaded", () => {
   const ThemeToggle = document.getElementById("theme-toggle");
@@ -22,7 +13,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const ProfileView = document.getElementById("profile-view");
   const ProfileBtn = document.getElementById("profile-btn");
   const ProfileInfo = document.getElementById("name_email")
-  const LogOut=document.getElementById("log-out")
+  const LogOut = document.getElementById("log-out")
+  const SidebarMob = document.getElementById("sidebar-toggle-mobile");
+  const SideBar = document.getElementById("sidebar");
+  const ToggleBtn = document.getElementById("sidebar-btn");
+  const navTexts = document.querySelectorAll(".nav-text");
+  const header = document.getElementById("sidebar-header");
+  const SidebarText = document.getElementById("sidebar_text");
+  const MainContent = document.getElementById("main");
+  const BackDrop=document.getElementById("sidebar-backdrop")
+
 
   ProfileBtn.addEventListener("click", async (e) => {
     const { data: { user }, error } = await supabase.auth.getUser();
@@ -58,8 +58,46 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-  });}
+  });
+  }
   
+
+
+    function closeSidebar() {  //not hidden
+      ProfileView.classList.add("hidden");
+      SideBar.classList.remove("translate-x-0");
+      SideBar.classList.add("-translate-x-full");
+      BackDrop.classList.add("hidden");
+      document.body.style.overflow = ""; //Re-enable Scrolling
+
+      ProfileView.classList.remove("hidden");
+    }
+
+
+  SidebarMob.addEventListener("click",async (e) => {
+    e.stopPropagation()
+    console.log("Sidebar Worked?");
+    
+    const isHidden = SideBar.classList.contains("-translate-x-full");
+
+    if (isHidden) {  //it is hidden
+      BackDrop.classList.remove("hidden")
+      SideBar.classList.remove("-translate-x-full");
+      SideBar.classList.add("translate-x-0");
+      document.body.style.overflow = "hidden"; //Prevent scrolling behind Sidebar
+      ProfileView.classList.add("hidden");
+
+    }
+
+    else {
+      closeSidebar();
+    }
+
+  })
+  
+  BackDrop.addEventListener("click", () => {
+    closeSidebar()
+  })
 
 
   if (ToggleBtn) {
@@ -82,8 +120,11 @@ document.addEventListener("DOMContentLoaded", () => {
           text.classList.add("hidden");
           text.parentElement.classList.add("justify-center");
         });
+
+      
       } else {
-        SideBar.classList.remove("w-28", "px-8");
+
+        SideBar.classList.remove("w-28", "px-2");
         SideBar.classList.add("w-64", "px-10");
 
         MainContent.classList.add("ml-64");

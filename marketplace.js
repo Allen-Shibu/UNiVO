@@ -18,10 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const SideBar = document.getElementById("sidebar");
   const ToggleBtn = document.getElementById("sidebar-btn");
   const navTexts = document.querySelectorAll(".nav-text");
-  const header = document.getElementById("sidebar-header");
   const SidebarText = document.getElementById("sidebar_text");
   const MainContent = document.getElementById("main");
-  const BackDrop=document.getElementById("sidebar-backdrop")
+  const BackDrop = document.getElementById("sidebar-backdrop")
+  const Header=document.getElementById("header")
 
 
   ProfileBtn.addEventListener("click", async (e) => {
@@ -102,19 +102,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (ToggleBtn) {
     ToggleBtn.addEventListener("click", () => {
-      const isOpen = SideBar.classList.contains("w-64");
+      const isOpen = SideBar.classList.contains("w-64","md:left-64");
 
       if (isOpen) {
+
+        console.log("Taskbar closing");
+
+        ToggleBtn.classList.add("md:-mx-8");
+        
         SideBar.classList.remove("w-64", "px-10");
         SideBar.classList.add("w-28", "px-8");
 
-        MainContent.classList.remove("ml-64");
+        MainContent.classList.remove("md:ml-64");
         MainContent.classList.add("ml-28");
 
         SidebarText.classList.add("hidden");
 
-        header.classList.remove("gap-9");
-        header.classList.add("justify-center");
+        Header.classList.remove("gap-9");
+        Header.classList.add("justify-center");
+        Header.classList.replace("md:left-64", "md:left-28");
 
         navTexts.forEach((text) => {
           text.classList.add("hidden");
@@ -124,16 +130,20 @@ document.addEventListener("DOMContentLoaded", () => {
       
       } else {
 
+        ToggleBtn.classList.remove("md:-mx-8");
+
+
         SideBar.classList.remove("w-28", "px-2");
         SideBar.classList.add("w-64", "px-10");
 
-        MainContent.classList.add("ml-64");
+        MainContent.classList.add("md:ml-64");
         MainContent.classList.remove("ml-28");
 
         SidebarText.classList.remove("hidden");
 
-        header.classList.add("gap-9");
-        header.classList.remove("justify-center");
+        Header.classList.add("gap-9");
+        Header.classList.remove("justify-center");
+        Header.classList.replace("md:left-28", "md:left-64");
 
         navTexts.forEach((text) => {
           text.classList.remove("hidden");

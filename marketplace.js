@@ -1,10 +1,8 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = 'https://opzechnwukuqfvfaytfx.supabase.co';
-const supabaseKey = 'sb_publishable_w87ezT-fcldEAO653BOpwQ_UvJtX51_';
-const supabase = createClient(supabaseUrl, supabaseKey)
-
-
+const supabaseUrl = "https://opzechnwukuqfvfaytfx.supabase.co";
+const supabaseKey = "sb_publishable_w87ezT-fcldEAO653BOpwQ_UvJtX51_";
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 document.addEventListener("DOMContentLoaded", () => {
   const ThemeToggle = document.getElementById("theme-toggle");
@@ -12,30 +10,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const ThemeToggleLight = document.getElementById("theme-toggle-light-icon");
   const ProfileView = document.getElementById("profile-view");
   const ProfileBtn = document.getElementById("profile-btn");
-  const ProfileInfo = document.getElementById("name_email")
-  const LogOut = document.getElementById("log-out")
+  const ProfileInfo = document.getElementById("name_email");
+  const LogOut = document.getElementById("log-out");
   const SidebarMob = document.getElementById("sidebar-toggle-mobile");
   const SideBar = document.getElementById("sidebar");
   const ToggleBtn = document.getElementById("sidebar-btn");
   const navTexts = document.querySelectorAll(".nav-text");
   const SidebarText = document.getElementById("sidebar_text");
   const MainContent = document.getElementById("main");
-  const BackDrop = document.getElementById("sidebar-backdrop")
-  const Header=document.getElementById("header")
-  const MobileWidth=document.getElementById("mobilelesswidth")
+  const BackDrop = document.getElementById("sidebar-backdrop");
+  const Header = document.getElementById("header");
+  const MobileWidth = document.getElementById("mobilelesswidth");
 
   if (window.innerWidth < 400) {
-    MobileWidth.classList.replace("gap-5","gap-3")
+    MobileWidth.classList.replace("gap-5", "gap-3");
   }
 
   ProfileBtn.addEventListener("click", async (e) => {
-    const { data: { user }, error } = await supabase.auth.getUser();
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser();
     ProfileInfo.innerHTML = `${user.user_metadata.display_name} <br> ${user.email}`;
 
-    if (error)
-      alert(error)
-
-
+    if (error) alert(error);
 
     e.stopPropagation();
     ProfileView.classList.toggle("hidden");
@@ -48,72 +46,64 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // to prevent the closing when the user clicks inside the dialog
   ProfileView.addEventListener("click", async (e) => {
-    e.stopPropagation()
-  })
-
-  if(LogOut){LogOut.addEventListener("click", async (e) => {
-    e.preventDefault();
     e.stopPropagation();
-    const { error } = await supabase.auth.signOut({ scope: "global" });
-    if (error) alert(error);
-    else {
-      alert("Logged Out successfully")
-      window.location.href = "login.html";
-    }
-
-
   });
+
+  if (LogOut) {
+    LogOut.addEventListener("click", async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const { error } = await supabase.auth.signOut({ scope: "global" });
+      if (error) alert(error);
+      else {
+        alert("Logged Out successfully");
+        window.location.href = "login.html";
+      }
+    });
   }
-  
 
+  function closeSidebar() {
+    //not hidden
+    ProfileView.classList.add("hidden");
+    SideBar.classList.remove("translate-x-0");
+    SideBar.classList.add("-translate-x-full");
+    BackDrop.classList.add("hidden");
+    document.body.style.overflow = ""; //Re-enable Scrolling
 
-    function closeSidebar() {  //not hidden
-      ProfileView.classList.add("hidden");
-      SideBar.classList.remove("translate-x-0");
-      SideBar.classList.add("-translate-x-full");
-      BackDrop.classList.add("hidden");
-      document.body.style.overflow = ""; //Re-enable Scrolling
+    ProfileView.classList.remove("hidden");
+  }
 
-      ProfileView.classList.remove("hidden");
-    }
-
-
-  SidebarMob.addEventListener("click",async (e) => {
-    e.stopPropagation()
+  SidebarMob.addEventListener("click", async (e) => {
+    e.stopPropagation();
     console.log("Sidebar Worked?");
-    
+
     const isHidden = SideBar.classList.contains("-translate-x-full");
 
-    if (isHidden) {  //it is hidden
-      BackDrop.classList.remove("hidden")
+    if (isHidden) {
+      //it is hidden
+      BackDrop.classList.remove("hidden");
       SideBar.classList.remove("-translate-x-full");
       SideBar.classList.add("translate-x-0");
       document.body.style.overflow = "hidden"; //Prevent scrolling behind Sidebar
       ProfileView.classList.add("hidden");
-
-    }
-
-    else {
+    } else {
       closeSidebar();
     }
+  });
 
-  })
-  
   BackDrop.addEventListener("click", () => {
-    closeSidebar()
-  })
-
+    closeSidebar();
+  });
 
   if (ToggleBtn) {
     ToggleBtn.addEventListener("click", () => {
-      const isOpen = SideBar.classList.contains("w-64","md:left-64");
+      const isOpen = SideBar.classList.contains("w-64", "md:left-64");
 
       if (isOpen) {
-
         console.log("Taskbar closing");
 
         ToggleBtn.classList.add("md:-mx-8");
-        
+
         SideBar.classList.remove("w-64", "px-10");
         SideBar.classList.add("w-28", "px-8");
 
@@ -130,12 +120,8 @@ document.addEventListener("DOMContentLoaded", () => {
           text.classList.add("hidden");
           text.parentElement.classList.add("justify-center");
         });
-
-      
       } else {
-
         ToggleBtn.classList.remove("md:-mx-8");
-
 
         SideBar.classList.remove("w-28", "px-2");
         SideBar.classList.add("w-64", "px-10");
@@ -157,9 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  if (
-    localStorage.getItem("color-theme") === "dark" 
-  ) {
+  if (localStorage.getItem("color-theme") === "dark") {
     document.documentElement.classList.add("dark");
     ThemeToggleLight.classList.remove("hidden");
     ThemeToggleDark.classList.add("hidden");
@@ -187,10 +171,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 let timeoutId;
 
 function showNotification() {
+  const notify = document.getElementById("notification");
   notify.classList.remove("hidden");
 
   if (timeoutId) {
@@ -204,6 +188,7 @@ function showNotification() {
 }
 
 function showAdNotification() {
+  const Adnotify = document.getElementById("added-notification");
   Adnotify.classList.remove("hidden");
 
   if (timeoutId) {
@@ -217,43 +202,44 @@ function showAdNotification() {
 }
 
 //loading products to main page\\
-async function loadProducts(SearchResults=null) {
-  const{data:{user}}=await supabase.auth.getUser()
+async function loadProducts(SearchResults = null) {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   const ProductGrid = document.getElementById("product-grid");
   let products;
   let error;
 
-  if(!ProductGrid) return
+  if (!ProductGrid) return;
 
   if (SearchResults) {
-    products=SearchResults
-  }
-
-  else {  //If nothing is typed (Search function)
+    products = SearchResults;
+  } else {
+    //If nothing is typed (Search function)
     const { data, error: fetchError } = await supabase
       .from("products")
       .select("*");
     products = data || [];
     error = fetchError;
-    
   }
 
   ProductGrid.innerHTML = "";
 
-  if(products.length===0) {ProductGrid.innerHTML = "<p>No products found matching that search.</p>";
-  return;}
+  if (products.length === 0) {
+    ProductGrid.innerHTML = "<p>No products found matching that search.</p>";
+    return;
+  }
 
   // add or remove products from wishlist from the main page
   let savedIds = [];
-  if(user){
-     const { data: wishlist } = await supabase
-    .from("wishlist")
-    .select("product_id")
-    .eq("user_id", user.id);
+  if (user) {
+    const { data: wishlist } = await supabase
+      .from("wishlist")
+      .select("product_id")
+      .eq("user_id", user.id);
 
     savedIds = wishlist ? wishlist.map((item) => String(item.product_id)) : [];
   }
-
 
   if (error) {
     alert(error);
@@ -282,6 +268,7 @@ async function loadProducts(SearchResults=null) {
   }
 }
 loadProducts();
+
 const productGrid = document.getElementById("product-grid");
 
 productGrid.addEventListener("click", (e) => {
@@ -290,109 +277,124 @@ productGrid.addEventListener("click", (e) => {
   }
 });
 
+// FIX: Add proper declaration for productSearch
+const productSearch = document.getElementById("search_input");
 
+if (productSearch) {
+  productSearch.addEventListener("keydown", (e) => {
+    const ProductGrid = document.getElementById("product-grid");
+    const noresult = document.getElementById("noresultsfound");
+    const searchText = productSearch.value.toLowerCase();
+    let visibility = 0;
+    if (e.key == "Enter") {
+      e.preventDefault();
 
+      Array.from(ProductGrid.children).forEach((card) => {
+        // find the title <p> (paragraphhhh) inside this card
+        const titleEl = card.querySelector("p");
 
+        if (!titleEl) return;
+        const titleText = titleEl.innerText.toLowerCase();
+        console.log(titleText);
 
-productSearch.addEventListener("keydown", (e)=>{
-  const ProductGrid = document.getElementById("product-grid");
-  const noresult = document.getElementById('noresultsfound');
-  const searchText = productSearch.value.toLowerCase();
-  let visibility = 0;
-  if(e.key=="Enter"){
-
-    e.preventDefault();
-
-    Array.from(ProductGrid.children).forEach(card => {
-    // find the title <p> (paragraphhhh) inside this card
-    const titleEl = card.querySelector("p");
-
-    if (!titleEl) return;
-    const titleText = titleEl.innerText.toLowerCase();
-    console.log(titleText);
-
-    if (titleText.includes(searchText)) {
-      card.style.display = "block"; 
-      visibility++;
-    } else {
-      card.style.display = "none";
+        if (titleText.includes(searchText)) {
+          card.style.display = "block";
+          visibility++;
+        } else {
+          card.style.display = "none";
+        }
+        if (visibility == 0) {
+          noresult.style.display = "block";
+        } else {
+          noresult.style.display = "none";
+        }
+      });
     }
-    if(visibility==0){
-      noresult.style.display = "block"; 
-    }else{
-      noresult.style.display = "none"; 
-    }
-  
   });
-  }});
+}
 
-
-
-function WishistLogic() {
+function WishlistLogic() {
   const ProductGrid = document.getElementById("product-grid");
 
   ProductGrid.addEventListener("click", async (e) => {
-    const btn = e.target.closest(".wishlist-btn")
-    if (!btn) return
+    const btn = e.target.closest(".wishlist-btn");
+    if (!btn) return;
 
-    e.preventDefault()
+    e.preventDefault();
+    e.stopPropagation();
 
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) alert("You must be logged in to save the products")
-    
-    // making the heart button red after click
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) {
+      alert("You must be logged in to save products");
+      return;
+    }
+
+    const productId = btn.dataset.id;
     const icon = btn.querySelector("svg");
-    icon.style.fill = "red";
-    icon.style.stroke = "red";
 
-    const productId=btn.dataset.id
+    const { data: existing } = await supabase
+      .from("wishlist")
+      .select("*")
+      .eq("product_id", productId)
+      .eq("user_id", user.id)
+      .single();
 
-    const { error } = await supabase.from("wishlist").insert([
-      {
-        product_id: productId,
-        user_id: user.id,
-      },
-    ]);
-
-    if (error) {
-      alert("Item already added to wishlist")
-      
-    }
-    
-    else {
-      alert("Product added to your wishlist")
-      
-    }
-
-    if (error && error.code === "23505") {
-      const productID = e.target.closest(".del-btn").dataset.id;
+    if (existing) {
       const { error } = await supabase
         .from("wishlist")
         .delete()
-        .eq("product_id", productID);
-          
+        .eq("product_id", productId)
+        .eq("user_id", user.id);
+
       if (error) {
-        console.error("Error deleting:", error.message);
+        console.error("Error removing from wishlist:", error);
+        alert("Failed to remove from wishlist");
+      } else {
+
+        icon.setAttribute("fill", "none");
+        btn.classList.remove("text-red-500");
+        btn.classList.add("text-gray-400");
+        showAdNotification(); 
+      }
+    } else {
+
+      const { error } = await supabase.from("wishlist").insert([
+        {
+          product_id: productId,
+          user_id: user.id,
+        },
+      ]);
+
+      if (error) {
+        console.error("Error adding to wishlist:", error);
+        alert("Failed to add to wishlist");
+      } else {
+        // Update UI to show filled heart
+        icon.setAttribute("fill", "currentColor");
+        btn.classList.remove("text-gray-400");
+        btn.classList.add("text-red-500");
+        showNotification();
       }
     }
-
-  })  
+  });
 }
 
-WishistLogic();
+WishlistLogic();
 
+// Search functionality
 const SearchInput = document.querySelector(".search-input");
+if (SearchInput) {
   SearchInput.addEventListener("change", async () => {
-    const search = SearchInput.value
-    const { data, error } = await supabase.from('products').select("*")
-      .textSearch('fts', search, {
-        type: 'websearch',
-        config: 'english'
-      })
-    if (data) loadProducts(data)
-  })
-
-WishistLogic()
-
-
-
+    const search = SearchInput.value;
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .textSearch("fts", search, {
+        type: "websearch",
+        config: "english",
+      });
+    if (data) loadProducts(data);
+  });
+}

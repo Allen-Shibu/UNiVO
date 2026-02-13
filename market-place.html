@@ -308,6 +308,68 @@
           </div>
         </header>
 
+                <!-- <div class="hidden">
+          <div class="p-2"> -->
+
+
+                          <!-- product buying info pop-up -->
+              <!-- <div
+                id="productdetails"
+                class="flex-row contain-content absolute w-[97%] h-[86%] bg-[#11161C] z-1 rounded-3xl shadow-[0_0_12px_rgba(255,200,0,1)]"
+              >
+                <img
+                  src="test.png"
+                  class="w-[50%] h-[90%] outline-2 object-contain ml-10 mt-10 mb-5 bg-black rounded-2xl"
+                />
+                <div class="pr-10">
+                  <p class="text-6xl text-white mt-10 translate-x-10 font-sans">
+                    Product name
+                  </p>
+                  <p
+                    class="text-6xl text-yellow-500 mt-10 translate-x-10 font-sans font-bold"
+                  >
+                    ₹120
+                  </p>
+                  <hr />
+                  <p class="text-4xl text-white mt-10 translate-x-10 font-sans">
+                    Description
+                  </p>
+                  <p
+                    class="text-2xl text-white mt-5 mr-10 translate-x-10 font-sans"
+                  >
+                    Crystal rivers shimmer beneath the fading sun, while quiet
+                    winds scatter forWishlistgotten whispers across the valley. Patterns
+                    emerge in chaos, and every fragment of sound feels like a
+                    secret waiting to be uncovered. The horizon bends with
+                    possibility, carrying echoes of stories not yet told.
+                  </p>
+                  <div class="flex flex-row">
+                    <input
+                      type="number"
+                      placeholder="Quantity"
+                      class="font-bold outline-0 mt-10 ml-10 border-b-3 border-[#F0B100] bg-gray-500 py-2 px-3 w-30 rounded-2xl dark:bg-gray-300"
+                    />
+                    <p class="text-3xl text-white mt-10 translate-x-10 font-sans ">Quantity x price of an item </p>
+                  </div>
+                  <p class="text-4xl text-white mt-10 translate-x-10 font-sans ">contact details</p>
+                  <button
+                    class="w-full h-10 rounded-2xl bg-[#25D366] mb-5 mt-15 ml-5 font-bold text-2xl"
+                  >
+                    contant via whatsapp
+                  </button>
+                  <button
+                    class="w-full h-20 rounded-2xl bg-red-300 ml-5 font-bold text-2xl"
+                  >
+                    Add to wishlist
+                  </button>
+                  <button
+                    class="z-1 w-full h-20 rounded-2xl bg-amber-300 ml-5 mt-5 font-bold text-2xl"
+                  >
+                    Buy
+                  </button>
+                </div> -->
+              
+
       <main
         id="main"
         class="flex-1 ml-0 md:ml-64 p-8 min-h-screen transition-all duration-300 mt-9  bg-white flex flex-col dark:bg-[#030406] relative overflow-y-auto"
@@ -325,18 +387,34 @@
             <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 mt-6"></div>
 
               <a href="sellingpage.html">
-                <button class="btn-primary rounded-4xl bottom-20 right-10 fixed z-50 animate-bounce md:hidden">
+                <button class="btn-primary rounded-4xl bottom-19 right-10 fixed z-50 animate-bounce md:hidden">
                   <span class="text-4xl">+</span>
                 </button>
               </a>
 
-              <div id="notification" class="bg-indigo-300 whitespace-nowrap flex w-fit p-3 left-1/2 -translate-x-1/2 z-50 rounded-xl absolute hidden">
-                  Item added to wishlist
-              </div>
+              <div id="notification" class="whitespace-nowrap flex w-fit p-3 left-1/2 -translate-x-1/2 z-50 top-30 md:-translate-x-1 fixed rounded-xl ">
+                <div
+                  role="alert"
+                  class="bg-green-100 dark:bg-green-900 border-l-4 border-green-500 dark:border-green-700 text-green-900 dark:text-green-100 p-2 rounded-lg flex items-center transition duration-300 ease-in-out hover:bg-green-200 dark:hover:bg-green-800 transform hover:scale-105"
+                >
+                  <svg
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    class="h-8 w-8 flex-shrink-0 mr-2 text-green-600"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M13 16h-1v-4h1m0-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      stroke-width="2"
+                      stroke-linejoin="round"
+                      stroke-linecap="round"
+                    ></path>
+                  </svg>
+                  <p class="text-xs font-semibold">Success - Everything went smoothly!</p>
+                </div>
 
-              <div id="added-notification" class="bg-rose-300 whitespace-nowrap flex w-fit p-3 left-1/2 -translate-x-1/2 z-50 rounded-xl absolute hidden">
-                  Item already added to wishlist
-              </div>
+
 
               <div id="noresultsfound" class="hidden">
                 <img src="no results darkmode.png" class="flex ml-110 mt-20 align-center justify-center w-100 h-full"/>

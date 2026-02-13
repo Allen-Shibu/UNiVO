@@ -172,33 +172,40 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 let timeoutId;
+  const GreenNotify = document.getElementById("good-notification");
+  const notify = document.getElementById("fail-notification");
 
-function showNotification() {
-  const notify = document.getElementById("notification");
-  notify.classList.remove("hidden");
+function PassNotify() {
+  GreenNotify.classList.remove("hidden");
+  
+
 
   if (timeoutId) {
+    notify.classList.add("hidden");
     //clear any existing timer
     clearTimeout(timeoutId);
   }
 
-  timeoutId = setTimeout(() => {
-    notify.classList.add("hidden");
-  }, 2000);
+    timeoutId = setTimeout(() => {
+      GreenNotify.classList.add("hidden");
+    }, 2000);
+  
 }
 
-function showAdNotification() {
-  const Adnotify = document.getElementById("added-notification");
-  Adnotify.classList.remove("hidden");
+function FailNotify() {
+  notify.classList.remove("hidden");
+  
 
   if (timeoutId) {
+    GreenNotify.classList.add("hidden");
     //clear any existing timer
     clearTimeout(timeoutId);
   }
 
-  timeoutId = setTimeout(() => {
-    Adnotify.classList.add("hidden");
-  }, 2000);
+    timeoutId = setTimeout(() => {
+      notify.classList.add("hidden");
+    }, 2000);
+
 }
 
 //loading products to main page\\
@@ -313,6 +320,7 @@ if (productSearch) {
   });
 }
 
+// FIXED WISHLIST LOGIC
 function WishlistLogic() {
   const ProductGrid = document.getElementById("product-grid");
 
@@ -356,7 +364,7 @@ function WishlistLogic() {
         icon.setAttribute("fill", "none");
         btn.classList.remove("text-red-500");
         btn.classList.add("text-gray-400");
-        showAdNotification(); 
+        FailNotify(); 
       }
     } else {
 
@@ -375,7 +383,7 @@ function WishlistLogic() {
         icon.setAttribute("fill", "currentColor");
         btn.classList.remove("text-gray-400");
         btn.classList.add("text-red-500");
-        showNotification();
+        PassNotify();
       }
     }
   });

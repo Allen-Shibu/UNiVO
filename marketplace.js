@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const BackDrop = document.getElementById("sidebar-backdrop");
   const Header = document.getElementById("header");
   const MobileWidth = document.getElementById("mobilelesswidth");
+  
 
   if (window.innerWidth < 400) {
     MobileWidth.classList.replace("gap-5", "gap-3");
@@ -270,12 +271,22 @@ async function loadProducts(SearchResults = null) {
 loadProducts();
 
 const productGrid = document.getElementById("product-grid");
+const popup = document.getElementById("popupwindow");
+const pop = document.getElementById('productdetails');
 
 productGrid.addEventListener("click", (e) => {
   if (e.target.tagName === "IMG") {
-    alert("u clicked the image");
+    popup.classList.remove("hidden");
   }
 });
+
+popup.addEventListener("click", ()=>{
+  popup.classList.add("hidden");
+})
+
+pop.addEventListener("click", (e)=>{
+  e.stopPropagation();
+})
 
 // FIX: Add proper declaration for productSearch
 const productSearch = document.getElementById("search_input");

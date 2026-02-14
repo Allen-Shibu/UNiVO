@@ -12,7 +12,6 @@ export default defineConfig({
         listing: resolve(__dirname, "listing.html"),
         wishlist: resolve(__dirname, "wishlist.html"),
         contact: resolve(__dirname, "contact.html"),
-        orders: resolve(__dirname, "collections.html"),
         forum: resolve(__dirname, "forum.html"),
       },
     },

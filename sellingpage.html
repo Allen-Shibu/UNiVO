@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="market-place.css">
-
 </head>
 <body>
     <div class="flex min-h-screen ">
@@ -13,6 +12,8 @@
 
         <div class="flex-1 flex flex-col w-full md:w-100min-w-0 flex-shrink">
             <main id="main" class="flex-1 ml-0 md:ml-64 p-8 min-h-screen transition-all duration-300 mt-25  bg-white flex flex-col dark:bg-[#030406] relative overflow-y-auto">
+                <div id="notification-container" class="whitespace-nowrap flex w-fit p-3 left-1/2 -translate-x-1/2 z-50 top-30 md:-translate-x-1 fixed rounded-xl">
+                </div>
                 <h1 class="ml-5 text-5xl font-bold text-gray-800 dark:text-gray-200">Sell your item</h1>
                 <hr class="border-t-2 border-[#F0B100] my-6 relative z-0">
                 
@@ -45,7 +46,9 @@
                     </div>
 
                     <div class="cursor-pointer flex justify-center mt-10 w-2/3 h-90% bg-contain md:ml-10 ml-18 items-center border-2 border-dashed border-[#b38402] rounded-2xl hover:bg-[#ffd76a71] transition duration-200 relative">
-                        <label for="file-input" class="text-[100px] text-[#b38402] cursor-pointer">+</label>
+                        <label for="file-input" class="text-[100px] text-[#b38402] cursor-pointer">+
+                            <p class="text-[19px] ">Upload max 3 Images</p>
+                        </label>
                         <input name="image" type="file" id="file-input" multiple class="absolute inset-0 opacity-0 cursor-pointer">
                     </div>
                 </div>
@@ -58,6 +61,8 @@
             </main>
         </div>
     </div>
+
+    
     <script type="module" src="loader.js"></script>
     <script type="module" src="selling.js"></script>
 </body>

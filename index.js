@@ -1,4 +1,7 @@
 import { supabase } from "./supabaseClient.js";
+
+import { PassNotify, FailNotify } from "./loader.js";
+
 const nameInput = document.getElementById("name");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
@@ -15,12 +18,12 @@ async function signup() {
   const name = nameInput.value;
   const email = emailInput.value;
     if (!email.endsWith("@gectcr.ac.in")) {
-        alert("Access Denied: You must use a valid GEC College email (@gectcr.ac.in)");
+        FailNotify("Access Denied: You must use a valid GEC College email (@gectcr.ac.in)");
         return;
     }
   const phone = iti.getNumber();
   if (!iti.isValidNumber()) {
-    alert("Please enter a valid phone number for your country.");
+    FailNotify("Please enter a valid phone number for your country.");
     return;
   }
   const password = passwordInput.value;
@@ -40,10 +43,10 @@ async function signup() {
   });
 
   if (error) {
-    alert("Sign Up Failed!" + error.message);
+    FailNotify("Sign Up Failed!"  +error.message);
   } else {
     
-    alert(
+    PassNotify(
       "Verification email sent! Please check your inbox to activate your account.",
       
     );
@@ -65,7 +68,7 @@ GBtn.addEventListener('click',async()=> {
     },
   });
 
-  if(error) alert("Sign in Failed "+error)
+  if(error) FailNotify("Sign in Failed "+error)
 })
 
 

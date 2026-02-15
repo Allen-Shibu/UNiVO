@@ -56,7 +56,7 @@ function initializeNavigation() {
         ProfileInfo.innerHTML = `${user.user_metadata.display_name} <br> ${user.email}`;
       }
 
-      if (error) alert(error);
+      if (error) FailNotify(error);
 
       e.stopPropagation();
       ProfileView.classList.toggle("hidden");
@@ -191,3 +191,66 @@ function initializeNavigation() {
 document.addEventListener("DOMContentLoaded", function () {
   loadComponent("navigation-container", "main.html");
 });
+
+
+
+async function loadmess(elementId, componentPath) {
+  try {
+    const response = await fetch(componentPath);
+    if (!response.ok) {
+      throw new Error(`Failed to load ${componentPath}`);
+    }
+    const html = await response.text();
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.innerHTML = html;
+    }
+  } catch (error) {
+    console.error("Error loading component:", error);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  loadmess("notification-container", "notifications.html");
+});
+
+
+
+let timeoutId;
+
+export function PassNotify(message) {
+  const notify = document.getElementById("fail-notification");
+  const GreenNotify = document.getElementById("good-notification");
+  const textElement = document.getElementById("pass-msg");
+  GreenNotify.classList.remove("hidden");
+
+  textElement.innerText = message;
+
+  if (timeoutId) {
+    notify.classList.add("hidden");
+    //clear any existing timer
+    clearTimeout(timeoutId);
+  }
+
+  timeoutId = setTimeout(() => {
+    GreenNotify.classList.add("hidden");
+  }, 2000);
+}
+
+export function FailNotify(message) {
+  const GreenNotify = document.getElementById("good-notification");
+  const notify = document.getElementById("fail-notification");
+  const textElement = document.getElementById("fail-msg");
+  notify.classList.remove("hidden");
+  textElement.innerText = message;
+
+  if (timeoutId) {
+    GreenNotify.classList.add("hidden");
+    //clear any existing timer
+    clearTimeout(timeoutId);
+  }
+
+  timeoutId = setTimeout(() => {
+    notify.classList.add("hidden");
+  }, 2000);
+}

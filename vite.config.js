@@ -5,6 +5,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
+        notifications: resolve(__dirname, "notifications.html"),
         sidebar_header: resolve(__dirname, "main.html"),
         main: resolve(__dirname, "index.html"),
         login: resolve(__dirname, "login.html"),

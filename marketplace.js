@@ -274,15 +274,36 @@ const productGrid = document.getElementById("product-grid");
 const popup = document.getElementById("popupwindow");
 const pop = document.getElementById('productdetails');
 
-productGrid.addEventListener("click", (e) => {
+productGrid.addEventListener("click", async (e) => {
   if (e.target.tagName === "IMG") {
+    console.log(e.target)
+
+    document.getElementById("productpageuploadimage").src = e.target.src;
+
     popup.classList.remove("hidden");
+    const {data, error} = await supabase
+    .from("products")
+    .select("*")
+    .contains("image_url", [e.target.src])
+    .single()
+
+    document.getElementById("productname").innerHTML = `<p class="text-6xl text-white mt-10 font-sans">${data.title}</p>`
+    document.getElementById('productprice').textContent = "₹"+data.price
+    document.getElementById("productdescription").textContent = data.description
   }
 });
+
 
 popup.addEventListener("click", ()=>{
   popup.classList.add("hidden");
 })
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    popup.classList.add("hidden");
+  }
+});
+
 
 pop.addEventListener("click", (e)=>{
   e.stopPropagation();

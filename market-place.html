@@ -355,29 +355,26 @@
                 id="productdetails"
                 class=" ml-40 flex flex-row contain-content w-[73%] h-[80%] bg-[#11161C] rounded-3xl shadow-[0_0_12px_rgba(255,200,0,1)]">
               <img
-                  src="test.png"
-                  class="w-[50%] h-[90%] outline-2 object-contain ml-10 mt-10 mb-5 bg-black rounded-2xl">
+                  id="productpageuploadimage"
+                  src=""
+                  class="w-[50%] h-[90%] outline-2 object-contain ml-10 mt-10 mb-5 bg-black rounded-2xl"/>
               <div class="pr-10">
-                <p class="text-6xl text-white mt-10 translate-x-10 font-sans">
-                    Product name
+                <p id="productname" class="text-6xl text-white mt-10 translate-x-10 font-sans">
                 </p>
               <p
-                    class="text-6xl text-yellow-500 mt-10 translate-x-10 font-sans font-bold"
+                    id="productprice" class="text-6xl text-yellow-500 mt-10 translate-x-10 font-sans font-bold"
                   >
                     ₹120
                   </p>
-                  <hr />
+                  <hr class="border border-gray-800 ml-5 transform translate-y-5">
                   <p class="text-4xl text-white mt-10 translate-x-10 font-sans">
                     Description
                   </p>
                   <p
+                    id="productdescription"
                     class="text-2xl text-white mt-5 mr-10 translate-x-10 font-sans"
                   >
-                    Crystal rivers shimmer beneath the fading sun, while quiet
-                    winds scatter forWishlistgotten whispers across the valley. Patterns
-                    emerge in chaos, and every fragment of sound feels like a
-                    secret waiting to be uncovered. The horizon bends with
-                    possibility, carrying echoes of stories not yet told.
+                  no description provided
                   </p>
                   <div class="flex flex-row">
                     <input
@@ -389,12 +386,12 @@
                   </div>
                   <!-- <p class="text-4xl text-white mt-10 translate-x-10 font-sans ">contact details</p> -->
                   <button
-                    class="w-full h-20 rounded-2xl bg-[#F0B100] mb-5 mt-15 ml-5 font-bold text-2xl"
+                    class="fixed w-155 h-20 rounded-2xl bg-[#F0B100] mb-5 ml-5 bottom-10 font-bold text-2xl"
                   >
                     contact seller
                   </button>
                   <button
-                    class="w-full h-20 rounded-2xl bg-transparent text-white border border-white-solid ml-5 font-bold text-2xl"
+                    class="fixed w-155 h-20 rounded-2xl bg-transparent bottom-40  text-white border border-white-solid ml-5 font-bold text-2xl"
                   >
                     Add to wishlist
                   </button>
@@ -405,7 +402,7 @@
 
           </div>
 
-            <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 mt-6"></div>
+            <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-10 mt-6"></div>
 
               <a href="sellingpage.html">
                 <button class="btn-primary rounded-4xl bottom-19 right-10 fixed z-50 animate-bounce md:hidden">

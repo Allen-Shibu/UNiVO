@@ -158,7 +158,7 @@ function WishlistLogic() {
       .select("*")
       .eq("product_id", productId)
       .eq("user_id", user.id)
-      .single();
+      .maybeSingle();
 
     if (existing) {
       const { error } = await supabase

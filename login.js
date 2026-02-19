@@ -1,18 +1,17 @@
 import { supabase } from "./supabaseClient.js";
 
+import { PassNotify, FailNotify } from "./loader.js";
+
+
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const SignupBtn = document.querySelector(".registerbtn");
 const LoginBtn = document.getElementById("loginbtn");
-const Failnotify = document.getElementById("fail-notification");
-
-
-
 
 async function signup() {
     const email = emailInput.value;
     if (!email.endsWith("@gectcr.ac.in")) {
-        alert("Access Denied: You must use a valid GEC College email (@gectcr.ac.in)");
+        FailNotify("Access Denied: You must use a valid GEC College email (@gectcr.ac.in)");
         return;
     }
   const password = passwordInput.value;
@@ -23,7 +22,7 @@ async function signup() {
   });
 
   if (error) {
-    alert("Sign Up Failed!", error.message);
+    FailNotify("Sign Up Failed!", error.message);
   } else {
     document.getElementById("success-notification").classList.remove('hidden')
     window.location.href = "market-place.html";
@@ -40,11 +39,10 @@ async function login() {
   });
 
   if (error) {
-    console.log("Supabase Error", error);
-    FailNotification(); 
+    FailNotify("Invalid Login Credentials");
     
   } else {
-    alert("Login successful");
+    PassNotify("Login successful");
 
     window.location.href ="market-place.html";
   }
@@ -62,18 +60,6 @@ if (LoginBtn)
     login();
   });
 
-function FailNotification() {
-  Adnotify.classList.remove("hidden");
-
-  if (timeoutId) {
-    //clear any existing timer
-    clearTimeout(timeoutId);
-  }
-
-  timeoutId = setTimeout(() => {
-    Failnotify.classList.add("hidden");
-  }, 2000);
-}
 
 passwordInput.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {

@@ -5,6 +5,8 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
+        notifications: resolve(__dirname, "notifications.html"),
+        sidebar_header: resolve(__dirname, "main.html"),
         main: resolve(__dirname, "index.html"),
         login: resolve(__dirname, "login.html"),
         market: resolve(__dirname, "market-place.html"),
@@ -12,7 +14,6 @@ export default defineConfig({
         listing: resolve(__dirname, "listing.html"),
         wishlist: resolve(__dirname, "wishlist.html"),
         contact: resolve(__dirname, "contact.html"),
-        orders: resolve(__dirname, "collections.html"),
         forum: resolve(__dirname, "forum.html"),
       },
     },

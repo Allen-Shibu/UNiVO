@@ -134,12 +134,20 @@ productGrid.addEventListener("click", async (e) => {
 });
 
 
-// contacting the seller 
-
+// contacting the seller
 document.getElementById("contactsellerbutton").addEventListener("click", async (e)=>{
-  const { data: { user } } = await supabase.auth.getUser()
-  const phonenumber = user.user_metadata.Phone;
-  var message = "hello this is a msg from UniVO!";
+  // getMyPhone();
+  // const { data: { user } } = await supabase.auth.getUser()
+  // const phonenumber = user.user_metadata.Phone;
+  // console.log(phonenumber);
+  const { data, error } = await supabase
+    .from('profiles')
+    .select('phone')
+    .eq('email', '25b1161.allen@gectcr.ac.in')
+    .single()
+
+  const phonenumber = data.phone;
+  var message = "hello this is a msg from UniVO! whatsapp msging works :D";
   var url = "https://api.whatsapp.com/send?phone=" + phonenumber + "&text=" + encodeURIComponent(message);
   window.open(url, "_blank");
 })

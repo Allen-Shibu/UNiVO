@@ -127,9 +127,9 @@ productGrid.addEventListener("click", async (e) => {
     .contains("image_url", [e.target.src])
     .single()
 
-    document.getElementById("productname").innerHTML = `<p class="text-6xl text-white mt-10 font-sans">${data.title}</p>`
-    document.getElementById('productprice').textContent = "₹"+data.price
-    document.getElementById("productdescription").textContent = data.description
+    document.getElementById("productname").textContent = data.title;
+    document.getElementById('productprice').textContent = "₹"+data.price;
+    document.getElementById("productdescription").textContent = data.description;
   }
 });
 

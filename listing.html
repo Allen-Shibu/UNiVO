@@ -13,6 +13,8 @@
 
         <div class="flex-1 flex flex-col w-full min-w-0 flex-shrink">
             <main id="main" class="flex-1 ml-0 md:ml-64 p-8 min-h-screen transition-all duration-300 mt-25  bg-white flex flex-col dark:bg-[#030406] relative overflow-y-auto">
+                <div id="notification-container" class="fixed top-24 right-4 z-[60] flex flex-col gap-3 w-96 max-w-[calc(100vw-2rem)]">                    
+                </div>
                 <div class="flex-1 ">
                     <h1 class="text-black dark:text-white text-4xl font-bold">Your Listing</h1>
                     <div class="wishlist-grid grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
@@ -21,7 +23,7 @@
                     <div class="flex-1 mt-7">
                         <div>
                             <div class="p-2">
-                                <div id="product-grid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                                <div id="product-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                                   <a href="sellingpage.html">
                                     <button
                                       class="btn-primary rounded-4xl bottom-19 right-10 fixed z-50 animate-bounce md:hidden"

@@ -1,14 +1,14 @@
 import { supabase } from "./supabaseClient.js";
 
-
-
 async function loadWishlist() {
   const ProductGrid = document.getElementById("product-grid");
-  
-  const {data: { user },} = await supabase.auth.getUser();
-    
-    if (!user) alert("You must be logged in to view your wishlist");
-    
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) alert("You must be logged in to view your wishlist");
+
   const { data: wishlist, error: WishlistErr } = await supabase
     .from("wishlist")
     .select("product_id");
@@ -18,7 +18,8 @@ async function loadWishlist() {
     return;
   }
 
-  const productIds = wishlist.map((item) => { //converting data from supabase to array containing product ID only
+  const productIds = wishlist.map((item) => {
+    //converting data from supabase to array containing product ID only
     return item.product_id;
   });
 
@@ -30,10 +31,9 @@ async function loadWishlist() {
   if (error) {
     alert(error);
   } else {
-
-      ProductGrid.innerHTML = products
-        .map(
-          (product) => `
+    ProductGrid.innerHTML = products
+      .map(
+        (product) => `
         <div class="group listing-card flex flex-col relative overflow-hidden rounded-2xl">
         <div class="flex flex-col relative overflow-hidden rounded-2xl">
             <img src="${product.image_url}" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-300">
@@ -49,25 +49,23 @@ async function loadWishlist() {
           <span class="font-bold text-lg text-green-600">₹${product.price}</span>
         </div>
         </div>`,
-        )
-        .join("");
-      const DelBtn = document.querySelectorAll('.del-btn')
-      DelBtn[0].addEventListener("click", async (e) => {
-          const productID = e.target.closest(".del-btn").dataset.id;
-          const { error } = await supabase
-            .from("wishlist")
-            .delete()
-            .eq("product_id", productID);
-          
-          if (error) {
-            console.error("Error deleting:", error.message);
-          } else {
-            loadWishlist();
-          }
-          
-        });
+      )
+      .join("");
+    const DelBtn = document.querySelectorAll(".del-btn");
+    DelBtn[0].addEventListener("click", async (e) => {
+      const productID = e.target.closest(".del-btn").dataset.id;
+      const { error } = await supabase
+        .from("wishlist")
+        .delete()
+        .eq("product_id", productID);
 
-    };
+      if (error) {
+        console.error("Error deleting:", error.message);
+      } else {
+        loadWishlist();
+      }
+    });
+  }
 }
 
 loadWishlist();

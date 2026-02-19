@@ -56,28 +56,28 @@
           </div>
 
           <div
-            class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 hidden"
+            class="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-3xl hidden ml-20"
             id="popupwindow"
           >
             <div
               id="productdetails"
-              class="ml-40 flex flex-row contain-content w-[73%] h-[80%] bg-[#11161C] rounded-3xl shadow-[0_0_12px_rgba(255,200,0,1)]"
+              class="ml-40 flex flex-row contain-content w-[79%] h-[80%] bg-[#11161C] rounded-3xl shadow-[0_0_12px_rgba(255,255,255,0.3)]"
             >
               <img
                   id="productpageuploadimage"
                   src=""
                   class="w-[50%] h-[90%] outline-2 object-contain ml-10 mt-10 mb-5 bg-black rounded-2xl"/>
               <div class="pr-10">
-                <p id="productname" class="text-6xl text-white mt-10 translate-x-10 font-sans">
+                <p id="productname" class="text-4xl text-white mt-10 translate-x-10 font-sans">
                     Product name
                 </p>
               <p
-                    id="productprice" class="text-6xl text-yellow-500 mt-10 translate-x-10 font-sans font-bold"
+                    id="productprice" class="text-4xl text-yellow-500 mt-10 translate-x-10 font-sans font-bold"
                   >
                     ₹120
                   </p>
                   <hr class="border border-gray-800 ml-5 transform translate-y-5">
-                  <p class="text-4xl text-white mt-10 translate-x-10 font-sans">
+                  <p class="text-2xl text-white mt-10 translate-x-10 font-sans">
                     Description
                   </p>
                   <p
@@ -92,16 +92,17 @@
                       placeholder="Quantity"
                       class="font-bold outline-0 mt-10 ml-10 border-b-3 border-[#F0B100] bg-gray-500 py-2 px-3 w-30 rounded-2xl dark:bg-gray-300"
                     />
-                    <p class="text-3xl text-white mt-10 translate-x-10 font-sans ">Quantity x price of an item </p>
+                    <p class="text-1xl text-white mt-10 translate-x-10 font-sans ">Quantity x price of an item </p>
                   </div>
                   <!-- <p class="text-4xl text-white mt-10 translate-x-10 font-sans ">contact details</p> -->
                   <button
-                    class="fixed w-155 h-20 rounded-2xl bg-[#F0B100] mb-5 ml-5 bottom-10 font-bold text-2xl"
+                    id = 'contactsellerbutton'
+                    class="fixed w-110 h-15 rounded-2xl bg-[#F0B100] mb-1 ml-5 bottom-10 font-bold text-2xl"
                   >
                     contact seller
                   </button>
                   <button
-                    class="fixed w-155 h-20 rounded-2xl bg-transparent bottom-40  text-white border border-white-solid ml-5 font-bold text-2xl"
+                    class="absolute w-110 h-15 rounded-2xl bg-transparent bottom-30  text-white border border-white-solid ml-5 font-bold text-2xl"
                   >
                     Add to wishlist
                   </button>

@@ -133,7 +133,14 @@ productGrid.addEventListener("click", async (e) => {
   }
 });
 
+// contacting the seller 
+document.getElementById("contactsellerbutton").addEventListener("click", async (e)=>{
+  const {data, error} = await supabase
+  .from("auth")
+  .delete()
+  .eq("email", "25b130.harikrishnan@gectcr.ac.in");
 
+})
 popup.addEventListener("click", ()=>{
   popup.classList.add("hidden");
 })

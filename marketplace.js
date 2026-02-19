@@ -133,14 +133,18 @@ productGrid.addEventListener("click", async (e) => {
   }
 });
 
-// contacting the seller 
-document.getElementById("contactsellerbutton").addEventListener("click", async (e)=>{
-  const {data, error} = await supabase
-  .from("auth")
-  .delete()
-  .eq("email", "25b130.harikrishnan@gectcr.ac.in");
 
+// contacting the seller 
+
+document.getElementById("contactsellerbutton").addEventListener("click", async (e)=>{
+  const { data: { user } } = await supabase.auth.getUser()
+  const phonenumber = user.user_metadata.Phone;
+  var message = "hello this is a msg from UniVO!";
+  var url = "https://api.whatsapp.com/send?phone=" + phonenumber + "&text=" + encodeURIComponent(message);
+  window.open(url, "_blank");
 })
+
+
 popup.addEventListener("click", ()=>{
   popup.classList.add("hidden");
 })

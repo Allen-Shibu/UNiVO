@@ -1,5 +1,4 @@
 import { createClient } from "@supabase/supabase-js";
-
 const supabaseUrl = "https://opzechnwukuqfvfaytfx.supabase.co";
 const supabaseKey = "sb_publishable_w87ezT-fcldEAO653BOpwQ_UvJtX51_";
 const supabase = createClient(supabaseUrl, supabaseKey);
@@ -11,8 +10,6 @@ let timeoutId;
 
 function PassNotify() {
   GreenNotify.classList.remove("hidden");
-  
-
 
   if (timeoutId) {
     notify.classList.add("hidden");
@@ -83,7 +80,7 @@ async function loadProducts(SearchResults = null) {
   }
 
   if (error) {
-    alert(error);
+    FailNotify(error.message);
   } else {
     products.forEach((product) => {
       const card = document.createElement("div");
@@ -174,7 +171,7 @@ function WishlistLogic() {
       data: { user },
     } = await supabase.auth.getUser();
     if (!user) {
-      alert("You must be logged in to save products");
+      FailNotify("You must be logged in to save products");
       return;
     }
 
@@ -197,7 +194,7 @@ function WishlistLogic() {
 
       if (error) {
         console.error("Error removing from wishlist:", error);
-        alert("Failed to remove from wishlist");
+        FailNotify("Failed to remove from wishlist");
       } else {
 
         icon.setAttribute("fill", "none");
@@ -216,7 +213,7 @@ function WishlistLogic() {
 
       if (error) {
         console.error("Error adding to wishlist:", error);
-        alert("Failed to add to wishlist");
+        FailNotify("Failed to add to wishlist");
       } else {
         icon.setAttribute("fill", "currentColor");
         btn.classList.remove("text-gray-400");

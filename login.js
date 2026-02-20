@@ -44,7 +44,12 @@ async function login() {
   } else {
     PassNotify("Login successful");
 
-    window.location.href ="market-place.html";
+    const loader = document.getElementById("page-loader");
+    if (loader) loader.style.display = "flex";
+    setTimeout(() => {
+      window.location.href ="market-place.html";
+    }, 500);
+    
   }
 }
 

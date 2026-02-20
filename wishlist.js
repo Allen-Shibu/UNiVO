@@ -1,4 +1,6 @@
 import { supabase } from "./supabaseClient.js";
+import { PassNotify, FailNotify } from "./loader.js";
+
 
 async function loadWishlist() {
   const ProductGrid = document.getElementById("product-grid");
@@ -7,14 +9,14 @@ async function loadWishlist() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) alert("You must be logged in to view your wishlist");
+  if (!user) FailNotify("You must be logged in to view your wishlist");
 
   const { data: wishlist, error: WishlistErr } = await supabase
     .from("wishlist")
     .select("product_id");
 
   if (WishlistErr) {
-    alert("Error fetching wishlist:", WishlistErr.message);
+    FailNotify("Error fetching wishlist:", WishlistErr.message);
     return;
   }
 
@@ -29,7 +31,7 @@ async function loadWishlist() {
     .in("id", productIds); //filtering out only product ID's
 
   if (error) {
-    alert(error);
+    FailNotify(errormessage);
   } else {
     ProductGrid.innerHTML = products
       .map(

@@ -79,9 +79,9 @@ function initializeNavigation() {
       e.preventDefault();
       e.stopPropagation();
       const { error } = await supabase.auth.signOut({ scope: "global" });
-      if (error) alert(error);
+      if (error) FailNotify(error);
       else {
-        alert("Logged Out successfully");
+        PassNotify("Logged Out successfully");
         window.location.href = "login.html";
       }
     });
@@ -192,8 +192,6 @@ document.addEventListener("DOMContentLoaded", function () {
   loadComponent("navigation-container", "main.html");
 });
 
-
-
 async function loadmess(elementId, componentPath) {
   try {
     const response = await fetch(componentPath);
@@ -213,8 +211,6 @@ async function loadmess(elementId, componentPath) {
 document.addEventListener("DOMContentLoaded", function () {
   loadmess("notification-container", "notifications.html");
 });
-
-
 
 let timeoutId;
 
@@ -253,4 +249,43 @@ export function FailNotify(message) {
   timeoutId = setTimeout(() => {
     notify.classList.add("hidden");
   }, 2000);
+}
+
+document.addEventListener("DOMContentLoaded", async function () {
+  const response = await fetch("loading.html"); //fetched loading.html and reads its context as plain text string
+  const spinnerHTML = await response.text();
+
+  const loaderDiv = document.createElement("div");
+  loaderDiv.id = "page-loader";
+  loaderDiv.style.cssText =
+    "display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,1); justify-content:center; align-items:center;";
+  loaderDiv.innerHTML = spinnerHTML;  //loads the plain string to inside the div
+  document.body.appendChild(loaderDiv);
+
+  initloader();
+});
+
+function initloader() {
+  const loader = document.getElementById("page-loader");
+
+  window.addEventListener("load", () => {
+    loader.style.display = "none";
+  });
+
+  document.addEventListener("click", function (e) {
+    const link = e.target.closest("a");
+    if (!link) return;
+    if (
+      link.hostname === window.location.hostname &&
+      link.href &&
+      !link.href.startsWith("#")
+    ) {
+      e.preventDefault();
+      loader.style.display = "flex";
+      const href = link.href;
+      setTimeout(() => {
+        window.location.href = href;
+      }, 500); 
+    }
+  });
 }

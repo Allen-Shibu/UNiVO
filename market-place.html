@@ -13,7 +13,7 @@
       <div class="flex-1 flex flex-col w-full min-w-0 flex-shrink">
         <main
           id="main"
-          class="flex-1 ml-0 md:ml-64 p-8 min-h-screen transition-all duration-300 mt-25  bg-white flex flex-col dark:bg-[#030406] relative overflow-y-auto"
+          class="flex-1 ml-0 md:ml-64 p-8 min-h-screen transition-all duration-300 mt-25  bg-white flex flex-col dark:bg-[#101014] relative overflow-y-auto"
         >
           <div
             class="flex gap-3 px-1 p-4 h-17 max-w-fit flex-shrink-0 overflow-x-auto no-scrollbar"
@@ -71,38 +71,44 @@
                 <p id="productname" class="text-4xl text-white mt-10 translate-x-10 font-sans">
                     Product name
                 </p>
-              <p
-                    id="productprice" class="text-4xl text-yellow-500 mt-10 translate-x-10 font-sans font-bold"
+                  <p
+                    id="productprice" class="text-4xl text-yellow-500 mt-5 translate-x-10 font-sans font-bold"
                   >
                     ₹120
                   </p>
-                  <hr class="border border-gray-800 ml-5 transform translate-y-5">
-                  <p class="text-2xl text-white mt-10 translate-x-10 font-sans">
+                  <hr class="border border-gray-800 ml-3 transform translate-y-5"><br><br>
+                  <p class="text-2xl text-white translate-x-10 font-sans">
                     Description
                   </p>
+
+                  <div class="h-45 mt-2 w-115 ml-5 border border-gray-700 rounded-2xl bg-gray-800">
                   <p
                     id="productdescription"
-                    class="text-2xl text-white mt-5 mr-10 translate-x-10 font-sans"
+                    class="mt-5 text-1xl text-white mr-10 translate-x-5 font-sans"
                   >
                   no description provided
                   </p>
+                  </div>
+
+
                   <div class="flex flex-row">
                     <input
                       type="number"
                       placeholder="Quantity"
-                      class="font-bold outline-0 mt-10 ml-10 border-b-3 border-[#F0B100] bg-gray-500 py-2 px-3 w-30 rounded-2xl dark:bg-gray-300"
+                      class="font-bold outline-0 mt-5 ml-5 border-b-3 border-[#F0B100] py-2 px-3 w-30 rounded-2xl dark:bg-gray-400"
                     />
-                    <p class="text-1xl text-white mt-10 translate-x-10 font-sans ">Quantity x price of an item </p>
+                    <!-- <p class="text-1xl text-white mt-6 translate-x-10 font-sans h-10 ">Quantity x price of an item </p> -->
                   </div>
                   <!-- <p class="text-4xl text-white mt-10 translate-x-10 font-sans ">contact details</p> -->
                   <button
                     id = 'contactsellerbutton'
-                    class="fixed w-110 h-15 rounded-2xl bg-[#F0B100] mb-1 ml-5 bottom-10 font-bold text-2xl cursor-pointer"
+                    class="fixed w-115 hover:bg-yellow-400 h-15 rounded-2xl bg-[#F0B100] mb-1 ml-5 bottom-6 font-bold text-2xl cursor-pointer"
                   >
                     contact seller
                   </button>
                   <button
-                    class="absolute w-110 h-15 rounded-2xl bg-transparent bottom-30  text-white border border-white-solid ml-5 font-bold text-2xl"
+                    id="addtowishlistbtn"
+                    class="absolute hover:bg-gray-800 cursor-pointer transition-colors w-115 h-15 rounded-2xl bg-gray-700 bottom-35  text-white ml-5 font-bold text-2xl translate-y-10"
                   >
                     Add to wishlist
                   </button>

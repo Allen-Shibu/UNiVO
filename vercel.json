@@ -5,40 +5,40 @@
   "trailingSlash": false,
   "routes": [
     {
-      "src": "/marketplace",
-      "dest": "/marketplace/index.html"
-    },
-    {
-      "src": "/selling",
-      "dest": "/selling/index.html"
+      "src": "/",
+      "dest": "/src/auth/index.html"
     },
     {
       "src": "/login",
-      "dest": "/login/index.html"
+      "dest": "/src/auth/login.html"
     },
     {
-      "src": "/wishlist",
-      "dest": "/wishlist/index.html"
+      "src": "/marketplace",
+      "dest": "/src/marketplace/market-place.html"
+    },
+    {
+      "src": "/selling",
+      "dest": "/src/selling/sellingpage.html"
     },
     {
       "src": "/listing",
-      "dest": "/listing/index.html"
+      "dest": "/src/listing/listing.html"
+    },
+    {
+      "src": "/wishlist",
+      "dest": "/src/wishlist/wishlist.html"
     },
     {
       "src": "/privacy",
-      "dest": "/privacy/index.html"
+      "dest": "/src/privacy/privacy.html"
     },
     {
       "src": "/forum",
-      "dest": "/forum/index.html"
+      "dest": "/src/forum/forum.html"
     },
     {
       "src": "/contactus",
-      "dest": "/contactus/index.html"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/src/contact/contact.html"
     }
   ]
 }

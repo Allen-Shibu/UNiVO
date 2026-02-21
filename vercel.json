@@ -24,7 +24,7 @@
     },
     {
       "source": "/listing",
-      "destination": "/src/lsiting/listing.html"
+      "destination": "/src/listing/listing.html"
     },
     {
       "source": "/privacy",

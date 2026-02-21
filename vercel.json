@@ -3,39 +3,39 @@
   "trailingSlash": false,
   "routes": [
     {
-      "source": "/",
+      "src": "/",
       "destination": "/src/auth/index.html"
     },
     {
-      "source": "/marketplace",
+      "src": "/marketplace",
       "destination": "/src/marketplace/market-place.html"
     },
     {
-      "source": "/selling",
+      "src": "/selling",
       "destination": "/src/selling/sellingpage.html"
     },
     {
-      "source": "/login",
+      "src": "/login",
       "destination": "/src/auth/login.html"
     },
     {
-      "source": "/wishlist",
+      "src": "/wishlist",
       "destination": "/src/wishlist/wishlist.html"
     },
     {
-      "source": "/listing",
+      "src": "/listing",
       "destination": "/src/listing/listing.html"
     },
     {
-      "source": "/privacy",
+      "src": "/privacy",
       "destination": "/src/privacy/privacy.html"
     },
     {
-      "source": "/forum",
+      "src": "/forum",
       "destination": "/src/forum/forum.html"
     },
     {
-      "source": "/contactus",
+      "src": "/contactus",
       "destination": "/src/contact/contact.html"
     }
   ]

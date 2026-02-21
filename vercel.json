@@ -1,11 +1,44 @@
 {
+  "buildCommand": "vite build",
+  "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
   "routes": [
     {
-      "src": "/",
-      "dest": "/src/auth/index.html"
+      "src": "/marketplace",
+      "dest": "/marketplace/index.html"
+    },
+    {
+      "src": "/selling",
+      "dest": "/selling/index.html"
+    },
+    {
+      "src": "/login",
+      "dest": "/login/index.html"
+    },
+    {
+      "src": "/wishlist",
+      "dest": "/wishlist/index.html"
+    },
+    {
+      "src": "/listing",
+      "dest": "/listing/index.html"
+    },
+    {
+      "src": "/privacy",
+      "dest": "/privacy/index.html"
+    },
+    {
+      "src": "/forum",
+      "dest": "/forum/index.html"
+    },
+    {
+      "src": "/contactus",
+      "dest": "/contactus/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
-

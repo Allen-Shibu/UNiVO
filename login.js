@@ -71,3 +71,15 @@ passwordInput.addEventListener("keydown", function (event) {
     window.location.href = "market-place.html";
   }
 });
+
+
+const MailReq = document.getElementById("mail-req");
+emailInput.addEventListener("input", (event) => {
+  const value = event.target.value;
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (value !== "" && !emailPattern.test(value)) {
+    MailReq.classList.replace("hidden", "block");
+  } else {
+    MailReq.classList.replace("block", "hidden");
+  }
+});

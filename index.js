@@ -111,16 +111,81 @@ const iti = window.intlTelInput(phoneInput, {
     "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js", // For validation
 });
 
+const MailReq=document.getElementById('mail-req')
+emailInput.addEventListener('input', (event) => {
+  const value = event.target.value;
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (value !== "" && !emailPattern.test(value)) {
+    MailReq.classList.replace('hidden','block');
+  } else {
+    MailReq.classList.replace('block', 'hidden');
+  }
+})
 
-// function FailNotification() {
-//   Adnotify.classList.remove("hidden");
+const PwdEye = document.querySelectorAll('.pwd-eye')
+PwdEye.forEach((eyeBtn) => {
+  eyeBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const wrapper = eyeBtn.closest(".input-wrapper");
+    const input = wrapper.querySelector("input");
+    const ShowPwd = wrapper.querySelector('.show-pwd') 
+    const HidePwd = wrapper.querySelector('.hide-pwd')
+  
+    if (input.type==='password') {
+    
+      input.type = 'text'
+      if(HidePwd)HidePwd.classList.replace('block','hidden')
 
-//   if (timeoutId) {
-//     //clear any existing timer
-//     clearTimeout(timeoutId);
-//   }
+      if(ShowPwd)ShowPwd.classList.replace("hidden",'block');
+    }
 
-//   timeoutId = setTimeout(() => {
-//     Failnotify.classList.add("hidden");
-//   }, 2000);
-// }
+    else {
+      input.type = 'password'
+      if(HidePwd)HidePwd.classList.replace("hidden",'block');
+    
+      if(ShowPwd)ShowPwd.classList.replace("block",'hidden');
+    
+    }
+  })
+})
+
+const matchPassword = document.getElementById("match");
+repasswordInput.addEventListener("input", (event) => {
+  const value = event.target.value;
+
+  if (value.length && value != passwordInput.value) {
+    matchPassword.classList.remove("hidden");
+  } else {
+    matchPassword.classList.add("hidden");
+  }
+});
+
+const updateRequirement = (id, isValid) => {
+  const requirement = document.getElementById(id);
+  const icon=requirement.querySelector('.icon')
+  if (isValid) {
+    requirement.classList.replace("text-red-500", "text-green-600");  
+    icon.textContent = "✓";
+  }
+  else {
+    requirement.classList.replace("text-green-600", "text-red-500");   
+    icon.textContent = "✕";
+  }
+}
+
+passwordInput.addEventListener("input", (event) => {
+  const PwdReq=document.getElementById('pwd-req')
+  const value = event.target.value;
+
+  if (value.length === 0) PwdReq.classList.add('hidden')
+  
+  else {
+    PwdReq.classList.remove("hidden"); 
+  }
+  
+  updateRequirement("length", value.length >= 8);
+  updateRequirement("lowercase", /[a-z]/.test(value));
+  updateRequirement("uppercase", /[A-Z]/.test(value));
+  updateRequirement("number", /\d/.test(value));
+  updateRequirement("characters", /[#.?!@$%^&*-]/.test(value));
+});

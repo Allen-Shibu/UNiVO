@@ -8,11 +8,7 @@
       "destination": "/src/auth/index.html"
     },
     {
-      "source": "/src/marketplace",
-      "destination": "/src/marketplace/market-place.html"
-    },
-    {
-      "source": "/src/marketplace/",
+      "source": "/marketplace",
       "destination": "/src/marketplace/market-place.html"
     }
   ]

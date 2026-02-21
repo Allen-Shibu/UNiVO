@@ -1,3 +1,42 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/src/auth/index.html"
+    },
+    {
+      "source": "/marketplace",
+      "destination": "/src/marketplace/market-place.html"
+    },
+    {
+      "source": "/selling",
+      "destination": "/src/selling/sellingpage.html"
+    },
+    {
+      "source": "/login",
+      "destination": "/src/auth/login.html"
+    },
+    {
+      "source": "/wishlist",
+      "destination": "/src/wishlist/wishlist.html"
+    },
+    {
+      "source": "/listing",
+      "destination": "/src/lsiting/listing.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/src/privacy/privacy.html"
+    },
+    {
+      "source": "/forum",
+      "destination": "/src/forum/forum.html"
+    },
+    {
+      "source": "/contactus",
+      "destination": "/src/contact/contact.html"
+    }
+
+  ]
 }

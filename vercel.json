@@ -1,8 +1,19 @@
 {
   "buildCommand": "vite build",
   "outputDirectory": "dist",
+  "cleanUrls": true,
   "rewrites": [
-    { "source": "/", "destination": "/src/auth/index.html" },
-    { "source": "/(.*)", "destination": "/$1" }
+    {
+      "source": "/",
+      "destination": "/src/auth/index.html"
+    },
+    {
+      "source": "/src/marketplace",
+      "destination": "/src/marketplace/market-place.html"
+    },
+    {
+      "source": "/src/marketplace/",
+      "destination": "/src/marketplace/market-place.html"
+    }
   ]
 }

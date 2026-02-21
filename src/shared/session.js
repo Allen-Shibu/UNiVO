@@ -1,4 +1,4 @@
-import { supabase } from "./supabaseClient.js";
+import { supabase } from "/src/shared/supabaseClient.js";
 
 async function UpdateAuthBtn() {
     const {
@@ -11,7 +11,7 @@ async function UpdateAuthBtn() {
       //   AuthBtn.classList.remove("hidden");
       authContainer.innerHTML = `
             <div class="flex gap-4 items-center">
-                <a href="login.html">
+                <a href="/src/auth/login.html">
                     <button id="logout-btn" class="btn-sec">
                         Login
                     </button>

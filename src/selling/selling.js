@@ -1,7 +1,7 @@
-import { supabase } from "./supabaseClient.js";
+import { supabase } from "/src/shared/supabaseClient.js";
 
 import { PassNotify, FailNotify, }
-  from "./loader.js";
+  from "/src/shared/loader.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.get("id");
@@ -120,7 +120,7 @@ postbtn.addEventListener("click", async (e) => {
       const siteUrl = window.location.origin;
       console.log(siteUrl);
 
-      window.location.href = `${siteUrl}/market-place.html`;
+      window.location.href = `${siteUrl}/src/marketplace/market-place.html`;
     }
   } catch (error) {
     FailNotify(error.message);

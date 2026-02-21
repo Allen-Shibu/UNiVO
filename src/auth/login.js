@@ -1,6 +1,6 @@
-import { supabase } from "./supabaseClient.js";
+import { supabase } from "/src/shared/supabaseClient.js";
 
-import { PassNotify, FailNotify } from "./loader.js";
+import { PassNotify, FailNotify } from "/src/shared/loader.js";
 
 
 const emailInput = document.getElementById("email");
@@ -25,7 +25,7 @@ async function signup() {
     FailNotify("Sign Up Failed!", error.message);
   } else {
     document.getElementById("success-notification").classList.remove('hidden')
-    window.location.href = "market-place.html";
+    window.location.href = "../marketplace/market-place.html";
   }
 }
 
@@ -47,7 +47,7 @@ async function login() {
     const loader = document.getElementById("page-loader");
     if (loader) loader.style.display = "flex";
     setTimeout(() => {
-      window.location.href ="market-place.html";
+      window.location.href ="../marketplace/market-place.html";
     }, 500);
     
   }
@@ -68,7 +68,7 @@ if (LoginBtn)
 
 passwordInput.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
-    window.location.href = "market-place.html";
+    window.location.href = "../marketplace/market-place.html";
   }
 });
 

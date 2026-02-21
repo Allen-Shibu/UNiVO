@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="market-place.css" />
+    <link rel="stylesheet" href="/src/shared/marketplace.css" />
   </head>
   <body class="overflow-x-hidden">
     <div class="flex h-screen bg-[#030406]">
@@ -118,7 +118,7 @@
 
             <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-4 gap-5 mt-6"></div>
 
-          <a href="sellingpage.html">
+          <a href="/src/selling/sellingpage.html">
             <button
               class="btn-primary rounded-4xl bottom-19 right-10 fixed z-50 animate-bounce md:hidden"
             >
@@ -182,7 +182,7 @@
 
           <div id="noresultsfound" class="hidden">
             <img
-              src="no results darkmode.png"
+              src="/src/assets/no-results-darkmode.png"
               class="flex ml-110 mt-20 align-center justify-center w-100 h-full"
             />
           </div>
@@ -190,8 +190,8 @@
       </div>
     </div>
 
-    <script type="module" src="loader.js"></script>
-    <script type="module" src="marketplace.js" defer></script>
-    <script type="module" src="session.js"></script>
+    <script type="module" src="/src/shared/loader.js"></script>
+    <script type="module" src="/src/marketplace/marketplace.js" defer></script>
+    <script type="module" src="/src/shared/session.js"></script>
   </body>
 </html>

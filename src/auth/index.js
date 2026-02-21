@@ -1,6 +1,6 @@
-import { supabase } from "./supabaseClient.js";
+import { supabase } from "/src/shared/supabaseClient.js";
 
-import { PassNotify, FailNotify } from "./loader.js";
+import { PassNotify, FailNotify } from "/src/shared/loader.js";
 
 const nameInput = document.getElementById("name");
 const emailInput = document.getElementById("email");
@@ -34,7 +34,7 @@ async function signup() {
     email: email,
     password: password,
     options: {
-      emailRedirectTo: `${siteUrl}/login.html`,
+      emailRedirectTo: `${siteUrl}/../auth/login.html`,
       data: {
         display_name: name,
         Phone: phone,
@@ -64,7 +64,7 @@ GBtn.addEventListener('click',async()=> {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: `${siteUrl}/market-place.html`,
+      redirectTo: `${siteUrl}/../marketplace/market-place.html`,
     },
   });
 
@@ -87,7 +87,7 @@ async function login() {
     FailNotification(); 
     
   } else {
-    window.location.href="market-place.html"
+    window.location.href="../marketplace/market-place.html"
 
   }
 }

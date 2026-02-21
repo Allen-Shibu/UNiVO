@@ -1,5 +1,5 @@
-import { supabase } from "./supabaseClient.js";
-import { PassNotify, FailNotify } from "./loader.js";
+import { supabase } from "/src/shared/supabaseClient.js";
+import { PassNotify, FailNotify } from "/src/shared/loader.js";
 
 
 async function loadWishlist() {

@@ -82,7 +82,7 @@ function initializeNavigation() {
       if (error) FailNotify(error);
       else {
         PassNotify("Logged Out successfully");
-        window.location.href = "login.html";
+        window.location.href = "../auth/login.html";
       }
     });
   }
@@ -189,7 +189,7 @@ function initializeNavigation() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  loadComponent("navigation-container", "main.html");
+  loadComponent("navigation-container", "../shared/main.html");
 });
 
 async function loadmess(elementId, componentPath) {
@@ -209,7 +209,7 @@ async function loadmess(elementId, componentPath) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  loadmess("notification-container", "notifications.html");
+  loadmess("notification-container", "../shared/notifications.html");
 });
 
 let timeoutId;
@@ -252,7 +252,7 @@ export function FailNotify(message) {
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
-  const response = await fetch("loading.html"); //fetched loading.html and reads its context as plain text string
+  const response = await fetch("../shared/loading.html"); //fetched ../shared/loading.html and reads its context as plain text string
   const spinnerHTML = await response.text();
 
   const loaderDiv = document.createElement("div");

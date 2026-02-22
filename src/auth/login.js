@@ -25,7 +25,7 @@ async function signup() {
     FailNotify("Sign Up Failed!", error.message);
   } else {
     document.getElementById("success-notification").classList.remove('hidden')
-    window.location.href = "../marketplace/market-place.html";
+    window.location.href = "/marketplace";
   }
 }
 
@@ -47,7 +47,7 @@ async function login() {
     const loader = document.getElementById("page-loader");
     if (loader) loader.style.display = "flex";
     setTimeout(() => {
-      window.location.href ="../marketplace/market-place.html";
+      window.location.href ="/marketplace";
     }, 500);
     
   }
@@ -68,7 +68,7 @@ if (LoginBtn)
 
 passwordInput.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
-    window.location.href = "../marketplace/market-place.html";
+    window.location.href = "/marketplace";
   }
 });
 

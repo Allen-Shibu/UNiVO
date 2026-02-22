@@ -13,6 +13,8 @@
     { "source": "/wishlist", "destination": "/src/wishlist/wishlist.html" },
     { "source": "/contact", "destination": "/src/contact/contact.html" },
     { "source": "/forum", "destination": "/src/forum/forum.html" },
+    { "source": "/terms", "destination": "/src/privacy/terms.html" },
+    { "source": "/privacy", "destination": "/src/privacy/privacy.html" },
     { "source": "/(.*)", "destination": "/$1" }
   ]
 }

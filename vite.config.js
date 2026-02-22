@@ -16,7 +16,9 @@ export default defineConfig({
       },
     },
   ],
+  root: "./",
   build: {
+    outDir: "dist",
     rollupOptions: {
       input: {
         main: resolve(__dirname, "src/auth/index.html"),
@@ -32,5 +34,8 @@ export default defineConfig({
         loader: resolve(__dirname, "src/shared/loading.html"),
       },
     },
+  },
+  server: {
+    open: "/src/auth/index.html",
   },
 });

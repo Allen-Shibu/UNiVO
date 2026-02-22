@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <title>Univo|Forum</title>
+  <script type="module" crossorigin src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"></script>
+  <script type="module" crossorigin src="/assets/loader-yIERnUXV.js"></script>
+  <script type="module" crossorigin src="/assets/supabaseClient-BnuRKQFQ.js"></script>
+  <script type="module" crossorigin src="/assets/session-DnhtpGy1.js"></script>
+  <script type="module" crossorigin src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"></script>
+  <link rel="stylesheet" crossorigin href="/assets/marketplace-4woDVwb3.css">
+</head>
+<body>
+    <div class="flex min-h-screen ">
+        <div id="navigation-container"></div>
+
+        <div class="flex-1 flex flex-col w-full min-w-0 flex-shrink">
+            <main id="main" class="flex-1 ml-0 md:ml-64 p-8 min-h-screen transition-all duration-300 mt-25  bg-white flex flex-col dark:bg-[#030406] relative ">
+                <div id="product-grid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-5"></div>
+                <div>
+                    <div id="notification" class="bg-indigo-300 box-shadow-md whitespace-nowrap flex w-fit p-3 left-1/2 -translate-x-1/2 z-50 -translate-y-(-20) rounded-xl absolute hidden">
+                        <div class="flex items-center gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5 text-red-500">
+                                <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
+                            </svg>
+                            Item added to wishlist
+                        </div>
+                    </div>
+
+                    <div id="added-notification" class="bg-rose-300 box-shadow-md whitespace-nowrap flex w-fit p-3 left-1/2 -translate-x-1/2 z-50 -translate-y-(-20) rounded-xl absolute hidden">
+                        <div class="flex items-center gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                            </svg>
+                            Item already added to wishlist
+                        </div>
+                    </div>
+
+                    <div class="chat-container bg-[#dcdbe929] p-6 min-h-100 h-auto overflow-auto flex flex-col rounded-2xl">
+                        <span class="text-white text-3xl font-bold">Public Chat</span>
+                        <div class="messages grow"></div>
+
+                        <form class="form relative w-full max-w-sm text-white">
+                            <input class="input w-full rounded-full px-8 py-3 border-2 border-amber-400 focus:outline-none focus:border-amber-500 placeholder-gray-400 transition-all duration-300 shadow-md" placeholder="Type a message..." type="text" />
+                            <button type="submit" class="absolute right-2 top-1/2 -translate-y-1/2 bg-amber-400 hover:bg-amber-500 p-2 rounded-full transition-colors duration-200 flex items-center justify-center shadow-sm">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="">
+                                    <path d="M21.4499 11.11L3.44989 2.11C3.27295 2.02159 3.07217 1.98831 2.87513 2.01472C2.67808 2.04113 2.49294 2.12613 2.34522 2.25791C2.1975 2.38969 2.09315 2.56294 2.04655 2.75323C1.99995 2.94351 2.01301 3.14309 2.08389 3.324L5.32389 11H12.5C12.7652 11 13.0196 11.1054 13.2071 11.2929C13.3946 11.4804 13.5 11.7348 13.5 12C13.5 12.2652 13.3946 12.5196 13.2071 12.7071C13.0196 12.8946 12.7652 13 12.5 13H5.32389L2.08389 20.676C2.01301 20.8569 1.99995 21.0565 2.04655 21.2468C2.09315 21.4371 2.1975 21.6103 2.34522 21.7421C2.49294 21.8739 2.67808 21.9589 2.87513 21.9853C3.07217 22.0117 3.27295 21.9784 3.44989 21.89L21.4499 12.89C21.6157 12.8071 21.7542 12.6798 21.8494 12.5224C21.9446 12.365 21.993 12.184 21.9892 11.9998C21.9854 11.8157 21.9295 11.636 21.8281 11.4811C21.7266 11.3262 21.5839 11.2023 21.4158 11.1239L21.4499 11.11Z" fill="black" />
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="flex-1 mt-7"></div>
+
+                    <div id="noresultsfound" class="hidden">
+                        <img src="/assets/no-results-darkmode-BraOrZYG.png" class="flex ml-110 mt-20 align-center justify-center w-100 h-full" />
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Univo|Login</title>
+  <script type="module" crossorigin src="/assets/login-JEkcxHAU.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/loader-yIERnUXV.js">
+  <link rel="modulepreload" crossorigin href="/assets/animation-CygCfK5E.js">
+  <link rel="modulepreload" crossorigin href="/assets/supabaseClient-BnuRKQFQ.js">
+  <link rel="stylesheet" crossorigin href="/assets/animation-CDTKHMAY.css">
+  <link rel="stylesheet" crossorigin href="/assets/login-Dcf1nqAn.css">
+</head>
+<body>
+    <div id="container">
+    <div class="right-part">
+        <canvas id="bg-canvas"></canvas>
+        <img class="hero" src="/assets/text_dark_mode-Jp7T-oUx.png">
+    </div>
+
+
+
+    <div class="left-part">
+        <div class="Logindatas">
+            <form id="Loginform">
+                <div id="notification-container" class="fixed top-40 md:right-75 right-28 z-[60] flex flex-col gap-3 w-fit max-w-[calc(100vw-2rem)]">
+                </div>
+                <label id="logintitle">Login</label>
+                
+                <div class="input-wrapper">
+                    <input class="signininput" name="lemail" type="text" id="email" placeholder="email address">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                </div>
+                    <p class="hidden error text-red-500 font-medium" id="mail-req" >Please enter a valid email address</p>
+
+                <br>
+
+                <div class="input-wrapper">
+                    <input class="signininput" name="lpassword" type="password" id="password" placeholder="password">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                </div>
+                <br>
+
+                <button type="submit" id="loginbtn"> Sign in</button>
+                <br>
+                
+                <div id="account-footer">
+                    <label id="haveanaccount">I don't have an account</label>
+                    <a href="./index.html" id="loginredirectbutton">Register</a>
+                </div>
+
+            </form>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css">
+    <title>Univo|Register</title>
+  <script type="module" crossorigin src="/assets/main-BSwYMJNk.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/loader-yIERnUXV.js">
+  <link rel="modulepreload" crossorigin href="/assets/animation-CygCfK5E.js">
+  <link rel="modulepreload" crossorigin href="/assets/supabaseClient-BnuRKQFQ.js">
+  <link rel="stylesheet" crossorigin href="/assets/animation-CDTKHMAY.css">
+</head>
+<body>
+    <div id="container">
+      <div class="right-part">
+        <canvas id="bg-canvas"></canvas>
+        <img class="hero" src="/assets/text_dark_mode-Jp7T-oUx.png">
+      </div>
+
+      <div class="left-part">
+        <div class="registration">
+            <form id="registerform">
+                <div id="notification-container" class="fixed top-13 md:right-55 right-8  z-[60] flex flex-col gap-3 w-96 max-w-[calc(100vw-2rem)]">
+                </div>
+                <label id="title">Create Your Account</label>
+                <div class="input-wrapper">
+                  <input class="signupinput" id="name"  name = 'name' type="text" placeholder="Full name">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <br>
+                    <input class="signupinput" id="phone"  name = 'phone' type="text" placeholder="Phone no"><br>
+                  <div class="input-wrapper">
+                      <input class="signupinput" id="email"  name = 'email' type="text" placeholder="you@gectcr.ac.in">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                      </svg>
+                  </div>
+                    <p class="hidden error text-red-500 font-medium" id="mail-req" >Please enter a valid email address</p>
+
+                  <br>
+
+                  <div class="input-wrapper">
+                    <input class="signupinput" id="password"  name = 'password' type="password" placeholder="password">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    <div  class="pwd-eye flex items-end justify-end-safe absolute right-10 top-1.5 py-2 px-2">
+                      <div class="show-pwd hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                          <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                      </div>
+
+                      <div class="hide-pwd block">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                          <line x1="1" y1="1" x2="23" y2="23"></line>
+                        </svg>
+                      </div>
+                  </div>
+  
+                  </div>
+
+                    <div id="pwd-req" class="password-requirements hidden bg-gray-200 rounded-2xl h-25 p-3 shadow-2xl grid grid-cols-3 gap-3 w-full mt-2">
+                      <p class="requirement text-red-500" id="length"><span class="icon"></span>Min. 8 chars</p>
+                      <p class="requirement text-red-500" id="lowercase"><span class="icon"></span>Lowercase</p>
+                      <p class="requirement text-red-500" id="uppercase"><span class="icon"></span>Uppercase</p>
+                      <p class="requirement text-red-500" id="number"><span class="icon"></span>Number</p>
+                      <p class="requirement col-span-2 text-red-500" id="characters"><span class="icon"></span>Special Characters</p>
+                    </div> 
+                  <br>
+
+                  <div class="input-wrapper">                    
+                    <input class="signupinput" id="repassword"  name = 'repassword' type="password" placeholder="confirm password">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>      
+                      <div  class="pwd-eye flex items-end justify-end-safe absolute right-10 top-1.5 py-2 px-2">
+                        <div class="show-pwd hidden">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                          </svg>
+                        </div>
+
+                        <div class="hide-pwd block">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                          </svg>
+                        </div>
+                      </div>        
+                  </div>
+                  <div class="password-requirements">
+                    <p class="requirement hidden error text-red-500 font-medium" id="match" >Passwords must match!</p>
+                  </div>
+
+                  <br>
+
+
+                </div>
+                
+                <button type="submit" class="registerbtn"> Sign up</button><br>
+
+                <h2 id="text-bw"><span>OR</span><h2>
+
+                <div id="G-btn">
+                  <button
+                    type="button"
+                    class="OAuth-btn" id="GSign"
+                  >
+                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" class="w-6">
+                      <path
+                        d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"
+                        fill="#FFC107"
+                      ></path>
+                      <path
+                        d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"
+                        fill="#FF3D00"
+                      ></path>
+                      <path
+                        d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"
+                        fill="#4CAF50"
+                      ></path>
+                      <path
+                        d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"
+                        fill="#1976D2"
+                      ></path>
+                    </svg>
+                    Sign Up  with Google
+                  </button>
+
+                </div>
+                <br>
+                <Label id="haveanaccount">I have an account</label>
+                <a href="/src/auth/login.html" id="loginredirectbutton">Login</a>
+            </form>
+
+            <div id="Fail-notification" class="pass-alert hidden">
+              <div class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="alert-icon">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                </svg>
+                Sign Up Failed!!
+              </div>
+            </div>
+
+            <div id="success-notification" class="pass-alert hidden">
+              <div class="flex items-center gap-3 ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="alert-icon">
+                    <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Registration Sucessfull
+              </div>
+            </div>
+        </div>
+      </div>
+        
+        
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+</body>
+</html>

@@ -3,6 +3,16 @@
   "outputDirectory": "dist",
   "rewrites": [
     { "source": "/", "destination": "/src/auth/index.html" },
+    { "source": "/login", "destination": "/src/auth/login.html" },
+    {
+      "source": "/marketplace",
+      "destination": "/src/marketplace/market-place.html"
+    },
+    { "source": "/selling", "destination": "/src/selling/sellingpage.html" },
+    { "source": "/listing", "destination": "/src/listing/listing.html" },
+    { "source": "/wishlist", "destination": "/src/wishlist/wishlist.html" },
+    { "source": "/contact", "destination": "/src/contact/contact.html" },
+    { "source": "/forum", "destination": "/src/forum/forum.html" },
     { "source": "/(.*)", "destination": "/$1" }
   ]
 }

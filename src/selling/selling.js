@@ -1,16 +1,48 @@
 import { supabase } from "/src/shared/supabaseClient.js";
-
-import { PassNotify, FailNotify, }
-  from "/src/shared/loader.js";
+import { PassNotify, FailNotify } from "/src/shared/loader.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.get("id");
 
 const preview = document.getElementById("imageuploads");
 const imageInput = document.getElementById("file-input");
-imageInput.addEventListener("change", () => {
-  // preview.innerHTML = "";
 
+async function compressImage(file) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (event) => {
+      const img = new Image();
+      img.src = event.target.result;
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        const MAX_WIDTH = 800;
+        const scaleSize = MAX_WIDTH / img.width;
+
+        if (img.width > MAX_WIDTH) {
+          canvas.width = MAX_WIDTH;
+          canvas.height = img.height * scaleSize;
+        } else {
+          canvas.width = img.width;
+          canvas.height = img.height;
+        }
+
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+        canvas.toBlob(
+          (blob) => {
+            resolve(blob);
+          },
+          "image/jpeg",
+          0.7,
+        );
+      };
+    };
+  });
+}
+
+imageInput.addEventListener("change", () => {
   [...imageInput.files].forEach((file) => {
     const box = document.createElement("div");
     box.className = "relative w-full h-48 ";
@@ -40,7 +72,6 @@ imageInput.addEventListener("change", () => {
 
 let existingUrl = [];
 
-const delbtn = document.getElementById("delbtn");
 const postbtn = document.getElementById("post-btn");
 postbtn.addEventListener("click", async (e) => {
   e.preventDefault();
@@ -56,41 +87,37 @@ postbtn.addEventListener("click", async (e) => {
     return;
   }
 
-  //Image Upload to Storage and Database\\
-
   try {
-    const UploadedUrls = [];
-
     let finalUrls = [];
     if (files.length > 0) {
+      PassNotify("Optimizing images...");
       for (const file of files) {
-        const filename = `${Date.now()}-${file.name}`; // filename given
-        const { data: uploadData, error: uploadError } = await supabase.storage //splitting the package into success and failure
+        const compressedBlob = await compressImage(file);
+        const filename = `${Date.now()}-${file.name.split(".")[0]}.jpg`;
+
+        const { data: uploadData, error: uploadError } = await supabase.storage
           .from("Uploaded_Images")
-          .upload(filename, file);
+          .upload(filename, compressedBlob, {
+            contentType: "image/jpeg",
+          });
 
         if (uploadError) {
-          FailNotify("Upload Failed1" + uploadError.message);
+          FailNotify("Upload Failed: " + uploadError.message);
           return;
         }
 
         const {
           data: { publicUrl },
         } = supabase.storage.from("Uploaded_Images").getPublicUrl(filename);
-
         finalUrls.push(publicUrl);
-
-        console.log("Success");
       }
-    }
-    //Saving the list to db
-    else {
+    } else {
       finalUrls = existingUrl;
     }
+
     const {
       data: { user },
     } = await supabase.auth.getUser();
-
     if (!user) {
       FailNotify("You must be logged in to post!");
       return;
@@ -106,22 +133,17 @@ postbtn.addEventListener("click", async (e) => {
       seller_id: user.id,
     };
 
-    if (productId) {
-      productData.id = productId;
-    }
+    if (productId) productData.id = productId;
 
     const { error: dbError } = await supabase
       .from("products")
       .upsert(productData);
 
     if (dbError) throw dbError;
-    else {
-      PassNotify("Item posted Successfully");
-      const siteUrl = window.location.origin;
-      console.log(siteUrl);
 
-      window.location.href = `${siteUrl}/src/marketplace/market-place.html`;
-    }
+    PassNotify("Item posted Successfully");
+    const siteUrl = window.location.origin;
+    window.location.href = `${siteUrl}/src/marketplace/market-place.html`;
   } catch (error) {
     FailNotify(error.message);
   }
@@ -133,7 +155,7 @@ async function CheckEdit() {
       .from("products")
       .select("*")
       .eq("id", productId)
-      .single(); //to give aonly a single data
+      .single();
 
     if (data) {
       document.getElementById("title").value = data.title;
@@ -141,15 +163,12 @@ async function CheckEdit() {
       document.getElementById("description").value = data.description;
       document.getElementById("details").value = data.details;
       document.getElementById("quantity").value = data.quantity;
-      document.getElementById("file-input").src = data.image_url;
 
       existingUrl = data.image_url || [];
 
-      // Render existing previews
       existingUrl.forEach((url) => {
         const box = document.createElement("div");
         box.className = "relative w-full h-48";
-
         const img = document.createElement("img");
         const preview = document.getElementById("imageuploads");
         const delbtn = document.createElement("button");
@@ -173,7 +192,7 @@ async function CheckEdit() {
           preview.appendChild(box);
         }
       });
-    } //if data exist
+    }
   }
 }
 

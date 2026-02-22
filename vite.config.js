@@ -35,7 +35,4 @@ export default defineConfig({
       },
     },
   },
-  server: {
-    open: "/src/auth/index.html",
-  },
 });

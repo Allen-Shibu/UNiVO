@@ -21,6 +21,8 @@ export default defineConfig({
     outDir: "dist",
     rollupOptions: {
       input: {
+        terms: resolve(__dirname, "src/privacy/terms.html"),
+        privacy: resolve(__dirname, "src/privacy/privacy.html"),
         main: resolve(__dirname, "src/auth/index.html"),
         login: resolve(__dirname, "src/auth/login.html"),
         market: resolve(__dirname, "src/marketplace/market-place.html"),

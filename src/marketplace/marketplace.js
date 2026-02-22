@@ -87,7 +87,7 @@ async function loadProducts(SearchResults = null) {
       const isLiked = savedIds.includes(String(product.id));
 
       card.innerHTML = `
-      <div class="border border-gray-300 dark:border-0 p-5 rounded-2xl dark:bg-[#191b1f] bg-gray-200 transition-all duration-3000" id="productbox">
+      <div class="border border-gray-300 dark:border-0 p-5 rounded-2xl dark:bg-[#191b1f] bg-gray-200 transition-all duration-100" id="productbox">
       <div class="flex flex-row relative overflow-hidden rounded-2xl">
           <img src="${product.image_url}" class="w-full md:h-64 h-50 object-cover hover:scale-102 transition-transform duration-300">
           <button class="wishlist-btn cursor-pointer absolute top-3 right-3 bg-white/30 backdrop-blur-sm p-2 rounded-full ${isLiked ? "text-red-500" : "text-gray-400"} hover:text-red-500 transition-colors shadow-sm" data-id="${product.id}">

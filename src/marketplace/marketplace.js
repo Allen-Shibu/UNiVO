@@ -165,6 +165,36 @@ pop.addEventListener("click", (e)=>{
 
 const productSearch = document.getElementById("search_input");
 
+productSearch.addEventListener("keydown", (e)=>{
+  const ProductGrid = document.getElementById("product-grid");
+  const noresult = document.getElementById('noresultsfound');
+  const searchText = productSearch.value.toLowerCase();
+  let visibility = 0;
+  if(e.key=="Enter"){
+    e.preventDefault();
+
+    Array.from(ProductGrid.children).forEach(card => {
+    // find the title <p> (paragraphhhh) inside this card
+    const titleEl = card.querySelector("p");
+
+    if (!titleEl) return;
+    const titleText = titleEl.innerText.toLowerCase();
+    console.log(titleText);
+
+    if (titleText.includes(searchText)) {
+      card.style.display = "block"; 
+      visibility++;
+    } else {
+      card.style.display = "none";
+    }
+    if(visibility==0){
+      noresult.style.display = "block"; 
+    }else{
+      noresult.style.display = "none"; 
+    }
+  
+  });
+  }});
 
 // FIXED WISHLIST LOGIC
 function WishlistLogic() {

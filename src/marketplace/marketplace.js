@@ -165,9 +165,8 @@ pop.addEventListener("click", (e)=>{
 
 const productSearch = document.getElementById("search_input");
 
-
-
 productSearch.addEventListener("keydown", (e)=>{
+  alert('nidha')
   const ProductGrid = document.getElementById("product-grid");
   const noresult = document.getElementById('noresultsfound');
   const searchText = productSearch.value.toLowerCase();

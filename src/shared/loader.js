@@ -38,6 +38,9 @@ function initializeNavigation() {
   const BackDrop = document.getElementById("sidebar-backdrop");
   const Header = document.getElementById("header");
   const MobileWidth = document.getElementById("mobilelesswidth");
+  const NotifyView = document.getElementById("notify-view");
+  const NotifyBtn = document.getElementById("notification-btn");
+  const NotifySvg = document.getElementById("notify-svg");
 
   if (MobileWidth && window.innerWidth < 400) {
     MobileWidth.classList.replace("gap-5", "gap-3");
@@ -89,6 +92,7 @@ function initializeNavigation() {
 
   function closeSidebar() {
     if (ProfileView) ProfileView.classList.add("hidden");
+    if (Notify - view) no;
     if (SideBar) {
       SideBar.classList.remove("translate-x-0");
       SideBar.classList.add("-translate-x-full");
@@ -187,6 +191,29 @@ function initializeNavigation() {
       }
     });
   }
+NotifyBtn.addEventListener("click", (e) => {
+  e.stopPropagation(); // prevent the click from bubbling to document
+
+  const isHidden = NotifyView.classList.contains("hidden");
+
+  if (isHidden) {
+    NotifyView.classList.remove("hidden");
+    NotifySvg.classList.add("text-amber-400");
+
+    // Add outside-click listener ONCE, on next event cycle
+    setTimeout(() => {
+      document.addEventListener("click", closeNotify);
+    }, 0);
+  }
+});
+
+function closeNotify() {
+  NotifyView.classList.add("hidden");
+  NotifySvg.classList.remove("text-amber-400");
+  document.removeEventListener("click", closeNotify); // clean up
+}
+
+
 }
 
 document.addEventListener("DOMContentLoaded", function () {

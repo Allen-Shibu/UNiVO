@@ -56,63 +56,70 @@
           </div>
 
           <div
-            class="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-3xl hidden ml-20"
+            class="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-3xl hidden p-4 md:p-8"
             id="popupwindow"
           >
             <div
               id="productdetails"
-              class="ml-40 flex flex-row contain-content w-[73%] h-[80%] bg-[#11161C] rounded-3xl shadow-[0_0_12px_rgba(255,255,255,0.3)]"
+              class="relative flex flex-col md:flex-row w-full max-w-6xl h-full max-h-[90vh] md:h-[80vh] bg-[#11161C] rounded-3xl shadow-[0_0_20px_rgba(255,255,255,0.2)] overflow-y-auto md:overflow-hidden"
             >
-              <img
+              
+              <div class="w-full md:w-1/2 p-6 flex items-center justify-center bg-black/50">
+                <img
                   id="productpageuploadimage"
                   src=""
-                  class="w-[50%] h-[90%] outline-2 object-contain ml-10 mt-10 mb-5 bg-black rounded-2xl"/>
-              <div class="pr-10">
-                <p id="productname" class="text-4xl text-white mt-10 translate-x-10 font-sans">
-                    Product name
-                </p>
-                  <p
-                    id="productprice" class="text-4xl text-yellow-500 mt-5 translate-x-10 font-sans font-bold"
-                  >
-                    ₹120
-                  </p>
-                  <hr class="border border-gray-800 ml-3 transform translate-y-5"><br><br>
-                  <p class="text-2xl text-white translate-x-10 font-sans">
-                    Description
-                  </p>
-
-                  <div class="h-45 mt-2 w-115 ml-5 border border-gray-700 rounded-2xl bg-gray-800">
-                  <p
-                    id="productdescription"
-                    class="mt-5 text-1xl text-white mr-10 translate-x-5 font-sans"
-                  >
-                  no description provided
-                  </p>
-                  </div>
-
-
-                  <div class="flex flex-row">
-                    <input
-                      type="number"
-                      placeholder="Quantity"
-                      class="font-bold outline-0 mt-5 ml-5 border-b-3 border-[#F0B100] py-2 px-3 w-30 rounded-2xl dark:bg-gray-400"
-                    />
-                    <!-- <p class="text-1xl text-white mt-6 translate-x-10 font-sans h-10 ">Quantity x price of an item </p> -->
-                  </div>
-                  <!-- <p class="text-4xl text-white mt-10 translate-x-10 font-sans ">contact details</p> -->
-                  <button
-                    id = 'contactsellerbutton'
-                    class="fixed w-115 hover:bg-yellow-400 h-15 rounded-2xl bg-[#F0B100] mb-1 ml-5 bottom-6 font-bold text-2xl cursor-pointer"
-                  >
-                    contact seller
-                  </button>
-                  <button
-                    id="addtowishlistbtn"
-                    class="absolute hover:bg-gray-800 cursor-pointer transition-colors w-115 h-15 rounded-2xl bg-gray-700 bottom-35  text-white ml-5 font-bold text-2xl translate-y-10"
-                  >
-                    Add to wishlist
-                  </button>
+                  class="max-w-full max-h-[40vh] md:max-h-full object-contain rounded-2xl"
+                />
               </div>
+
+              <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col">
+                <h2 id="productname" class="text-3xl md:text-4xl text-white font-sans font-semibold">
+                  Product name
+                </h2>
+                
+                <p id="productprice" class="text-3xl md:text-4xl text-yellow-500 mt-4 font-sans font-bold">
+                  ₹120
+                </p>
+                
+                <hr class="border-gray-800 my-6">
+                
+                <p class="text-xl text-white font-sans">Description</p>
+                <p id="productdescription" class="text-gray-300 mt-2 font-sans leading-relaxed">
+                  no description provided
+                </p>
+
+                <div class="flex flex-wrap items-center gap-4 mt-8">
+                  <input
+                    type="number"
+                    placeholder="Qty"
+                    class="font-bold outline-0 border-b-3 border-[#F0B100] bg-gray-700 text-white py-2 px-4 w-24 rounded-xl"
+                  />
+                  <p class="text-sm md:text-base text-gray-400 font-sans">Total: Quantity x Price</p>
+                </div>
+
+                <div class="mt-auto pt-8 flex flex-col gap-3">
+                  <button
+                    id="contactsellerbutton"
+                    class="w-full py-4 rounded-2xl bg-[#F0B100] font-bold text-xl hover:bg-[#d9a100] transition-colors"
+                  >
+                    Contact Seller
+                  </button>
+                  <button
+                    class="w-full py-4 rounded-2xl bg-transparent text-white border border-white/50 font-bold text-xl hover:bg-white/10 transition-colors"
+                  >
+                    Add to Wishlist
+                  </button>
+                </div>
+              </div>
+
+              <button 
+                onclick="document.getElementById('popupwindow').classList.add('hidden')"
+                class="absolute top-6 left-6 text-white p-2 bg-black/20 rounded-full hover:bg-white/10"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+              </button>
             </div>
           </div>
 

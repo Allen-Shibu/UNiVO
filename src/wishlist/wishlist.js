@@ -1,7 +1,6 @@
 import { supabase } from "/src/shared/supabaseClient.js";
 import { PassNotify, FailNotify } from "/src/shared/loader.js";
 
-
 async function loadWishlist() {
   const ProductGrid = document.getElementById("product-grid");
 
@@ -29,6 +28,11 @@ async function loadWishlist() {
     .from("products")
     .select("*")
     .in("id", productIds); //filtering out only product ID's
+  
+    if (!products || products.length === 0) {
+      ProductGrid.innerHTML = `<p class="dark:text-white text-gray-500 text-lg">Nothing to see here</p>`;
+      return;
+    }
 
   if (error) {
     FailNotify(errormessage);

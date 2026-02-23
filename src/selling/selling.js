@@ -97,7 +97,7 @@ postbtn.addEventListener("click", async (e) => {
 
         const { data: uploadData, error: uploadError } = await supabase.storage
           .from("Uploaded_Images")
-          .upload(filename, compressedBlob, {
+          .upload(filename, file, {
             contentType: "image/jpeg",
           });
 

@@ -174,15 +174,16 @@ function initializeNavigation() {
     }
 
     ThemeToggle.addEventListener("click", function () {
-      ThemeToggleDark.classList.toggle("hidden");
-      ThemeToggleLight.classList.toggle("hidden");
-
       if (document.documentElement.classList.contains("dark")) {
         document.documentElement.classList.remove("dark");
         localStorage.setItem("color-theme", "light");
+        ThemeToggleDark.classList.remove("hidden");
+        ThemeToggleLight.classList.add("hidden");
       } else {
         document.documentElement.classList.add("dark");
         localStorage.setItem("color-theme", "dark");
+        ThemeToggleDark.classList.add("hidden");
+        ThemeToggleLight.classList.remove("hidden");
       }
     });
   }

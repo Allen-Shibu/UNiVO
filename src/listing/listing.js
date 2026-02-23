@@ -49,7 +49,7 @@ async function fetchMyListings() {
   }
 
   if (!products || products.length === 0) {
-    ProductGrid.innerHTML = `<p class="dark:text-white text-gray-500 text-lg">Nothing to see here</p>`;
+    ProductGrid.innerHTML = `<p class="dark:text-white text-gray-500 text-lg">Nothing to see here,Press the '+Sell' to sell your product</p>`;
     return;
   }
 

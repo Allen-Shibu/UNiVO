@@ -87,7 +87,7 @@ async function loadProducts(SearchResults = null) {
       const isLiked = savedIds.includes(String(product.id));
 
       card.innerHTML = `
-      <div class="border border-gray-300 dark:border-0 p-5 rounded-2xl dark:bg-[#191b1f] bg-gray-200 transition-all duration-100" id="productbox">
+      <div class="border border-gray-400 p-5 rounded-2xl dark:bg-[#191b1f] bg-gray-100/70 dark:border-0 transition-all duration-300" id="productbox">
       <div class="flex flex-row relative overflow-hidden rounded-2xl">
           <img src="${product.image_url}" class="w-full md:h-64 h-50 object-cover hover:scale-102 transition-transform duration-300">
           <button class="wishlist-btn cursor-pointer absolute top-3 right-3 bg-white/30 backdrop-blur-sm p-2 rounded-full ${isLiked ? "text-red-500" : "text-gray-400"} hover:text-red-500 transition-colors shadow-sm" data-id="${product.id}">
@@ -142,7 +142,7 @@ document.getElementById("contactsellerbutton").addEventListener("click", async (
     .single()
 
   const phonenumber = data.phone;
-  var message = "Hi I am intrested in buying this project";
+  var message = "Intrested in buying this product!";
   var url = "https://api.whatsapp.com/send?phone=" + phonenumber + "&text=" + encodeURIComponent(message);
   window.open(url, "_blank");
 })
@@ -165,36 +165,6 @@ pop.addEventListener("click", (e)=>{
 
 const productSearch = document.getElementById("search_input");
 
-productSearch.addEventListener("keydown", (e)=>{
-  const ProductGrid = document.getElementById("product-grid");
-  const noresult = document.getElementById('noresultsfound');
-  const searchText = productSearch.value.toLowerCase();
-  let visibility = 0;
-  if(e.key=="Enter"){
-    e.preventDefault();
-
-    Array.from(ProductGrid.children).forEach(card => {
-    // find the title <p> (paragraphhhh) inside this card
-    const titleEl = card.querySelector("p");
-
-    if (!titleEl) return;
-    const titleText = titleEl.innerText.toLowerCase();
-    console.log(titleText);
-
-    if (titleText.includes(searchText)) {
-      card.style.display = "block"; 
-      visibility++;
-    } else {
-      card.style.display = "none";
-    }
-    if(visibility==0){
-      noresult.style.display = "block"; 
-    }else{
-      noresult.style.display = "none"; 
-    }
-  
-  });
-  }});
 
 // FIXED WISHLIST LOGIC
 function WishlistLogic() {
@@ -265,5 +235,4 @@ function WishlistLogic() {
 }
 
 WishlistLogic();
-
 

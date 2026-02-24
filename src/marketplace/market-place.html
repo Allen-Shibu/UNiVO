@@ -69,19 +69,27 @@
               class="relative flex flex-col md:flex-row w-full max-w-6xl h-full max-h-[90vh] md:h-[80vh] bg-[#e3e3e3] dark:bg-[#1f1f26] rounded-3xl shadow-[0_0_20px_rgba(255,255,255,0.2)] overflow-y-auto md:overflow-hidden"
             >
               
-              <div class="w-full md:w-1/2 p-6 flex items-center justify-center bg-black/50">
-                <button id="previousimgbtn"><</button>
+              <div class="w-full md:w-1/2 p-12 flex items-center justify-center bg-black/50 ">
+                <button id="previousimgbtn">
+                  <div class="bg-black rounded-2xl p-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  </div>
+                </button>
                 <img
                   id="productpageuploadimage"
                   src=""
-                  class="transition-transform duration-500 max-w-full max-h-[40vh] md:max-h-full object-contain rounded-2xl"
+                  class="transition-transform duration-500 max-w-full max-h-[40vh] md:max-h-full object-contain rounded-2xl m-1"
                 />
-                <button id="nextimgbtn">></button>
+                <button id="nextimgbtn">
+                  <div class="bg-black rounded-2xl p-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </div>
+                </button>
                 
               </div>
 
               <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col">
-                <h2 id="productname" class="text-3xl md:text-4xl text-[#30303b] font-sans font-semibold">
+                <h2 id="productname" class="text-3xl md:text-4xl text-[#30303b] dark:text-white font-sans font-semibold">
                   Product name
                 </h2>
                 
@@ -91,8 +99,8 @@
                 
                 <hr class="border-gray-800 my-6">
                 
-                <p class="text-3xl font-sans text-[#30303b] font-bold">Description</p>
-                <p id="productdescription" class="mt-2 font-sans leading-relaxed text-[#30303b] text-2xl">
+                <p class="text-3xl font-sans text-[#30303b] font-bold dark:text-white ">Description</p>
+                <p id="productdescription" class="mt-2 font-sans leading-relaxed text-[#30303b] dark:text-white text-2xl">
                   no description provided
                 </p>
 
@@ -113,7 +121,7 @@
                     Contact Seller
                   </button>
                   <button
-                    class="w-full py-4 rounded-2xl bg-transparent text-[#30303b] border border-black/50 font-bold text-xl hover:bg-white/10 transition-colors"
+                    class="w-full py-4 rounded-2xl bg-transparent text-[#30303b] border border-black/50 font-bold dark:text-white text-xl hover:bg-white/10 transition-colors"
                   >
                     Add to Wishlist
                   </button>

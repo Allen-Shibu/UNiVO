@@ -104,6 +104,7 @@ async function loadProducts(SearchResults = null) {
 
       ProductGrid.appendChild(card);
 
+
     })}};
 
 loadProducts();
@@ -113,6 +114,7 @@ const productGrid = document.getElementById("product-grid");
 const popup = document.getElementById("popupwindow");
 const pop = document.getElementById('productdetails');
 
+let clickedproducttitle;
 productGrid.addEventListener("click", async (e) => {
   if (e.target.tagName === "IMG") {
     console.log(e.target)
@@ -128,6 +130,7 @@ productGrid.addEventListener("click", async (e) => {
 
     document.getElementById("productname").textContent = data.title;
     document.getElementById('productprice').textContent = "₹"+data.price;
+    clickedproducttitle = data.title;
     document.getElementById("productdescription").textContent = data.description;
   }
 });
@@ -163,7 +166,78 @@ pop.addEventListener("click", (e)=>{
   e.stopPropagation();
 })
 
-const productSearch = document.getElementById("search_input");
+// const productSearch = document.getElementById("search_input");
+
+// productSearch.addEventListener("keydown", (e)=>{
+//   alert('nidha')
+//   const ProductGrid = document.getElementById("product-grid");
+//   const noresult = document.getElementById('noresultsfound');
+//   const searchText = productSearch.value.toLowerCase();
+//   let visibility = 0;
+//   if(e.key=="Enter"){
+//     e.preventDefault();
+
+//     Array.from(ProductGrid.children).forEach(card => {
+//     // find the title <p> (paragraphhhh) inside this card
+//     const titleEl = card.querySelector("p");
+
+//     if (!titleEl) return;
+//     const titleText = titleEl.innerText.toLowerCase();
+//     console.log(titleText);
+
+//     if (titleText.includes(searchText)) {
+//       card.style.display = "block"; 
+//       visibility++;
+//     } else {
+//       card.style.display = "none";
+//     }
+//     if(visibility==0){
+//       noresult.style.display = "block"; 
+//     }else{
+//       noresult.style.display = "none"; 
+//     }
+  
+//   });
+//   }});
+
+
+const nextimgbtn = document.getElementById("nextimgbtn");
+const previousimgbtn  = document.getElementById("previousimgbtn");
+
+let i = 0;
+nextimgbtn.addEventListener("click", async (e)=>{
+    // document.getElementById("productpageuploadimage").classList.add("-translate-x-full", "duration-500");
+    const { data, error } = await supabase
+    .from('products')
+    .select('image_url')
+    .eq('title', clickedproducttitle)
+    const number_of_images = data[0].image_url.length;
+
+    if(number_of_images == 1){
+      nextimgbtn.disabled = true;
+    }
+    if(i<number_of_images-1)
+      i++;
+      // console.log()
+      document.getElementById("productpageuploadimage").src = data[0].image_url[i]
+})
+
+previousimgbtn.addEventListener("click", async (e)=>{
+  // document.getElementById("productpageuploadimage").classList.add("translate-x-full")
+    const { data, error } = await supabase
+    .from('products')
+    .select('image_url')
+    .eq('title', clickedproducttitle)
+    const number_of_images = data[0].image_url.length;
+
+      if(number_of_images == 1){
+        nextimgbtn.disabled = true;}
+        
+    if(i>0)
+      i--;
+      // console.log()
+      document.getElementById("productpageuploadimage").src = data[0].image_url[i]
+})
 
 
 // FIXED WISHLIST LOGIC

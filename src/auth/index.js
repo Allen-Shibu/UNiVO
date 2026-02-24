@@ -1,5 +1,4 @@
 import { supabase } from "/src/shared/supabaseClient.js";
-
 import { PassNotify, FailNotify } from "/src/shared/loader.js";
 
 const nameInput = document.getElementById("name");
@@ -64,7 +63,7 @@ GBtn.addEventListener('click',async()=> {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: `${siteUrl}/../marketplace/market-place.html`,
+      redirectTo: `${siteUrl}/src/auth/complete-profile.html`,
     },
   });
 

@@ -11,6 +11,10 @@ export default defineConfig({
           if (req.url === "/") {
             req.url = "/src/auth/index.html";
           }
+          // Add this new condition for the login page
+          if (req.url === "/src/auth/login.html") {
+            req.url = "/src/auth/login.html";
+          }
           next();
         });
       },
@@ -34,6 +38,7 @@ export default defineConfig({
         notifications: resolve(__dirname, "src/shared/notifications.html"),
         sidebar_header: resolve(__dirname, "src/shared/main.html"),
         loader: resolve(__dirname, "src/shared/loading.html"),
+        phoneVerification: resolve(__dirname, "src/auth/complete-profile.html"),
       },
     },
   },

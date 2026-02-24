@@ -99,16 +99,21 @@
                 
                 <hr class="border-gray-800 my-6">
                 
+              
                 <p class="text-3xl font-sans text-[#30303b] font-bold dark:text-white ">Description</p>
+                
+                <div class="h-90 w-full translate-y-5 p-4 rounded-2xl bg-[#d6d6d6] dark:bg-[#2b3442]">
                 <p id="productdescription" class="mt-2 font-sans leading-relaxed text-[#30303b] dark:text-white text-2xl">
                   no description provided
                 </p>
+                </div>
+
 
                 <div class="flex flex-wrap items-center gap-4 mt-8">
                   <input
                     type="number"
                     placeholder="Qty"
-                    class="font-bold outline-0 border-b-3 border-[#F0B100] bg-gray-700 text-white py-2 px-4 w-24 rounded-xl"
+                    class="font-bold outline-0 border-b-3 border-[#F0B100] bg-gray-400 text-gray-600 dark:bg-gray-700 dark:text-white py-2 px-4 w-24 rounded-xl"
                   />
                   <p class="text-sm md:text-base text-gray-400 font-sans">Total: Quantity x Price</p>
                 </div>
@@ -121,7 +126,8 @@
                     Contact Seller
                   </button>
                   <button
-                    class="w-full py-4 rounded-2xl bg-transparent text-[#30303b] border border-black/50 font-bold dark:text-white text-xl hover:bg-white/10 transition-colors"
+                    id="productpageaddtowishlistbtn"
+                    class="w-full py-4 rounded-2xl text-[#30303b] border border-black/50 font-bold dark:text-white text-xl hover:bg-[#d4d1ba] transition-colors duration-100"
                   >
                     Add to Wishlist
                   </button>

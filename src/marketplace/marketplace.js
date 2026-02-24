@@ -260,6 +260,7 @@ function WishlistLogic() {
     }
 
     const productId = btn.dataset.id;
+    console.log(productId);
     const icon = btn.querySelector("svg");
 
     const { data: existing } = await supabase
@@ -309,4 +310,56 @@ function WishlistLogic() {
 }
 
 WishlistLogic();
+
+const pgwishlist = document.getElementById("productpageaddtowishlistbtn").addEventListener("click", async (e)=>{
+      const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) {
+      FailNotify("You must be logged in to save products");
+      return;
+    }
+  
+  const {data, error} = await supabase
+    .from("products")
+    .select("*")
+    .contains("image_url", [e.target.src])
+    .single()
+
+    const { data: existing } = await supabase
+      .from("wishlist")
+      .select("*")
+      .eq("product_id", data.id)
+      .eq("user_id", user.id)
+      .maybeSingle();
+
+    if (existing) {
+      const { error } = await supabase
+        .from("wishlist")
+        .delete()
+        .eq("product_id", data.id)
+        .eq("user_id", user.id);
+            if (error) {
+        console.error("Error removing from wishlist:", error);
+        FailNotify("Failed to remove from wishlist");
+      } else {
+        alert("already in wishlist")
+      }
+    } else {
+
+      const { error } = await supabase.from("wishlist").insert([
+        {
+          product_id: data.id,
+          user_id: user.id,
+        },
+      ]);
+
+      if (error) {
+        console.error("Error adding to wishlist:", error);
+        FailNotify("Failed to add to wishlist");
+      } else {
+        alert('item added to wishlist')
+      }
+
+}});
 

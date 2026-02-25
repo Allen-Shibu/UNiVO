@@ -7,19 +7,19 @@ const passwordInput = document.getElementById("password");
 const repasswordInput = document.getElementById("repassword");
 const SignupBtn = document.querySelector(".registerbtn");
 const LoginBtn = document.getElementById("loginbtn");
-const phoneInput=document.getElementById('phone')
+const phoneInput = document.getElementById("phone");
 const Failnotify = document.getElementById("fail-notification");
-const GBtn=document.getElementById('GSign')
-
-
+const GBtn = document.getElementById("GSign");
 
 async function signup() {
   const name = nameInput.value;
   const email = emailInput.value;
-    if (!email.endsWith("@gectcr.ac.in")) {
-        FailNotify("Access Denied: You must use a valid GEC College email (@gectcr.ac.in)");
-        return;
-    }
+  if (!email.endsWith("@gectcr.ac.in")) {
+    FailNotify(
+      "Access Denied: You must use a valid GEC College email (@gectcr.ac.in)",
+    );
+    return;
+  }
   const phone = iti.getNumber();
   if (!iti.isValidNumber()) {
     FailNotify("Please enter a valid phone number for your country.");
@@ -27,13 +27,13 @@ async function signup() {
   }
   const password = passwordInput.value;
   const siteUrl = window.location.origin;
-      console.log(siteUrl);
+  console.log(siteUrl);
 
   const { data, error } = await supabase.auth.signUp({
     email: email,
     password: password,
     options: {
-      emailRedirectTo: `${siteUrl}/../auth/login.html`,
+      emailRedirectTo: `${siteUrl}/src/auth/login.html`,
       data: {
         display_name: name,
         Phone: phone,
@@ -42,23 +42,21 @@ async function signup() {
   });
 
   if (error) {
-    FailNotify("Sign Up Failed!"  +error.message);
+    FailNotify("Sign Up Failed!" + error.message);
   } else {
-    
     PassNotify(
       "Verification email sent! Please check your inbox to activate your account.",
-      
     );
-    
-    nameInput.value = ""
-    repasswordInput.value=""
+
+    nameInput.value = "";
+    repasswordInput.value = "";
     emailInput.value = "";
     passwordInput.value = "";
     phoneInput.value = "";
   }
 }
 
-GBtn.addEventListener('click',async()=> {
+GBtn.addEventListener("click", async () => {
   const siteUrl = window.location.origin;
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
@@ -67,10 +65,8 @@ GBtn.addEventListener('click',async()=> {
     },
   });
 
-  if(error) FailNotify("Sign in Failed "+error)
-})
-
-
+  if (error) FailNotify("Sign in Failed " + error);
+});
 
 async function login() {
   const email = emailInput.value;
@@ -82,12 +78,10 @@ async function login() {
   });
 
   if (error) {
-    console.log("Login Failed!"+error.message);
-    FailNotification(); 
-    
+    console.log("Login Failed!" + error.message);
+    FailNotification();
   } else {
-    window.location.href="../marketplace/market-place.html"
-
+    window.location.href = "/src/marketplace/market-place.html";
   }
 }
 
@@ -110,43 +104,39 @@ const iti = window.intlTelInput(phoneInput, {
     "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js", // For validation
 });
 
-const MailReq=document.getElementById('mail-req')
-emailInput.addEventListener('input', (event) => {
+const MailReq = document.getElementById("mail-req");
+emailInput.addEventListener("input", (event) => {
   const value = event.target.value;
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (value !== "" && !emailPattern.test(value)) {
-    MailReq.classList.replace('hidden','block');
+    MailReq.classList.replace("hidden", "block");
   } else {
-    MailReq.classList.replace('block', 'hidden');
+    MailReq.classList.replace("block", "hidden");
   }
-})
+});
 
-const PwdEye = document.querySelectorAll('.pwd-eye')
+const PwdEye = document.querySelectorAll(".pwd-eye");
 PwdEye.forEach((eyeBtn) => {
-  eyeBtn.addEventListener('click', (e) => {
+  eyeBtn.addEventListener("click", (e) => {
     e.preventDefault();
     const wrapper = eyeBtn.closest(".input-wrapper");
     const input = wrapper.querySelector("input");
-    const ShowPwd = wrapper.querySelector('.show-pwd') 
-    const HidePwd = wrapper.querySelector('.hide-pwd')
-  
-    if (input.type==='password') {
-    
-      input.type = 'text'
-      if(HidePwd)HidePwd.classList.replace('block','hidden')
+    const ShowPwd = wrapper.querySelector(".show-pwd");
+    const HidePwd = wrapper.querySelector(".hide-pwd");
 
-      if(ShowPwd)ShowPwd.classList.replace("hidden",'block');
-    }
+    if (input.type === "password") {
+      input.type = "text";
+      if (HidePwd) HidePwd.classList.replace("block", "hidden");
 
-    else {
-      input.type = 'password'
-      if(HidePwd)HidePwd.classList.replace("hidden",'block');
-    
-      if(ShowPwd)ShowPwd.classList.replace("block",'hidden');
-    
+      if (ShowPwd) ShowPwd.classList.replace("hidden", "block");
+    } else {
+      input.type = "password";
+      if (HidePwd) HidePwd.classList.replace("hidden", "block");
+
+      if (ShowPwd) ShowPwd.classList.replace("block", "hidden");
     }
-  })
-})
+  });
+});
 
 const matchPassword = document.getElementById("match");
 repasswordInput.addEventListener("input", (event) => {
@@ -161,27 +151,25 @@ repasswordInput.addEventListener("input", (event) => {
 
 const updateRequirement = (id, isValid) => {
   const requirement = document.getElementById(id);
-  const icon=requirement.querySelector('.icon')
+  const icon = requirement.querySelector(".icon");
   if (isValid) {
-    requirement.classList.replace("text-red-500", "text-green-600");  
+    requirement.classList.replace("text-red-500", "text-green-600");
     icon.textContent = "✓";
-  }
-  else {
-    requirement.classList.replace("text-green-600", "text-red-500");   
+  } else {
+    requirement.classList.replace("text-green-600", "text-red-500");
     icon.textContent = "✕";
   }
-}
+};
 
 passwordInput.addEventListener("input", (event) => {
-  const PwdReq=document.getElementById('pwd-req')
+  const PwdReq = document.getElementById("pwd-req");
   const value = event.target.value;
 
-  if (value.length === 0) PwdReq.classList.add('hidden')
-  
+  if (value.length === 0) PwdReq.classList.add("hidden");
   else {
-    PwdReq.classList.remove("hidden"); 
+    PwdReq.classList.remove("hidden");
   }
-  
+
   updateRequirement("length", value.length >= 8);
   updateRequirement("lowercase", /[a-z]/.test(value));
   updateRequirement("uppercase", /[A-Z]/.test(value));

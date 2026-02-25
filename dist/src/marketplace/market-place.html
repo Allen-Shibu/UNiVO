@@ -1,28 +1,27 @@
 <!doctype html>
-<html class="dark">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script>
-        config: {
-          darkMode: 'selector'
+              if (localStorage.getItem("color-theme") === "dark" || (!localStorage.getItem("color-theme") && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
         }
     </script>
-    <title>Univo|Marketplace</title>
-    <script type="module" crossorigin src="/assets/market-CgoInUX6.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/loader-yIERnUXV.js">
-    <link rel="modulepreload" crossorigin href="/assets/supabaseClient-BnuRKQFQ.js">
-    <link rel="modulepreload" crossorigin href="/assets/session-DnhtpGy1.js">
-    <link rel="stylesheet" crossorigin href="/assets/marketplace-CVxaeFR4.css">
+    <script type="module" crossorigin src="/assets/market-C6b0QQFq.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/loader-BNZq2rkl.js">
+    <link rel="modulepreload" crossorigin href="/assets/session--oNH02Qd.js">
+    <link rel="stylesheet" crossorigin href="/assets/marketplace-D0GQBQaF.css">
   </head>
   <body class="overflow-x-hidden">
-    <div class="flex h-screen bg-white dark:bg-[#030406]">
+    <div class="flex h-screen bg-[#030406]">
       <div id="navigation-container"></div>
+      <title>Univo|Market place</title>
 
       <div class="flex-1 flex flex-col w-full min-w-0 flex-shrink">
         <main
           id="main"
-          class="flex-1 ml-0 md:ml-64 p-8 min-h-screen transition-all duration-300 mt-25  bg-white flex flex-col dark:bg-[#030406] relative overflow-y-auto"
+          class="flex-1 ml-0 md:ml-64 p-8 min-h-screen transition-all duration-300 mt-25  bg-white flex flex-col dark:bg-[#101014] relative overflow-y-auto"
         >
           <div
             class="flex gap-3 px-1 p-4 h-17 max-w-fit flex-shrink-0 overflow-x-auto no-scrollbar"
@@ -65,61 +64,96 @@
           </div>
 
           <div
-            class="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-3xl hidden ml-20"
+            class="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-3xl hidden p-4 md:p-8"
             id="popupwindow"
           >
+        <!-- Product Popup -->
             <div
               id="productdetails"
-              class="ml-40 flex flex-row contain-content w-[79%] h-[80%] bg-[#11161C] rounded-3xl shadow-[0_0_12px_rgba(255,255,255,0.3)]"
+              class="relative flex flex-col md:flex-row w-full max-w-6xl h-full max-h-[90vh] md:h-[80vh] bg-[#e3e3e3] dark:bg-[#1f1f26] rounded-3xl shadow-[0_0_20px_rgba(255,255,255,0.2)] overflow-y-auto md:overflow-hidden"
             >
-              <img
+              
+              <div class="w-full md:w-1/2 p-12 flex items-center justify-center bg-black/50 ">
+                <button id="previousimgbtn">
+                  <div class="bg-black rounded-2xl p-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  </div>
+                </button>
+                <img
                   id="productpageuploadimage"
                   src=""
-                  class="w-[50%] h-[90%] outline-2 object-contain ml-10 mt-10 mb-5 bg-black rounded-2xl"/>
-              <div class="pr-10">
-                <p id="productname" class="text-4xl text-white mt-10 translate-x-10 font-sans">
-                    Product name
-                </p>
-              <p
-                    id="productprice" class="text-4xl text-yellow-500 mt-10 translate-x-10 font-sans font-bold"
-                  >
-                    ₹120
-                  </p>
-                  <hr class="border border-gray-800 ml-5 transform translate-y-5">
-                  <p class="text-2xl text-white mt-10 translate-x-10 font-sans">
-                    Description
-                  </p>
-                  <p
-                    id="productdescription"
-                    class="text-2xl text-white mt-5 mr-10 translate-x-10 font-sans"
-                  >
-                  no description provided
-                  </p>
-                  <div class="flex flex-row">
-                    <input
-                      type="number"
-                      placeholder="Quantity"
-                      class="font-bold outline-0 mt-10 ml-10 border-b-3 border-[#F0B100] bg-gray-500 py-2 px-3 w-30 rounded-2xl dark:bg-gray-300"
-                    />
-                    <p class="text-1xl text-white mt-10 translate-x-10 font-sans ">Quantity x price of an item </p>
+                  class="transition-transform duration-500 max-w-full max-h-[40vh] md:max-h-full object-contain rounded-2xl m-1"
+                />
+                <button id="nextimgbtn">
+                  <div class="bg-black rounded-2xl p-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                   </div>
-                  <!-- <p class="text-4xl text-white mt-10 translate-x-10 font-sans ">contact details</p> -->
-                  <button
-                    id = 'contactsellerbutton'
-                    class="fixed w-110 h-15 rounded-2xl bg-[#F0B100] mb-1 ml-5 bottom-10 font-bold text-2xl cursor-pointer"
-                  >
-                    contact seller
-                  </button>
-                  <button
-                    class="absolute w-110 h-15 rounded-2xl bg-transparent bottom-30  text-white border border-white-solid ml-5 font-bold text-2xl"
-                  >
-                    Add to wishlist
-                  </button>
+                </button>
+                
               </div>
+
+              <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col">
+                <h2 id="productname" class="text-3xl md:text-4xl text-[#30303b] dark:text-white font-sans font-semibold">
+                  Product name
+                </h2>
+                
+                <p id="productprice" class="text-3xl md:text-4xl text-yellow-500 mt-4 font-sans font-bold">
+                  ₹120
+                </p>
+                
+                <hr class="border-gray-800 my-6">
+                
+              
+                <p class="text-3xl font-sans text-[#30303b] font-bold dark:text-white ">Description</p>
+                
+                <div class="h-90 w-full translate-y-5 p-4 rounded-2xl bg-[#d6d6d6] dark:bg-[#2b3442]">
+                <p id="productdescription" class="mt-2 font-sans leading-relaxed text-[#30303b] dark:text-white text-2xl">
+                  no description provided
+                </p>
+                </div>
+
+
+                <div class="flex flex-wrap items-center gap-4 mt-8">
+                  <input
+                    type="number"
+                    placeholder="Qty"
+                    class="font-bold outline-0 border-b-3 border-[#F0B100] bg-gray-400 text-gray-600 dark:bg-gray-700 dark:text-white py-2 px-4 w-24 rounded-xl"
+                  />
+                  <p class="text-sm md:text-base text-gray-400 font-sans">Total: Quantity x Price</p>
+                </div>
+
+                <div class="mt-auto pt-8 flex flex-col gap-3">
+                  <button
+                    id="contactsellerbutton"
+                    class="w-full py-4 rounded-2xl bg-[#F0B100] font-bold text-xl hover:bg-[#d9a100] transition-colors"
+                  >
+                    Contact Seller
+                  </button>
+                  <button
+                    id="productpageaddtowishlistbtn"
+                    class="w-full py-4 rounded-2xl text-[#30303b] border border-black/50 font-bold dark:text-white text-xl hover:bg-[#d4d1ba] transition-colors duration-100"
+                  >
+                    Add to Wishlist
+                  </button>
+
+                </div>
+              </div>
+
+              <div>
+              <button 
+                onclick="document.getElementById('popupwindow').classList.add('hidden')"
+                class="absolute top-6 left-6 text-white p-2 bg-black/20 rounded-full hover:bg-white/10"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+              </button>
+              </div>
+
             </div>
           </div>
 
-            <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-4 gap-10 mt-6"></div>
+            <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-4 gap-5 mt-6"></div>
 
           <a href="/src/selling/sellingpage.html">
             <button

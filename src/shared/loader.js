@@ -1,8 +1,4 @@
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
-
-const supabaseUrl = "https://opzechnwukuqfvfaytfx.supabase.co";
-const supabaseKey = "sb_publishable_w87ezT-fcldEAO653BOpwQ_UvJtX51_";
-const supabase = createClient(supabaseUrl, supabaseKey);
+import { supabase } from "/src/shared/supabaseClient.js";
 
 async function loadComponent(elementId, componentPath) {
   try {
@@ -85,7 +81,7 @@ function initializeNavigation() {
       if (error) FailNotify(error);
       else {
         PassNotify("Logged Out successfully");
-        window.location.href = "../auth/login.html";
+        window.location.href = "/src/auth/login.html";
       }
     });
   }
@@ -191,33 +187,31 @@ function initializeNavigation() {
       }
     });
   }
-NotifyBtn.addEventListener("click", (e) => {
-  e.stopPropagation(); // prevent the click from bubbling to document
+  NotifyBtn.addEventListener("click", (e) => {
+    e.stopPropagation(); // prevent the click from bubbling to document
 
-  const isHidden = NotifyView.classList.contains("hidden");
+    const isHidden = NotifyView.classList.contains("hidden");
 
-  if (isHidden) {
-    NotifyView.classList.remove("hidden");
-    NotifySvg.classList.add("text-amber-400");
+    if (isHidden) {
+      NotifyView.classList.remove("hidden");
+      NotifySvg.classList.add("text-amber-400");
 
-    // Add outside-click listener ONCE, on next event cycle
-    setTimeout(() => {
-      document.addEventListener("click", closeNotify);
-    }, 0);
+      // Add outside-click listener ONCE, on next event cycle
+      setTimeout(() => {
+        document.addEventListener("click", closeNotify);
+      }, 0);
+    }
+  });
+
+  function closeNotify() {
+    NotifyView.classList.add("hidden");
+    NotifySvg.classList.remove("text-amber-400");
+    document.removeEventListener("click", closeNotify); // clean up
   }
-});
-
-function closeNotify() {
-  NotifyView.classList.add("hidden");
-  NotifySvg.classList.remove("text-amber-400");
-  document.removeEventListener("click", closeNotify); // clean up
-}
-
-
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  loadComponent("navigation-container", "../shared/main.html");
+  loadComponent("navigation-container", "/src/shared/main.html");
 });
 
 async function loadmess(elementId, componentPath) {
@@ -237,7 +231,7 @@ async function loadmess(elementId, componentPath) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  loadmess("notification-container", "../shared/notifications.html");
+  loadmess("notification-container", "/src/shared/notifications.html");
 });
 
 let timeoutId;
@@ -280,14 +274,14 @@ export function FailNotify(message) {
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
-  const response = await fetch("../shared/loading.html"); //fetched ../shared/loading.html and reads its context as plain text string
+  const response = await fetch("/src/shared/loading.html"); //fetched ../shared/loading.html and reads its context as plain text string
   const spinnerHTML = await response.text();
 
   const loaderDiv = document.createElement("div");
   loaderDiv.id = "page-loader";
   loaderDiv.style.cssText =
     "display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,1); justify-content:center; align-items:center;";
-  loaderDiv.innerHTML = spinnerHTML;  //loads the plain string to inside the div
+  loaderDiv.innerHTML = spinnerHTML; //loads the plain string to inside the div
   document.body.appendChild(loaderDiv);
 
   initloader();
@@ -313,7 +307,7 @@ function initloader() {
       const href = link.href;
       setTimeout(() => {
         window.location.href = href;
-      }, 500); 
+      }, 500);
     }
   });
 }

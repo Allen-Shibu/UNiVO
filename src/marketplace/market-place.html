@@ -71,7 +71,7 @@
               
               <div class="w-full md:w-1/2 p-12 flex items-center justify-center bg-black/50 ">
                 <button id="previousimgbtn">
-                  <div class="bg-black rounded-2xl p-1">
+                  <div class="bg-black rounded-2xl p-1 cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
                   </div>
                 </button>
@@ -81,7 +81,7 @@
                   class="transition-transform duration-500 max-w-full max-h-[40vh] md:max-h-full object-contain rounded-2xl m-1"
                 />
                 <button id="nextimgbtn">
-                  <div class="bg-black rounded-2xl p-1">
+                  <div class="bg-black rounded-2xl p-1 cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                   </div>
                 </button>
@@ -110,13 +110,13 @@
 
 
                 <div class="flex flex-wrap items-center gap-4 mt-8">
-                  <input
-                    type="number"
-                    placeholder="Qty"
-                    class="font-bold outline-0 border-b-3 border-[#F0B100] bg-gray-400 text-gray-600 dark:bg-gray-700 dark:text-white py-2 px-4 w-24 rounded-xl"
-                  />
-                  <p class="text-sm md:text-base text-gray-400 font-sans">Total: Quantity x Price</p>
-                </div>
+                  <p class="text-sm md:text-base text-gray-900 font-sans" id="otherdetails"></p><br>
+                <div class="flex rounded-2xl justify-end">
+                  <p class=" bg-amber-300 py-2 px-3 inline-block text-sm md:text-base text-gray-900 font-sans rounded-3xl" id="userinfo">a product by Harikrishnan</p>
+                </div>  
+                </div><br>
+
+                
 
                 <div class="mt-auto pt-8 flex flex-col gap-3">
                   <button

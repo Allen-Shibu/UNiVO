@@ -132,6 +132,8 @@ productGrid.addEventListener("click", async (e) => {
     document.getElementById('productprice').textContent = "₹"+data.price;
     clickedproducttitle = data.title;
     document.getElementById("productdescription").textContent = data.description;
+    document.getElementById("otherdetails").textContent = data.details;
+    // document.getElementById("userinfo").textContent = data.details;
   }
 });
 
@@ -166,39 +168,39 @@ pop.addEventListener("click", (e)=>{
   e.stopPropagation();
 })
 
-// const productSearch = document.getElementById("search_input");
+const productSearch = document.getElementById("search_input");
 
-// productSearch.addEventListener("keydown", (e)=>{
-//   alert('nidha')
-//   const ProductGrid = document.getElementById("product-grid");
-//   const noresult = document.getElementById('noresultsfound');
-//   const searchText = productSearch.value.toLowerCase();
-//   let visibility = 0;
-//   if(e.key=="Enter"){
-//     e.preventDefault();
+productSearch.addEventListener("keydown", (e)=>{
+  alert('nidha')
+  const ProductGrid = document.getElementById("product-grid");
+  const noresult = document.getElementById('noresultsfound');
+  const searchText = productSearch.value.toLowerCase();
+  let visibility = 0;
+  if(e.key=="Enter"){
+    e.preventDefault();
 
-//     Array.from(ProductGrid.children).forEach(card => {
-//     // find the title <p> (paragraphhhh) inside this card
-//     const titleEl = card.querySelector("p");
+    Array.from(ProductGrid.children).forEach(card => {
+    // find the title <p> (paragraphhhh) inside this card
+    const titleEl = card.querySelector("p");
 
-//     if (!titleEl) return;
-//     const titleText = titleEl.innerText.toLowerCase();
-//     console.log(titleText);
+    if (!titleEl) return;
+    const titleText = titleEl.innerText.toLowerCase();
+    console.log(titleText);
 
-//     if (titleText.includes(searchText)) {
-//       card.style.display = "block"; 
-//       visibility++;
-//     } else {
-//       card.style.display = "none";
-//     }
-//     if(visibility==0){
-//       noresult.style.display = "block"; 
-//     }else{
-//       noresult.style.display = "none"; 
-//     }
+    if (titleText.includes(searchText)) {
+      card.style.display = "block"; 
+      visibility++;
+    } else {
+      card.style.display = "none";
+    }
+    if(visibility==0){
+      noresult.style.display = "block"; 
+    }else{
+      noresult.style.display = "none"; 
+    }
   
-//   });
-//   }});
+  });
+  }});
 
 
 const nextimgbtn = document.getElementById("nextimgbtn");
@@ -343,7 +345,7 @@ const pgwishlist = document.getElementById("productpageaddtowishlistbtn").addEve
         console.error("Error removing from wishlist:", error);
         FailNotify("Failed to remove from wishlist");
       } else {
-        alert("already in wishlist")
+        PassNotify();
       }
     } else {
 
@@ -358,7 +360,7 @@ const pgwishlist = document.getElementById("productpageaddtowishlistbtn").addEve
         console.error("Error adding to wishlist:", error);
         FailNotify("Failed to add to wishlist");
       } else {
-        alert('item added to wishlist')
+        PassNotify()
       }
 
 }});

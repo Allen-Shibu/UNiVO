@@ -7,6 +7,7 @@ const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const SignupBtn = document.querySelector(".registerbtn");
 const LoginBtn = document.getElementById("loginbtn");
+const GBtn = document.getElementById("GSign");
 
 async function signup() {
     const email = emailInput.value;
@@ -28,6 +29,22 @@ async function signup() {
     window.location.href = "../marketplace/market-place.html";
   }
 }
+
+
+
+
+GBtn.addEventListener("click", async () => {
+  const siteUrl = window.location.origin;
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: `${siteUrl}/src/marketplace/market-place.html`,
+    },
+  });
+
+  if (error) FailNotify("Sign in Failed " + error);
+});
+
 
 async function login() {
   const email = emailInput.value;

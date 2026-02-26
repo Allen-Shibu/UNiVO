@@ -38,6 +38,9 @@ function initializeNavigation() {
   const NotifyBtn = document.getElementById("notification-btn");
   const NotifySvg = document.getElementById("notify-svg");
 
+
+  
+  
   if (MobileWidth && window.innerWidth < 400) {
     MobileWidth.classList.replace("gap-5", "gap-3");
   }
@@ -52,7 +55,8 @@ function initializeNavigation() {
       } = await supabase.auth.getUser();
 
       if (ProfileInfo && user) {
-        ProfileInfo.innerHTML = `${user.user_metadata.display_name} <br> ${user.email}`;
+        const name = user.user_metadata.display_name || user.user_metadata.full_name 
+        ProfileInfo.innerHTML = `${name} <br> ${user.email}`;
       }
 
       if (error) FailNotify(error);
@@ -196,7 +200,6 @@ function initializeNavigation() {
       NotifyView.classList.remove("hidden");
       NotifySvg.classList.add("text-amber-400");
 
-      // Add outside-click listener ONCE, on next event cycle
       setTimeout(() => {
         document.addEventListener("click", closeNotify);
       }, 0);
@@ -206,8 +209,43 @@ function initializeNavigation() {
   function closeNotify() {
     NotifyView.classList.add("hidden");
     NotifySvg.classList.remove("text-amber-400");
-    document.removeEventListener("click", closeNotify); // clean up
+    document.removeEventListener("click", closeNotify); 
   }
+
+  const ProfileTab=document.getElementById('profile-tab')
+  const ProfilePage = document.getElementById('profile-page')
+  const CloseProfile = document.getElementById('close-profile')
+  const ProfileName = document.getElementById('profile-display-name')
+  const ProfileEmail = document.getElementById("profile-display-email");
+  const ProfilePhone = document.getElementById("profile-display-phone");
+  const ResetPwd = document.getElementById('reset-password-btn')
+  const DelBtn=document.getElementById('delete-account-button')
+
+  ProfileTab.addEventListener('click', async (e) => {
+    
+    ProfilePage.classList.remove('hidden')
+
+    if (ProfilePage) {
+      const {
+        data: { user },
+        error,
+      } = await supabase.auth.getUser();
+      const phonenumber = user.user_metadata.Phone;
+      console.log(phonenumber);
+      
+
+      ProfileName.innerHTML = `${user.user_metadata.display_name}`;
+      ProfileEmail.innerHTML = `${user.email}`;
+      ProfilePhone.innerHTML=`${phonenumber}`
+
+      if (error) FailNotify(error);
+      
+      ResetPwd.addEventListener('click',async (e) => {
+        window.location.href="/src/auth/reset_password.html"
+      })
+
+    }
+  })
 }
 
 document.addEventListener("DOMContentLoaded", function () {

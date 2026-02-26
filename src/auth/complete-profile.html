@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Univo | Complete Profile</title>
     <script>
-      window.tailwind = {
-        config: {
-          darkMode: 'class'
-        }
-      }
+            if (
+            localStorage.getItem("color-theme") === "dark" ||
+            (!localStorage.getItem("color-theme") &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches)
+            ) {
+            document.documentElement.classList.add("dark");
+            }
+
     </script>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css">
@@ -34,7 +37,8 @@
 <body class="bg-white dark:bg-[#030406] transition-colors duration-300">
     <div class="min-h-screen flex items-center justify-center p-6">
         <div class="w-full max-w-md">
-            
+                <div id="notification-container" class="flex items-center justify-center mb-20">
+                </div>
             <div class="text-center mb-10">
                 <div class="flex justify-center mb-4">
                     <img src="../assets/text_light_mode.png" class="h-12 block dark:hidden">
@@ -54,7 +58,7 @@
                         <p id="error-msg" class="text-red-500 text-sm mt-3 font-medium hidden">Please enter a valid phone number.</p>
                     </div>
 
-                    <button id="submit-btn" class="w-full btn-primary py-4 text-2xl font-bold bg-amber-400 text-black rounded-2xl transition-all hover:scale-105 active:scale-95 shadow-lg shadow-yellow-500/20">
+                    <button id="submit-btn" class="w-full btn-primary py-4 text-2xl items-center justify-center font-bold bg-amber-400 text-black rounded-2xl transition-all hover:scale-105 active:scale-95 shadow-lg shadow-yellow-500/20">
                         SAVE & CONTINUE
                     </button>
                 </div>
@@ -67,23 +71,6 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
-    <script>
-        const phoneInput = document.querySelector("#phone");
-        const submitBtn = document.querySelector("#submit-btn");
-        const errorMsg = document.querySelector("#error-msg");
-
-        const iti = window.intlTelInput(phoneInput, {
-            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
-            separateDialCode: true,
-            initialCountry: "in",
-            preferredCountries: ["in"]
-        });
-
-        // Dark mode persistence
-        if (localStorage.getItem("color-theme") === "dark" || (!localStorage.getItem("color-theme") && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        }
-    </script>
-    <script src="profile-complete.js"></script>
+    <script type="module" src="profile-complete.js"></script>
 </body>
 </html>

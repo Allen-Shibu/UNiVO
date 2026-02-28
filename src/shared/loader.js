@@ -38,9 +38,6 @@ function initializeNavigation() {
   const NotifyBtn = document.getElementById("notification-btn");
   const NotifySvg = document.getElementById("notify-svg");
 
-
-  
-  
   if (MobileWidth && window.innerWidth < 400) {
     MobileWidth.classList.replace("gap-5", "gap-3");
   }
@@ -55,7 +52,8 @@ function initializeNavigation() {
       } = await supabase.auth.getUser();
 
       if (ProfileInfo && user) {
-        const name = user.user_metadata.display_name || user.user_metadata.full_name 
+        const name =
+          user.user_metadata.display_name || user.user_metadata.full_name;
         ProfileInfo.innerHTML = `${name} <br> ${user.email}`;
       }
 
@@ -209,21 +207,20 @@ function initializeNavigation() {
   function closeNotify() {
     NotifyView.classList.add("hidden");
     NotifySvg.classList.remove("text-amber-400");
-    document.removeEventListener("click", closeNotify); 
+    document.removeEventListener("click", closeNotify);
   }
 
-  const ProfileTab=document.getElementById('profile-tab')
-  const ProfilePage = document.getElementById('profile-page')
-  const CloseProfile = document.getElementById('close-profile')
-  const ProfileName = document.getElementById('profile-display-name')
+  const ProfileTab = document.getElementById("profile-tab");
+  const ProfilePage = document.getElementById("profile-page");
+  const CloseProfile = document.getElementById("close-profile");
+  const ProfileName = document.getElementById("profile-display-name");
   const ProfileEmail = document.getElementById("profile-display-email");
   const ProfilePhone = document.getElementById("profile-display-phone");
-  const ResetPwd = document.getElementById('reset-password-btn')
-  const DelBtn=document.getElementById('delete-account-button')
+  const ResetPwd = document.getElementById("reset-password-btn");
+  const DelBtn = document.getElementById("delete-account-button");
 
-  ProfileTab.addEventListener('click', async (e) => {
-    
-    ProfilePage.classList.remove('hidden')
+  ProfileTab.addEventListener("click", async (e) => {
+    ProfilePage.classList.remove("hidden");
 
     if (ProfilePage) {
       const {
@@ -232,20 +229,48 @@ function initializeNavigation() {
       } = await supabase.auth.getUser();
       const phonenumber = user.user_metadata.Phone;
       console.log(phonenumber);
-      
 
-      ProfileName.innerHTML = `${user.user_metadata.display_name}`;
+      const name =
+        user.user_metadata.display_name || user.user_metadata.full_name;
+      ProfileName.innerHTML = `${name}`;
       ProfileEmail.innerHTML = `${user.email}`;
-      ProfilePhone.innerHTML=`${phonenumber}`
+      ProfilePhone.innerHTML = `${phonenumber}`;
 
       if (error) FailNotify(error);
-      
-      ResetPwd.addEventListener('click',async (e) => {
-        window.location.href="/src/auth/reset_password.html"
-      })
 
+      ResetPwd.addEventListener("click", async (e) => {
+        window.location.href = "/src/auth/get_mail.html";
+      });
     }
-  })
+  });
+
+  const DeleteAcc = document.getElementById("delete-account-btn");
+  DeleteAcc.addEventListener("click", async (e) => {
+    e.preventDefault();
+    const confirmed = await showConfirm();
+    if (!confirmed) return;
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.getSession();
+    console.log(session);
+    
+    const response = await fetch(
+      `${import.meta.env.VITE_SUPABASE_FUNCTION_URL}/delete_user`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${session.access_token}`,
+        },
+      },
+    );
+
+    const result = await response.json();
+    if (response.ok) window.location.href="/src/auth/inde.html";
+    else {
+      FailNotify(error);
+    }
+  });
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -347,5 +372,33 @@ function initloader() {
         window.location.href = href;
       }, 500);
     }
+  });
+}
+
+function showConfirm() {
+  return new Promise((resolve) => {
+    //use to stop the waiting and send the answer as signal
+    const overlay = document.createElement("div");
+    overlay.innerHTML = `
+      <div style="position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.5)">
+        <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-6 w-80 flex flex-col gap-4">
+          <p class="text-lg font-bold dark:text-white text-center">Are you sure you want to delete your account?</p>
+          <div class="flex justify-center gap-3">
+            <button id="confirm-no"  class="px-5 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 dark:text-white font-semibold hover:bg-gray-300 transition">No</button>
+            <button id="confirm-yes" class="px-5 py-2 rounded-lg bg-red-500 text-white font-semibold hover:bg-red-600 transition">Yes, Delete</button>
+          </div>
+        </div>
+      </div>`;
+
+    document.body.appendChild(overlay);
+
+    overlay.querySelector("#confirm-yes").onclick = () => {
+      document.body.removeChild(overlay);
+      resolve(true);
+    };
+    overlay.querySelector("#confirm-no").onclick = () => {
+      document.body.removeChild(overlay);
+      resolve(false);
+    };
   });
 }

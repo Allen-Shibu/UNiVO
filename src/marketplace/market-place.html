@@ -64,6 +64,7 @@
             class="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-3xl hidden p-4 md:p-8"
             id="popupwindow"
           >
+        <!-- Product Popup -->
             <div
               id="productdetails"
               class="relative flex flex-col md:flex-row w-250 max-w-6xl h-full max-h-[90vh] md:h-[80vh] bg-[#e3e3e3] dark:bg-[#1f1f26] rounded-3xl shadow-[0_0_20px_rgba(255,255,255,0.2)] overflow-y-auto md:overflow-hidden translate-x-30"
@@ -137,7 +138,7 @@
 
               <div>
               <button 
-                onclick="document.getElementById('popupwindow').classList.add('hidden')"
+                onclick="document.getElementById('ProfilePage').classList.add('hidden')"
                 class="absolute top-6 left-6 text-white p-2 bg-black/20 rounded-full hover:bg-white/10"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -224,7 +225,7 @@
     </div>
 
     <script type="module" src="/src/shared/loader.js"></script>
-    <script type="module" src="/src/marketplace/marketplace.js" defer></script>
+    <script type="module" src="/src/marketplace/marketplace.js"></script>
     <script type="module" src="/src/shared/session.js"></script>
   </body>
 </html>

@@ -1,4 +1,4 @@
-import{F as s}from"./loader-yIERnUXV.js";/* empty css                    */import{s as n}from"./supabaseClient-BnuRKQFQ.js";import"./session-DnhtpGy1.js";import"https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";function a(){return new Promise(o=>{const e=document.createElement("div");e.innerHTML=`
+import{s as i,F as n}from"./loader-BNZq2rkl.js";/* empty css                    */import"./session--oNH02Qd.js";function a(){return new Promise(o=>{const e=document.createElement("div");e.innerHTML=`
       <div style="position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.5)">
         <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-6 w-80 flex flex-col gap-4">
           <p class="text-lg font-bold dark:text-white text-center">Are you sure you want to delete this listing?</p>
@@ -7,7 +7,7 @@ import{F as s}from"./loader-yIERnUXV.js";/* empty css                    */impor
             <button id="confirm-yes" class="px-5 py-2 rounded-lg bg-red-500 text-white font-semibold hover:bg-red-600 transition">Yes, Delete</button>
           </div>
         </div>
-      </div>`,document.body.appendChild(e),e.querySelector("#confirm-yes").onclick=()=>{document.body.removeChild(e),o(!0)},e.querySelector("#confirm-no").onclick=()=>{document.body.removeChild(e),o(!1)}})}async function c(){const o=document.getElementById("product-grid"),{data:{user:e}}=await n.auth.getUser();if(!e){s("You must be logged in to see your listings!");return}const{data:r,error:l}=await n.from("products").select("*").eq("seller_id",e.id);if(l){s(l.message);return}if(!r||r.length===0){o.innerHTML='<p class="dark:text-white text-gray-500 text-lg">Nothing to see here</p>';return}o.innerHTML=r.map(t=>`
+      </div>`,document.body.appendChild(e),e.querySelector("#confirm-yes").onclick=()=>{document.body.removeChild(e),o(!0)},e.querySelector("#confirm-no").onclick=()=>{document.body.removeChild(e),o(!1)}})}async function c(){const o=document.getElementById("product-grid"),{data:{user:e}}=await i.auth.getUser();if(!e){n("You must be logged in to see your listings!");return}const{data:r,error:l}=await i.from("products").select("*").eq("seller_id",e.id);if(l){n(l.message);return}if(!r||r.length===0){o.innerHTML=`<p class="dark:text-white text-gray-500 text-lg">Nothing to see here,Press the '+Sell' to sell your product</p>`;return}o.innerHTML=r.map(t=>`
     <div class="listing-card flex flex-col relative overflow-hidden rounded-2xl">
       <div class="group flex flex-col relative overflow-hidden rounded-2xl">
         <img src="${t.image_url[0]}" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-300">
@@ -26,4 +26,4 @@ import{F as s}from"./loader-yIERnUXV.js";/* empty css                    */impor
         <p class="font-bold text-lg dark:text-white">${t.title}</p>
         <span class="font-bold text-lg text-green-600">₹${t.price}</span>
       </div>
-    </div>`).join(""),o.addEventListener("click",async t=>{const i=t.target.closest(".del-btn");if(!i||!await a())return;const{error:d}=await n.from("products").delete().eq("id",i.dataset.id);d?s(d.message):i.closest(".listing-card").remove()})}document.addEventListener("DOMContentLoaded",c);
+    </div>`).join(""),o.addEventListener("click",async t=>{const s=t.target.closest(".del-btn");if(!s||!await a())return;const{error:d}=await i.from("products").delete().eq("id",s.dataset.id);d?n(d.message):s.closest(".listing-card").remove()})}document.addEventListener("DOMContentLoaded",c);

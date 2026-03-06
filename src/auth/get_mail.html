@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/shared/marketplace.css" />
+
+  <title>UniVO | Account Recovery</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap');
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+  </style>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+</head>
+<body class="bg-white dark:bg-[#030406] text-gray-900 dark:text-white transition-colors duration-500 overflow-hidden">
+
+  <div class="fixed inset-0 -z-10 pointer-events-none">
+    <div class="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#F0B100]/10 dark:bg-[#F0B100]/5 blur-[120px] rounded-full"></div>
+    <div class="absolute bottom-[-5%] left-[-5%] w-[40%] h-[40%] bg-amber-500/10 dark:bg-amber-500/5 blur-[100px] rounded-full"></div>
+  </div>
+
+  <div class="min-h-screen flex flex-col items-center justify-center p-6">
+        <div id="notification-container" class="flex items-center justify-center mb-20">
+        </div>
+    <div class="mb-10 text-center">
+        <img src="../assets/text_light_mode.png" class="h-10 mx-auto mb-6 block dark:hidden opacity-90">
+        <img src="../assets/text_dark_mode.png" class="h-10 mx-auto mb-6 hidden dark:block opacity-90 brightness-110">
+        
+        <h1 class="text-4xl font-extrabold tracking-tighter sm:text-5xl mb-2">Recovery</h1>
+        <p class="text-gray-500 dark:text-gray-400 font-medium tracking-wide">Enter your email to receive a password reset link</p>
+    </div>
+
+    <div class="w-full max-w-md">
+      <div class="backdrop-blur-2xl bg-gray-50/50 dark:bg-white/[0.02] border-3 border-gray-200 dark:border-white/[0.09] p-10 rounded-[3.5rem] shadow-2xl shadow-white/5 dark:shadow-none relative">
+        
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#F0B100]/40 to-transparent"></div>
+
+        <form class="space-y-8">
+          <div class="space-y-4">
+            <label for="email" class="text-[10px] font-black text-[#F0B100] uppercase tracking-[0.4em] ml-2">College Email</label>
+            <div class="relative group">
+              <input 
+                type="email" 
+                id="email" 
+                placeholder="name@gectcr.ac.in" 
+                required
+                class="w-full bg-white dark:bg-white/[0.04] border border-gray-200 dark:border-white/[0.1] rounded-2xl py-4 px-6 text-lg font-bold outline-none focus:border-[#F0B100] focus:ring-4 focus:ring-[#F0B100]/10 transition-all duration-300 placeholder-gray-300 dark:placeholder-gray-700 text-gray-900 dark:text-white"
+              >
+            </div>
+                <p class="hidden error text-red-500 font-medium" id="mail-req" >Please enter a valid email address</p>
+
+          </div>
+
+          <button 
+            type="submit" 
+            id="submit-btn"
+            class="w-full bg-[#F0B100] hover:bg-amber-400 py-5 rounded-2xl font-black text-black text-xl tracking-tight transition-all duration-300 hover:scale-[1.02] active:scale-95 shadow-xl shadow-amber-500/20 cursor-pointer"
+          >
+            SEND RECOVERY LINK
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <script type="module" src="/src/auth/pwd_reset_emailInput.js"></script>
+</body>
+</html>

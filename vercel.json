@@ -15,6 +15,7 @@
     { "source": "/forum", "destination": "/src/forum/forum.html" },
     { "source": "/terms", "destination": "/src/privacy/terms.html" },
     { "source": "/privacy", "destination": "/src/privacy/privacy.html" },
+    { "source": "/complete-profile", "destination": "/src/auth/complete-profile.html" },
     { "source": "/(.*)", "destination": "/$1" }
   ]
 }

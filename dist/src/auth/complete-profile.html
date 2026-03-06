@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Univo | Complete Profile</title>
+    <script>
+      window.tailwind = {
+        config: {
+          darkMode: 'class'
+        }
+      }
+    </script>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css">
+    
+    <style>
+        .iti { width: 100%; display: block; }
+        .iti__country-list { 
+            z-index: 100; 
+            border-radius: 1rem; 
+            margin-top: 10px; 
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .dark .iti__country-list { 
+            background-color: #1f2937; 
+            border-color: #374151; 
+            color: white; 
+        }
+        .iti__selected-flag { border-radius: 1rem 0 0 1rem; }
+    </style>
+  <link rel="stylesheet" crossorigin href="/assets/marketplace-D0GQBQaF.css">
+</head>
+<body class="bg-white dark:bg-[#030406] transition-colors duration-300">
+    <div class="min-h-screen flex items-center justify-center p-6">
+        <div class="w-full max-w-md">
+            
+            <div class="text-center mb-10">
+                <div class="flex justify-center mb-4">
+                    <img src="/assets/text_light_mode-CJPOOiEL.png" class="h-12 block dark:hidden">
+                    <img src="/assets/text_dark_mode-Jp7T-oUx.png" class="h-12 hidden dark:block">
+                </div>
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200">Final Step</h2>
+                <p class="mt-2 text-gray-500 dark:text-gray-400">Complete your profile to start selling</p>
+            </div>
+
+            <div class="bg-gray-50 dark:bg-[#141418] p-8 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-xl">
+                <div class="space-y-6">
+                    <div>
+                        <label for="phone" class="block text-xl font-medium text-gray-600 dark:text-gray-200 mb-3">Phone Number</label>
+                        <div class="relative">
+                            <input id="phone" type="tel" class="outline-0 border-2 border-amber-50 bg-gray-200 dark:bg-gray-300 py-4 px-3 w-full rounded-2xl text-2xl font-bold text-gray-800 dark:text-gray-900">
+                        </div>
+                        <p id="error-msg" class="text-red-500 text-sm mt-3 font-medium hidden">Please enter a valid phone number.</p>
+                    </div>
+
+                    <button id="submit-btn" class="w-full btn-primary py-4 text-2xl font-bold bg-amber-400 text-black rounded-2xl transition-all hover:scale-105 active:scale-95 shadow-lg shadow-yellow-500/20">
+                        SAVE & CONTINUE
+                    </button>
+                </div>
+            </div>
+
+            <p class="text-center mt-8 text-sm text-gray-400">
+                Students will use this number to contact you about products.
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+    <script>
+        const phoneInput = document.querySelector("#phone");
+        const submitBtn = document.querySelector("#submit-btn");
+        const errorMsg = document.querySelector("#error-msg");
+
+        const iti = window.intlTelInput(phoneInput, {
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
+            separateDialCode: true,
+            initialCountry: "in",
+            preferredCountries: ["in"]
+        });
+
+        // Dark mode persistence
+        if (localStorage.getItem("color-theme") === "dark" || (!localStorage.getItem("color-theme") && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+    <script src="profile-complete.js"></script>
+</body>
+</html>

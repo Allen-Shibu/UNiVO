@@ -252,16 +252,25 @@ function initializeNavigation() {
     const {
       data: { session },
       error,
-    } = await supabase.auth.getSession();
+    } = await supabase.auth.refreshSession();
     console.log(session);
     
+    // const response = await fetch(
+    //   `${import.meta.env.VITE_SUPABASE_FUNCTION_URL}/delete_user`,
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       Authorization: `Bearer ${session.access_token}`,
+    //     },
+    //   },
+    // );
+
     const response = await fetch(
       `${import.meta.env.VITE_SUPABASE_FUNCTION_URL}/delete_user`,
       {
         method: "POST",
-        headers: {
-          Authorization: `Bearer ${session.access_token}`,
-        },
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: session.access_token }),
       },
     );
 

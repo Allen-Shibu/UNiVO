@@ -265,20 +265,25 @@ function initializeNavigation() {
     //   },
     // );
 
-    const response = await fetch(
-      `${import.meta.env.VITE_SUPABASE_FUNCTION_URL}/delete_user`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token: session.access_token }),
-      },
-    );
+const response = await fetch(
+  `${import.meta.env.VITE_SUPABASE_FUNCTION_URL}/delete_user`,
+  {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${session.access_token}`,
+      "Content-Type": "application/json",
+    },
+  },
+);
 
-    const result = await response.json();
-    if (response.ok) window.location.href="/src/auth/inde.html";
-    else {
-      FailNotify(error);
-    }
+const result = await response.json();
+
+if (response.ok) {
+  await supabase.auth.signOut();
+  window.location.href = "/src/auth/index.html";
+} else {
+  FailNotify(result.error);
+}
   });
 }
 

@@ -140,10 +140,19 @@ productGrid.addEventListener("click", async (e) => {
 
 // contacting the seller
 document.getElementById("contactsellerbutton").addEventListener("click", async (e)=>{
+      const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) {
+      FailNotify("You must be logged in to save products");
+      return;
+    }
+  
+  
   const { data, error } = await supabase
     .from('profiles')
     .select('phone')
-    .eq('email', '25b1161.allen@gectcr.ac.in')
+    .eq('email', user.email)
     .single()
 
   const phonenumber = data.phone;
@@ -334,7 +343,7 @@ const pgwishlist = document.getElementById("productpageaddtowishlistbtn").addEve
   const {data, error} = await supabase
     .from("products")
     .select("*")
-    .contains("image_url", [e.target.src])
+    .contains("title", clickedproducttitle)
     .single()
 
     const { data: existing } = await supabase

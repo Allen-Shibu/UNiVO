@@ -345,7 +345,7 @@ const pgwishlist = document.getElementById("productpageaddtowishlistbtn").addEve
     .select("*")
     .eq("title", clickedproducttitle)
     .single()
-    console.log(data.id)
+    
 
     const { data: existing } = await supabase
       .from("wishlist")

@@ -67,7 +67,7 @@
         <!-- Product Popup -->
             <div
               id="productdetails"
-              class="relative flex flex-col md:flex-row w-full max-w-6xl h-full max-h-[90vh] md:h-[80vh] bg-[#e3e3e3] dark:bg-[#1f1f26] rounded-3xl shadow-[0_0_20px_rgba(255,255,255,0.2)] overflow-y-auto md:overflow-hidden"
+              class="relative flex flex-col md:flex-row w-250 max-w-6xl h-full max-h-[90vh] md:h-[80vh] bg-[#e3e3e3] dark:bg-[#1f1f26] rounded-3xl shadow-[0_0_20px_rgba(255,255,255,0.2)] overflow-y-auto md:overflow-hidden translate-x-30"
             >
               
               <div class="w-full md:w-1/2 p-12 flex items-center justify-center bg-black/50 ">
@@ -101,10 +101,10 @@
                 <hr class="border-gray-800 my-6">
                 
               
-                <p class="text-3xl font-sans text-[#30303b] font-bold dark:text-white ">Description</p>
+                <!-- <p class="text-3xl font-sans text-[#30303b] font-bold dark:text-white ">Description</p> -->
                 
-                <div class="h-90 w-full translate-y-5 p-4 rounded-2xl bg-[#d6d6d6] dark:bg-[#2b3442]">
-                <p id="productdescription" class="mt-2 font-sans leading-relaxed text-[#30303b] dark:text-white text-2xl">
+                <div class="h-90 w-full translate-y-5 p-4 rounded-2xl bg-[#d6d6d6] dark:bg-[#2b3442] break-words">
+                <p id="productdescription" class="mt-2 font-sans leading-relaxed text-[#30303b] dark:text-white text-sm">
                   no description provided
                 </p>
                 </div>
@@ -122,13 +122,13 @@
                 <div class="mt-auto pt-8 flex flex-col gap-3">
                   <button
                     id="contactsellerbutton"
-                    class="w-full py-4 rounded-2xl bg-[#F0B100] font-bold text-xl hover:bg-[#d9a100] transition-colors"
+                    class="w-full py-4 rounded-2xl bg-[#F0B100] font-bold text-xl hover:bg-[#d9a100] transition-colors cursor-pointer"
                   >
                     Contact Seller
                   </button>
                   <button
                     id="productpageaddtowishlistbtn"
-                    class="w-full py-4 rounded-2xl text-[#30303b] border border-black/50 font-bold dark:text-white text-xl hover:bg-[#d4d1ba] transition-colors duration-100"
+                    class="w-full cursor-pointer py-4 rounded-2xl text-[#30303b] border border-black/50 font-bold dark:text-white text-xl hover:bg-[#d4d1ba] transition-colors duration-100"
                   >
                     Add to Wishlist
                   </button>

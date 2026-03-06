@@ -343,8 +343,9 @@ const pgwishlist = document.getElementById("productpageaddtowishlistbtn").addEve
   const {data, error} = await supabase
     .from("products")
     .select("*")
-    .contains("title", clickedproducttitle)
+    .eq("title", clickedproducttitle)
     .single()
+    console.log(data.id)
 
     const { data: existing } = await supabase
       .from("wishlist")

@@ -1,6 +1,5 @@
-import{s as f}from"./supabaseClient-BpBB6T06.js";async function H(){const{data:{session:o}}=await f.auth.getSession();document.getElementById("auth-btn"),document.getElementById("auth-container");const t=document.getElementById("mobilelesswidth");if(!o&&t){t.innerHTML=`
-    < div class="flex gap-4 items-center" >
-                    < !--Keep the Theme Toggle-- >
+import{s as f}from"./supabaseClient-IcS1GkpV.js";async function H(){const{data:{session:o}}=await f.auth.getSession();document.getElementById("auth-btn"),document.getElementById("auth-container");const t=document.getElementById("mobilelesswidth");if(!o&&t){t.innerHTML=`
+                <div class="flex gap-4 items-center">
                     <div class="dark:text-white mr-2">
                         <button id="theme-toggle" class="size-6 hover:text-yellow-500 transition cursor-pointer pt-1">
                             <svg id="theme-toggle-dark-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

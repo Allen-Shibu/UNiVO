@@ -45,23 +45,19 @@ async function compressImage(file) {
 imageInput.addEventListener("change", () => {
   [...imageInput.files].forEach((file) => {
     const box = document.createElement("div");
-    box.className = "relative w-full h-48 ";
+    box.className = "relative group overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm aspect-square bg-gray-50 dark:bg-[#0B0C0F] flex items-center justify-center";
     const img = document.createElement("img");
     const delbtn = document.createElement("button");
-    delbtn.innerHTML = `<button id='delbtn' class="cursor-pointer relative px-1 -top-47 -right-54 w-8 h-8 bg-white/60 rounded-4xl backdrop-blur-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M3 6h18"></path>
-  <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-  <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-  <line x1="10" y1="11" x2="10" y2="17"></line>
-  <line x1="14" y1="11" x2="14" y2="17"></line>
-</svg></button>`;
+    delbtn.className = "absolute top-2 right-2 w-8 h-8 bg-black/50 hover:bg-black/80 text-white rounded-full flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 cursor-pointer shadow-md";
+    delbtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>`;
+
     delbtn.addEventListener("click", () => {
       box.remove();
       imageInput.value = "";
     });
 
     img.src = URL.createObjectURL(file);
-    img.className = "ml-3 h-50 w-full object-cover rounded-lg";
+    img.className = "w-full h-full object-cover";
     box.appendChild(img);
     box.appendChild(delbtn);
     if (preview.childElementCount < 4) {
@@ -168,24 +164,20 @@ async function CheckEdit() {
 
       existingUrl.forEach((url) => {
         const box = document.createElement("div");
-        box.className = "relative w-full h-48";
+        box.className = "relative group overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm aspect-square bg-gray-50 dark:bg-[#0B0C0F] flex items-center justify-center";
         const img = document.createElement("img");
         const preview = document.getElementById("imageuploads");
         const delbtn = document.createElement("button");
-        delbtn.innerHTML = `<button id='delbtn' class="cursor-pointer relative px-2 top-2 right-2 w-8 h-8 bg-white/60 rounded-4xl backdrop-blur-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 6h18"></path>
-              <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-              <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-              <line x1="10" y1="11" x2="10" y2="17"></line>
-              <line x1="14" y1="11" x2="14" y2="17"></line>
-            </svg></button>`;
+        delbtn.className = "absolute top-2 right-2 w-8 h-8 bg-black/50 hover:bg-black/80 text-white rounded-full flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 cursor-pointer shadow-md";
+        delbtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>`;
+
         delbtn.addEventListener("click", () => {
           box.remove();
           imageInput.value = "";
         });
 
         img.src = url;
-        img.className = "ml-3 h-50 w-full object-cover rounded-lg";
+        img.className = "w-full h-full object-cover";
         box.appendChild(img);
         box.appendChild(delbtn);
         if (preview.childElementCount < 4) {

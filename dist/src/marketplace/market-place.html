@@ -10,9 +10,9 @@
     }
   </script>
   <script type="module" crossorigin src="/assets/supabaseClient-IcS1GkpV.js"></script>
-  <script type="module" crossorigin src="/assets/loader-tWLxx4qH.js"></script>
+  <script type="module" crossorigin src="/assets/loader-CByNdaKQ.js"></script>
   <script type="module" crossorigin src="/assets/marketplace-ftkJ5IoN.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/marketplace-C9dIAVja.css">
+  <link rel="stylesheet" crossorigin href="/assets/marketplace-DqRCvzis.css">
 </head>
 
 <body class="overflow-x-hidden">
@@ -29,9 +29,10 @@
           id="popupwindow">
           <!-- Product Popup -->
           <div id="productdetails"
-            class="relative flex flex-col md:flex-row w-250 max-w-6xl h-full max-h-[90vh] md:h-[80vh] bg-[#e3e3e3] dark:bg-[#1f1f26] rounded-3xl shadow-[0_0_20px_rgba(255,255,255,0.2)] overflow-y-auto md:overflow-hidden translate-x-30">
+            class="relative flex flex-col md:flex-row w-full max-w-6xl h-[90vh] md:h-[80vh] bg-[#e3e3e3] dark:bg-[#1f1f26] rounded-3xl shadow-[0_0_20px_rgba(255,255,255,0.2)] overflow-y-auto md:overflow-hidden">
 
-            <div class="w-full md:w-1/2 p-12 flex items-center justify-center bg-black/50 relative ">
+            <div
+              class="w-full md:w-1/2 h-1/2 md:h-full p-8 md:p-12 flex items-center justify-center bg-black/50 relative shrink-0">
               <button id="previousimgbtn">
                 <div class="bg-black rounded-2xl p-1 cursor-pointer">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -41,7 +42,7 @@
                 </div>
               </button>
               <img id="productpageuploadimage" src=""
-                class="transition-transform duration-500 max-w-full max-h-[40vh] md:max-h-full object-contain rounded-2xl m-1" />
+                class="transition-transform duration-500 max-w-[80vw] md:max-w-full max-h-[40vh] md:max-h-[70vh] object-contain rounded-2xl m-1" />
               <button id="nextimgbtn">
                 <div class="bg-black rounded-2xl p-1 cursor-pointer">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -53,7 +54,7 @@
               <div id="image-indicators" class="absolute bottom-4 flex gap-2"></div>
             </div>
 
-            <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col">
+            <div class="w-full md:w-1/2 h-max md:h-full p-6 md:p-10 flex flex-col">
               <h2 id="productname" class="text-3xl md:text-4xl text-[#30303b] dark:text-white font-sans font-semibold">
                 Product name
               </h2>

@@ -112,7 +112,7 @@ function initializeNavigation() {
 
   function closeSidebar() {
     if (ProfileView) ProfileView.classList.add("hidden");
-    if (Notify - view) no;
+    if (NotifyView) NotifyView.classList.add("hidden");
     if (SideBar) {
       SideBar.classList.remove("translate-x-0");
       SideBar.classList.add("-translate-x-full");

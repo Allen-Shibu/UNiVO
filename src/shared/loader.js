@@ -1,4 +1,5 @@
 import { supabase } from "/src/shared/supabaseClient.js";
+import { UpdateAuthBtn } from "/src/shared/session.js";
 
 async function loadComponent(elementId, componentPath) {
   try {
@@ -44,29 +45,50 @@ function initializeNavigation() {
 
   if (ProfileBtn && ProfileView) {
     ProfileBtn.addEventListener("click", async (e) => {
-      ProfileBtn.classList.replace("dark:text-white", "text-amber-400");
+      e.stopPropagation();
 
-      const {
-        data: { user },
-        error,
-      } = await supabase.auth.getUser();
-
-      if (ProfileInfo && user) {
-        const name =
-          user.user_metadata.display_name || user.user_metadata.full_name;
-        ProfileInfo.innerHTML = `${name} <br> ${user.email}`;
+      // Close Notifications if it's open
+      if (NotifyView && !NotifyView.classList.contains("hidden")) {
+        closeNotify();
       }
 
-      if (error) FailNotify(error);
+      const isHidden = ProfileView.classList.contains("hidden");
 
-      e.stopPropagation();
-      ProfileView.classList.toggle("hidden");
+      if (isHidden) {
+        ProfileBtn.classList.remove("dark:text-white");
+        ProfileBtn.classList.add("text-amber-400");
+        ProfileView.classList.remove("hidden");
+
+        const {
+          data: { user },
+          error,
+        } = await supabase.auth.getUser();
+
+        if (ProfileInfo && user) {
+          const name =
+            user.user_metadata.display_name || user.user_metadata.full_name;
+          ProfileInfo.innerHTML = `${name} <br> ${user.email}`;
+        }
+
+        if (error) FailNotify(error);
+      } else {
+        ProfileView.classList.add("hidden");
+        ProfileBtn.classList.remove("text-amber-400");
+        ProfileBtn.classList.add("dark:text-white");
+      }
     });
 
     // Close if the user clicks outside the dialog
     document.addEventListener("click", () => {
       ProfileView.classList.add("hidden");
-      ProfileBtn.classList.replace("text-amber-400", "dark:text-white");
+      ProfileBtn.classList.remove("text-amber-400");
+      ProfileBtn.classList.add("dark:text-white");
+
+      // Also ensure Notify is closed properly visually if clicked outside both
+      if (NotifyView && !NotifyView.classList.contains("hidden")) {
+        NotifyView.classList.add("hidden");
+        if (NotifySvg) NotifySvg.classList.remove("text-amber-400");
+      }
     });
 
     // Prevent closing when the user clicks inside the dialog
@@ -90,7 +112,7 @@ function initializeNavigation() {
 
   function closeSidebar() {
     if (ProfileView) ProfileView.classList.add("hidden");
-    if (Notify - view) no;
+    if (NotifyView) NotifyView.classList.add("hidden");
     if (SideBar) {
       SideBar.classList.remove("translate-x-0");
       SideBar.classList.add("-translate-x-full");
@@ -192,6 +214,13 @@ function initializeNavigation() {
   NotifyBtn.addEventListener("click", (e) => {
     e.stopPropagation(); // prevent the click from bubbling to document
 
+    // Close Profile if it's open
+    if (ProfileView && !ProfileView.classList.contains("hidden")) {
+      ProfileView.classList.add("hidden");
+      ProfileBtn.classList.remove("text-amber-400");
+      ProfileBtn.classList.add("dark:text-white");
+    }
+
     const isHidden = NotifyView.classList.contains("hidden");
 
     if (isHidden) {
@@ -201,12 +230,14 @@ function initializeNavigation() {
       setTimeout(() => {
         document.addEventListener("click", closeNotify);
       }, 0);
+    } else {
+      closeNotify();
     }
   });
 
   function closeNotify() {
     NotifyView.classList.add("hidden");
-    NotifySvg.classList.remove("text-amber-400");
+    if (NotifySvg) NotifySvg.classList.remove("text-amber-400");
     document.removeEventListener("click", closeNotify);
   }
 
@@ -218,6 +249,7 @@ function initializeNavigation() {
   const ProfilePhone = document.getElementById("profile-display-phone");
   const ResetPwd = document.getElementById("reset-password-btn");
   const DelBtn = document.getElementById("delete-account-button");
+
 
   ProfileTab.addEventListener("click", async (e) => {
     ProfilePage.classList.remove("hidden");
@@ -254,7 +286,7 @@ function initializeNavigation() {
       error,
     } = await supabase.auth.refreshSession();
     console.log(session);
-    
+
     // const response = await fetch(
     //   `${import.meta.env.VITE_SUPABASE_FUNCTION_URL}/delete_user`,
     //   {
@@ -265,30 +297,31 @@ function initializeNavigation() {
     //   },
     // );
 
-const response = await fetch(
-  `${import.meta.env.VITE_SUPABASE_FUNCTION_URL}/delete_user`,
-  {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${session.access_token}`,
-      "Content-Type": "application/json",
-    },
-  },
-);
+    const response = await fetch(
+      `${import.meta.env.VITE_SUPABASE_FUNCTION_URL}/delete_user`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${session.access_token}`,
+          "Content-Type": "application/json",
+        },
+      },
+    );
 
-const result = await response.json();
+    const result = await response.json();
 
-if (response.ok) {
-  await supabase.auth.signOut();
-  window.location.href = "/src/auth/index.html";
-} else {
-  FailNotify(result.error);
-}
+    if (response.ok) {
+      await supabase.auth.signOut();
+      window.location.href = "/src/auth/index.html";
+    } else {
+      FailNotify(result.error);
+    }
   });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  loadComponent("navigation-container", "/src/shared/main.html");
+document.addEventListener("DOMContentLoaded", async function () {
+  await loadComponent("navigation-container", "/src/shared/main.html");
+  UpdateAuthBtn();
 });
 
 async function loadmess(elementId, componentPath) {

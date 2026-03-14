@@ -1,12 +1,9 @@
-import { createClient } from "@supabase/supabase-js";
-const supabaseUrl = "https://opzechnwukuqfvfaytfx.supabase.co";
-const supabaseKey = "sb_publishable_w87ezT-fcldEAO653BOpwQ_UvJtX51_";
-const supabase = createClient(supabaseUrl, supabaseKey);
+import { supabase } from "/src/shared/supabaseClient.js";
 
 
 let timeoutId;
-  const GreenNotify = document.getElementById("good-notification");
-  const notify = document.getElementById("fail-notification");
+const GreenNotify = document.getElementById("good-notification");
+const notify = document.getElementById("fail-notification");
 
 function PassNotify() {
   GreenNotify.classList.remove("hidden");
@@ -17,15 +14,15 @@ function PassNotify() {
     clearTimeout(timeoutId);
   }
 
-    timeoutId = setTimeout(() => {
-      GreenNotify.classList.add("hidden");
-    }, 2000);
-  
+  timeoutId = setTimeout(() => {
+    GreenNotify.classList.add("hidden");
+  }, 2000);
+
 }
 
 function FailNotify() {
   notify.classList.remove("hidden");
-  
+
 
   if (timeoutId) {
     GreenNotify.classList.add("hidden");
@@ -33,9 +30,9 @@ function FailNotify() {
     clearTimeout(timeoutId);
   }
 
-    timeoutId = setTimeout(() => {
-      notify.classList.add("hidden");
-    }, 2000);
+  timeoutId = setTimeout(() => {
+    notify.classList.add("hidden");
+  }, 2000);
 
 }
 
@@ -105,7 +102,9 @@ async function loadProducts(SearchResults = null) {
       ProductGrid.appendChild(card);
 
 
-    })}};
+    })
+  }
+};
 
 loadProducts();
 
@@ -115,6 +114,22 @@ const popup = document.getElementById("popupwindow");
 const pop = document.getElementById('productdetails');
 
 let clickedproducttitle;
+let i = 0;
+
+function updateImageDots(total, current) {
+  const container = document.getElementById('image-indicators');
+  if (!container) return;
+  container.innerHTML = '';
+
+  if (total <= 1) return; // No dots if only 1 image //
+
+  for (let idx = 0; idx < total; idx++) {
+    const dot = document.createElement('div');
+    dot.className = `w-2.5 h-2.5 rounded-full transition-colors duration-300 ${idx === current ? 'bg-white' : 'bg-white/40'}`;
+    container.appendChild(dot);
+  }
+}
+
 productGrid.addEventListener("click", async (e) => {
 
   if (e.target.tagName === "IMG") {
@@ -123,33 +138,36 @@ productGrid.addEventListener("click", async (e) => {
     document.getElementById("productpageuploadimage").src = e.target.src;
 
     popup.classList.remove("hidden");
-    const {data, error} = await supabase
-    .from("products")
-    .select("*")
-    .contains("image_url", [e.target.src])
-    .single()
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .contains("image_url", [e.target.src])
+      .single()
 
     document.getElementById("productname").textContent = data.title;
-    document.getElementById('productprice').textContent = "₹"+data.price;
+    document.getElementById('productprice').textContent = "₹" + data.price;
     clickedproducttitle = data.title;
     document.getElementById("productdescription").textContent = data.description;
     document.getElementById("otherdetails").textContent = data.details;
-    // document.getElementById("userinfo").textContent = data.details;
+
+    i = 0;
+    const totalImages = data.image_url ? data.image_url.length : 0;
+    updateImageDots(totalImages, i);
   }
 });
 
 
 // contacting the seller
-document.getElementById("contactsellerbutton").addEventListener("click", async (e)=>{
-      const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    if (!user) {
-      FailNotify("You must be logged in to save products");
-      return;
-    }
-  
-  
+document.getElementById("contactsellerbutton").addEventListener("click", async (e) => {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) {
+    FailNotify("You must be logged in to save products");
+    return;
+  }
+
+
   const { data, error } = await supabase
     .from('profiles')
     .select('phone')
@@ -163,7 +181,7 @@ document.getElementById("contactsellerbutton").addEventListener("click", async (
 })
 
 
-popup.addEventListener("click", ()=>{
+popup.addEventListener("click", () => {
   popup.classList.add("hidden");
 })
 
@@ -174,7 +192,7 @@ document.addEventListener("keydown", (e) => {
 });
 
 
-pop.addEventListener("click", (e)=>{
+pop.addEventListener("click", (e) => {
   e.stopPropagation();
 })
 
@@ -223,41 +241,45 @@ initSearch();
 
 
 const nextimgbtn = document.getElementById("nextimgbtn");
-const previousimgbtn  = document.getElementById("previousimgbtn");
+const previousimgbtn = document.getElementById("previousimgbtn");
 
-let i = 0;
-nextimgbtn.addEventListener("click", async (e)=>{
-    // document.getElementById("productpageuploadimage").classList.add("-translate-x-full", "duration-500");
-    const { data, error } = await supabase
+nextimgbtn.addEventListener("click", async (e) => {
+  // document.getElementById("productpageuploadimage").classList.add("-translate-x-full", "duration-500");
+  const { data, error } = await supabase
     .from('products')
     .select('image_url')
     .eq('title', clickedproducttitle)
-    const number_of_images = data[0].image_url.length;
+  const number_of_images = data[0].image_url.length;
 
-    if(number_of_images == 1){
-      nextimgbtn.disabled = true;
-    }
-    if(i<number_of_images-1)
-      i++;
-      // console.log()
-      document.getElementById("productpageuploadimage").src = data[0].image_url[i]
+  if (number_of_images == 1) {
+    nextimgbtn.disabled = true;
+  }
+  if (i < number_of_images - 1) {
+    i++;
+  }
+  // console.log()
+  document.getElementById("productpageuploadimage").src = data[0].image_url[i]
+  updateImageDots(number_of_images, i);
 })
 
-previousimgbtn.addEventListener("click", async (e)=>{
+previousimgbtn.addEventListener("click", async (e) => {
   // document.getElementById("productpageuploadimage").classList.add("translate-x-full")
-    const { data, error } = await supabase
+  const { data, error } = await supabase
     .from('products')
     .select('image_url')
     .eq('title', clickedproducttitle)
-    const number_of_images = data[0].image_url.length;
+  const number_of_images = data[0].image_url.length;
 
-      if(number_of_images == 1){
-        nextimgbtn.disabled = true;}
-        
-    if(i>0)
-      i--;
-      // console.log()
-      document.getElementById("productpageuploadimage").src = data[0].image_url[i]
+  if (number_of_images == 1) {
+    nextimgbtn.disabled = true;
+  }
+
+  if (i > 0) {
+    i--;
+  }
+  // console.log()
+  document.getElementById("productpageuploadimage").src = data[0].image_url[i]
+  updateImageDots(number_of_images, i);
 })
 
 
@@ -306,7 +328,7 @@ function WishlistLogic() {
         icon.setAttribute("fill", "none");
         btn.classList.remove("text-red-500");
         btn.classList.add("text-gray-400");
-        FailNotify(); 
+        FailNotify();
       }
     } else {
 
@@ -332,56 +354,57 @@ function WishlistLogic() {
 
 WishlistLogic();
 
-const pgwishlist = document.getElementById("productpageaddtowishlistbtn").addEventListener("click", async (e)=>{
-      const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    if (!user) {
-      FailNotify("You must be logged in to save products");
-      return;
-    }
-  
-  const {data, error} = await supabase
+const pgwishlist = document.getElementById("productpageaddtowishlistbtn").addEventListener("click", async (e) => {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) {
+    FailNotify("You must be logged in to save products");
+    return;
+  }
+
+  const { data, error } = await supabase
     .from("products")
     .select("*")
     .eq("title", clickedproducttitle)
     .single()
-    
 
-    const { data: existing } = await supabase
+
+  const { data: existing } = await supabase
+    .from("wishlist")
+    .select("*")
+    .eq("product_id", data.id)
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  if (existing) {
+    const { error } = await supabase
       .from("wishlist")
-      .select("*")
+      .delete()
       .eq("product_id", data.id)
-      .eq("user_id", user.id)
-      .maybeSingle();
-
-    if (existing) {
-      const { error } = await supabase
-        .from("wishlist")
-        .delete()
-        .eq("product_id", data.id)
-        .eq("user_id", user.id);
-            if (error) {
-        console.error("Error removing from wishlist:", error);
-        FailNotify("Failed to remove from wishlist");
-      } else {
-        PassNotify();
-      }
+      .eq("user_id", user.id);
+    if (error) {
+      console.error("Error removing from wishlist:", error);
+      FailNotify("Failed to remove from wishlist");
     } else {
+      PassNotify();
+    }
+  } else {
 
-      const { error } = await supabase.from("wishlist").insert([
-        {
-          product_id: data.id,
-          user_id: user.id,
-        },
-      ]);
+    const { error } = await supabase.from("wishlist").insert([
+      {
+        product_id: data.id,
+        user_id: user.id,
+      },
+    ]);
 
-      if (error) {
-        console.error("Error adding to wishlist:", error);
-        FailNotify("Failed to add to wishlist");
-      } else {
-        PassNotify()
-      }
+    if (error) {
+      console.error("Error adding to wishlist:", error);
+      FailNotify("Failed to add to wishlist");
+    } else {
+      PassNotify()
+    }
 
-}});
+  }
+});
 

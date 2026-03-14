@@ -174,7 +174,7 @@ document.getElementById("contactsellerbutton").addEventListener("click", async (
     .eq('email', user.email)
     .single()
 
-  const phonenumber = data.phone;
+  const phonenumber = user.phone;
   var message = "Intrested in buying this product!";
   var url = "https://api.whatsapp.com/send?phone=" + phonenumber + "&text=" + encodeURIComponent(message);
   window.open(url, "_blank");

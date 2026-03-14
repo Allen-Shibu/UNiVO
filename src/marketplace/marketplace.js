@@ -116,6 +116,7 @@ const pop = document.getElementById('productdetails');
 
 let clickedproducttitle;
 productGrid.addEventListener("click", async (e) => {
+
   if (e.target.tagName === "IMG") {
     console.log(e.target)
 
@@ -275,7 +276,7 @@ function WishlistLogic() {
       data: { user },
     } = await supabase.auth.getUser();
     if (!user) {
-      FailNotify("You must be logged in to save products");
+      FailNotify("You must be logged in to buy products");
       return;
     }
 

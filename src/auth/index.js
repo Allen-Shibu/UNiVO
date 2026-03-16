@@ -33,7 +33,7 @@ async function signup() {
     email: email,
     password: password,
     options: {
-      emailRedirectTo: `${siteUrl}/src/auth/login.html`,
+      emailRedirectTo: `${siteUrl}/src/marketplace/market-place.html`,
       data: {
         display_name: name,
         Phone: phone,

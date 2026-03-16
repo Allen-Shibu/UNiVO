@@ -104,8 +104,9 @@ function initializeNavigation() {
       const { error } = await supabase.auth.signOut({ scope: "global" });
       if (error) FailNotify(error);
       else {
+        const siteUrl = window.location.origin;
         PassNotify("Logged Out successfully");
-        window.location.href = "/src/auth/login.html";
+        window.location.href = `${siteUrl}/src/auth/login.html`;;
       }
     });
   }

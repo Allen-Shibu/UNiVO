@@ -13,7 +13,6 @@ let clickedProductId = null;
 let clickedProductTitle = "";
 let imageIndex = 0;
 
-
 // ============================
 // Notifications
 // ============================
@@ -44,20 +43,16 @@ function FailNotify() {
   }, 2000);
 }
 
-
 // ============================
 // Load Products
 // ============================
 
 async function loadProducts() {
-
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const { data: products, error } = await supabase
-    .from("products")
-    .select("*");
+  const { data: products, error } = await supabase.from("products").select("*");
 
   if (error) {
     FailNotify();
@@ -74,11 +69,10 @@ async function loadProducts() {
       .select("product_id")
       .eq("user_id", user.id);
 
-    savedIds = wishlist ? wishlist.map(w => String(w.product_id)) : [];
+    savedIds = wishlist ? wishlist.map((w) => String(w.product_id)) : [];
   }
 
-  products.forEach(product => {
-
+  products.forEach((product) => {
     const isLiked = savedIds.includes(String(product.id));
 
     const card = document.createElement("div");
@@ -111,20 +105,16 @@ async function loadProducts() {
     `;
 
     productGrid.appendChild(card);
-
   });
-
 }
 
 loadProducts();
-
 
 // ============================
 // Product Click (OPEN POPUP)
 // ============================
 
 productGrid.addEventListener("click", async (e) => {
-
   const img = e.target.closest(".product-image");
   if (!img) return;
 
@@ -143,7 +133,8 @@ productGrid.addEventListener("click", async (e) => {
 
   popup.classList.remove("hidden");
 
-  document.getElementById("productpageuploadimage").src = data.image_url[0] || data.image_url;
+  document.getElementById("productpageuploadimage").src =
+    data.image_url[0] || data.image_url;
 
   document.getElementById("productname").textContent = data.title;
   document.getElementById("productprice").textContent = "₹" + data.price;
@@ -165,31 +156,27 @@ productGrid.addEventListener("click", async (e) => {
   // console.log(user.id);
   // console.log(data.seller_id);
   if (user && user.id === data.seller_id) {
-    document.getElementById("productpageaddtowishlistbtn").style.display = "none";
+    document.getElementById("productpageaddtowishlistbtn").style.display =
+      "none";
     markSoldBtn.style.display = "block";
 
     wishlistBtn.disabled = true;
     wishlistBtn.classList.add("opacity-50", "cursor-not-allowed");
-
   } else {
-
     markSoldBtn.style.display = "none";
-    document.getElementById("productpageaddtowishlistbtn").style.display = "block";
+    document.getElementById("productpageaddtowishlistbtn").style.display =
+      "block";
 
     wishlistBtn.disabled = false;
     wishlistBtn.classList.remove("opacity-50", "cursor-not-allowed");
-
   }
-
 });
-
 
 // ============================
 // MARK PRODUCT AS SOLD
 // ============================
 
 document.getElementById("marksoldbtn").addEventListener("click", async () => {
-
   if (!clickedProductId) return;
 
   const { error } = await supabase
@@ -207,9 +194,7 @@ document.getElementById("marksoldbtn").addEventListener("click", async () => {
   popup.classList.add("hidden");
 
   loadProducts();
-
 });
-
 
 // ============================
 // CLOSE POPUP
@@ -227,47 +212,44 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") popup.classList.add("hidden");
 });
 
-
 // ============================
 // CONTACT SELLER
 // ============================
 
-document.getElementById("contactsellerbutton").addEventListener("click", async () => {
+document
+  .getElementById("contactsellerbutton")
+  .addEventListener("click", async () => {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-  const {
-    data: { user }
-  } = await supabase.auth.getUser();
+    if (!user) {
+      FailNotify();
+      return;
+    }
 
-  if (!user) {
-    FailNotify();
-    return;
-  }
+    const { data } = await supabase
+      .from("profiles")
+      .select("phone")
+      .eq("email", user.email)
+      .single();
 
-  const { data } = await supabase
-    .from("profiles")
-    .select("phone")
-    .eq("email", user.email)
-    .single();
+    const phone = data.phone;
 
-  const phone = data.phone;
+    const msg = "Interested in buying this product";
 
-  const msg = "Interested in buying this product";
-
-  window.location.href =
-    "https://api.whatsapp.com/send?phone=" +
-    phone +
-    "&text=" +
-    encodeURIComponent(msg);
-
-});
-
+    window.location.href =
+      "https://api.whatsapp.com/send?phone=" +
+      phone +
+      "&text=" +
+      encodeURIComponent(msg);
+  });
 
 // ============================
 // IMAGE NAVIGATION
 // ============================
 
 document.getElementById("nextimgbtn").addEventListener("click", async () => {
-
   const { data } = await supabase
     .from("products")
     .select("image_url")
@@ -281,24 +263,22 @@ document.getElementById("nextimgbtn").addEventListener("click", async () => {
   }
 
   document.getElementById("productpageuploadimage").src = images[imageIndex];
-
 });
 
+document
+  .getElementById("previousimgbtn")
+  .addEventListener("click", async () => {
+    const { data } = await supabase
+      .from("products")
+      .select("image_url")
+      .eq("id", clickedProductId)
+      .single();
 
-document.getElementById("previousimgbtn").addEventListener("click", async () => {
+    const images = data.image_url;
 
-  const { data } = await supabase
-    .from("products")
-    .select("image_url")
-    .eq("id", clickedProductId)
-    .single();
+    if (imageIndex > 0) {
+      imageIndex--;
+    }
 
-  const images = data.image_url;
-
-  if (imageIndex > 0) {
-    imageIndex--;
-  }
-
-  document.getElementById("productpageuploadimage").src = images[imageIndex];
-
-});
+    document.getElementById("productpageuploadimage").src = images[imageIndex];
+  });

@@ -165,8 +165,7 @@ productGrid.addEventListener("click", async (e) => {
   // console.log(user.id);
   // console.log(data.seller_id);
   if (user && user.id === data.seller_id) {
-
-
+    document.getElementById("productpageaddtowishlistbtn").style.display = "none";
     markSoldBtn.style.display = "block";
 
     wishlistBtn.disabled = true;
@@ -175,6 +174,7 @@ productGrid.addEventListener("click", async (e) => {
   } else {
 
     markSoldBtn.style.display = "none";
+    document.getElementById("productpageaddtowishlistbtn").style.display = "block";
 
     wishlistBtn.disabled = false;
     wishlistBtn.classList.remove("opacity-50", "cursor-not-allowed");

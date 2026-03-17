@@ -104,15 +104,17 @@ async function loadProducts() {
       <div class="relative overflow-hidden rounded-2xl">
 
         <img src="${product.image_url[0] || product.image_url}"
-        class="product-image w-full md:h-64 h-50 object-cover cursor-pointer"
-        data-id="${product.id}">
+          class="product-image w-full md:h-64 h-50 object-cover cursor-pointer"
+          data-id="${product.id}">
 
-        <button class="wishlist-btn absolute top-3 right-3 p-2 rounded-full
-        ${isLiked ? "text-red-500" : "text-gray-400"}"
-        data-id="${product.id}">
-
-        ❤
-
+        <button
+          class="wishlist-btn absolute top-3 right-3
+          w-9 h-9 flex items-center justify-center text-lg
+          rounded-full bg-black/40 backdrop-blur-sm shadow-md
+          ${isLiked ? "text-red-500" : "text-white hover:text-red-400"}
+          transition-colors duration-150"
+          data-id="${product.id}">
+          ❤
         </button>
 
       </div>
@@ -130,6 +132,59 @@ async function loadProducts() {
 }
 
 loadProducts();
+
+// ============================
+// Wishlist Toggle (Cards)
+// ============================
+
+productGrid.addEventListener("click", async (e) => {
+  const btn = e.target.closest(".wishlist-btn");
+  if (!btn) return;
+
+  e.stopPropagation();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    FailNotify();
+    return;
+  }
+
+  const productId = btn.dataset.id;
+  const isLiked = btn.classList.contains("text-red-500");
+
+  if (isLiked) {
+    const { error } = await supabase
+      .from("wishlist")
+      .delete()
+      .eq("user_id", user.id)
+      .eq("product_id", productId);
+
+    if (error) {
+      FailNotify();
+      return;
+    }
+
+    btn.classList.remove("text-red-500");
+    btn.classList.add("text-white");
+  } else {
+    const { error } = await supabase
+      .from("wishlist")
+      .insert({ user_id: user.id, product_id: productId });
+
+    if (error) {
+      FailNotify();
+      return;
+    }
+
+    btn.classList.remove("text-white");
+    btn.classList.add("text-red-500");
+  }
+
+  PassNotify();
+});
 
 // ============================
 // Product Click (OPEN POPUP)
@@ -159,13 +214,11 @@ productGrid.addEventListener("click", async (e) => {
   popup.classList.remove("hidden");
 
   document.getElementById("productpageuploadimage").src = currentImages[0];
-
   document.getElementById("productname").textContent = data.title;
   document.getElementById("productprice").textContent = "₹" + data.price;
   document.getElementById("productdescription").textContent = data.description;
   document.getElementById("otherdetails").textContent = data.details;
 
-  // Draw dots on popup open
   updateImageDots(currentImages.length, imageIndex);
 
   // ============================
@@ -180,17 +233,13 @@ productGrid.addEventListener("click", async (e) => {
   const wishlistBtn = document.getElementById("productpageaddtowishlistbtn");
 
   if (user && user.id === data.seller_id) {
-    document.getElementById("productpageaddtowishlistbtn").style.display =
-      "none";
+    wishlistBtn.style.display = "none";
     markSoldBtn.style.display = "block";
-
     wishlistBtn.disabled = true;
     wishlistBtn.classList.add("opacity-50", "cursor-not-allowed");
   } else {
     markSoldBtn.style.display = "none";
-    document.getElementById("productpageaddtowishlistbtn").style.display =
-      "block";
-
+    wishlistBtn.style.display = "block";
     wishlistBtn.disabled = false;
     wishlistBtn.classList.remove("opacity-50", "cursor-not-allowed");
   }

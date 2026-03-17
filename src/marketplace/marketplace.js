@@ -337,3 +337,4 @@ document.getElementById("previousimgbtn").addEventListener("click", () => {
     updateImageDots(currentImages.length, imageIndex);
   }
 });
+  

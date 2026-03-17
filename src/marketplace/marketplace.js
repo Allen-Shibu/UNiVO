@@ -12,6 +12,7 @@ const pop = document.getElementById("productdetails");
 let clickedProductId = null;
 let clickedProductTitle = "";
 let imageIndex = 0;
+let currentImages = [];
 
 // ============================
 // Notifications
@@ -41,6 +42,26 @@ function FailNotify() {
   timeoutId = setTimeout(() => {
     notify.classList.add("hidden");
   }, 2000);
+}
+
+// ============================
+// Image Dots
+// ============================
+
+function updateImageDots(total, current) {
+  const container = document.getElementById("image-indicators");
+  if (!container) return;
+
+  container.innerHTML = "";
+  if (total <= 1) return;
+
+  for (let idx = 0; idx < total; idx++) {
+    const dot = document.createElement("div");
+    dot.className = `w-2.5 h-2.5 rounded-full transition-all duration-200 ${
+      idx === current ? "bg-white scale-110" : "bg-white/40"
+    }`;
+    container.appendChild(dot);
+  }
 }
 
 // ============================
@@ -130,18 +151,22 @@ productGrid.addEventListener("click", async (e) => {
 
   clickedProductId = data.id;
   clickedProductTitle = data.title;
+  currentImages = Array.isArray(data.image_url)
+    ? data.image_url
+    : [data.image_url];
+  imageIndex = 0;
 
   popup.classList.remove("hidden");
 
-  document.getElementById("productpageuploadimage").src =
-    data.image_url[0] || data.image_url;
+  document.getElementById("productpageuploadimage").src = currentImages[0];
 
   document.getElementById("productname").textContent = data.title;
   document.getElementById("productprice").textContent = "₹" + data.price;
   document.getElementById("productdescription").textContent = data.description;
   document.getElementById("otherdetails").textContent = data.details;
 
-  imageIndex = 0;
+  // Draw dots on popup open
+  updateImageDots(currentImages.length, imageIndex);
 
   // ============================
   // MARK AS SOLD LOGIC
@@ -153,8 +178,7 @@ productGrid.addEventListener("click", async (e) => {
 
   const markSoldBtn = document.getElementById("marksoldbtn");
   const wishlistBtn = document.getElementById("productpageaddtowishlistbtn");
-  // console.log(user.id);
-  // console.log(data.seller_id);
+
   if (user && user.id === data.seller_id) {
     document.getElementById("productpageaddtowishlistbtn").style.display =
       "none";
@@ -190,9 +214,7 @@ document.getElementById("marksoldbtn").addEventListener("click", async () => {
   }
 
   PassNotify();
-
   popup.classList.add("hidden");
-
   loadProducts();
 });
 
@@ -249,36 +271,20 @@ document
 // IMAGE NAVIGATION
 // ============================
 
-document.getElementById("nextimgbtn").addEventListener("click", async () => {
-  const { data } = await supabase
-    .from("products")
-    .select("image_url")
-    .eq("id", clickedProductId)
-    .single();
-
-  const images = data.image_url;
-
-  if (imageIndex < images.length - 1) {
+document.getElementById("nextimgbtn").addEventListener("click", () => {
+  if (imageIndex < currentImages.length - 1) {
     imageIndex++;
+    document.getElementById("productpageuploadimage").src =
+      currentImages[imageIndex];
+    updateImageDots(currentImages.length, imageIndex);
   }
-
-  document.getElementById("productpageuploadimage").src = images[imageIndex];
 });
 
-document
-  .getElementById("previousimgbtn")
-  .addEventListener("click", async () => {
-    const { data } = await supabase
-      .from("products")
-      .select("image_url")
-      .eq("id", clickedProductId)
-      .single();
-
-    const images = data.image_url;
-
-    if (imageIndex > 0) {
-      imageIndex--;
-    }
-
-    document.getElementById("productpageuploadimage").src = images[imageIndex];
-  });
+document.getElementById("previousimgbtn").addEventListener("click", () => {
+  if (imageIndex > 0) {
+    imageIndex--;
+    document.getElementById("productpageuploadimage").src =
+      currentImages[imageIndex];
+    updateImageDots(currentImages.length, imageIndex);
+  }
+});

@@ -235,9 +235,11 @@ productGrid.addEventListener("click", async (e) => {
   if (user && user.id === data.seller_id) {
     wishlistBtn.style.display = "none";
     markSoldBtn.style.display = "block";
+    document.getElementById("contactsellerbutton").style.display = "none";
     wishlistBtn.disabled = true;
     wishlistBtn.classList.add("opacity-50", "cursor-not-allowed");
   } else {
+    document.getElementById("contactsellerbutton").style.display = "block";
     markSoldBtn.style.display = "none";
     wishlistBtn.style.display = "block";
     wishlistBtn.disabled = false;
